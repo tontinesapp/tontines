@@ -1,0 +1,54 @@
+{{#section "head"}}
+	<link rel="stylesheet" type="text/css" href="/public/css/login/login.css"/>
+{{/section}}
+
+<header>
+	
+</header>
+<section id="login_container">
+				<div class="login_wrapper">
+					<div class="login_form">
+							<div class="id">
+								<div>
+									<h1>Tontine RDC</h1>
+								<p>
+									Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor
+									Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor
+								</p>
+								</div>
+							</div>
+							<form method="post" action="/login">
+								<h1>Mon Compte</h1>
+								<label for="phone_number">
+									<input type="text" placeholder="Votre numero de telephone" value="{{body.phone_number}}" name="phone_number"/>
+									{{#if no_phone_number}}
+										<span class="required">{{no_phone_number}}</span>
+									{{/if}}
+									{{#if no_user}}
+										<span class="required">{{no_user}}</span>
+									{{/if}}
+								</label>
+								
+								<label for="password">
+									<input type="password" placeholder="Votre mot de passe" name="password"/>
+									<span>Miminum 8 caracteres</span>
+									{{#if no_password}}
+										<span class="required">{{no_password}}</span>
+									{{/if}}
+									{{#if false_password}}
+										<span class="required">{{false_password}}</span>
+									{{/if}}
+								</label>								
+								
+								<p class="login_register">
+									<input type="submit" value="Se connecter" name="register"class="register"/>									
+								</p>
+								<p>
+									Si vous ne disposez d'un compte Tontine veuillez vous 
+									<a href="/signup" class="term_of_use">Inscrire</a>
+								</p>
+							</form>
+							
+					</div>
+				</div>
+			</section>

@@ -1,0 +1,177 @@
+body{
+	background:rgba(192,192,192,0.1);
+}
+#listContainer{
+	margin-top:0px;
+	margin-bottom:0px;
+}
+#list{
+	display:flex;
+	flex-direction:column;
+	align-items:flex-start;
+	justify-content:flex-start;
+	width:96%;
+	margin:auto;
+	margin-top:2.5em;
+	padding-top:0.5em;
+}
+
+#list li{
+	list-style:none;
+	border-bottom:1px solid rgba(0,0,0,0.1);
+	width:98%;
+	padding:0.3em 0px;
+	position:relative;
+	margin-left:1%;
+	display:flex;
+	align-items:center;
+	justify-content:space-between;
+	color:rgba(0,0,0,0.8);
+}
+#list li p{
+	display:flex;
+	margin:0px;
+	padding:0px;
+}
+
+#list li p >span:first-child{
+	margin-right:0.9em;
+	height:25px;
+	width:25px;
+	text-align:center;
+	line-height:25px;
+	font-size:0.9em;
+	border-radius:25px;
+	color:rgba(255,255,255,0.9);
+	background:rgba(0,128,192,0.9);
+	background:rgba(128,128,128,0.9);
+}
+
+#list li p strong{
+	display:flex;
+	flex-direction:column;
+	font-weight:normal;
+}
+
+#list li strong span:first-child{
+	font-size:0.9em;
+	letter-spacing:1px;
+	font-weight:bold;
+}
+#list li strong span:last-child{
+	font-size:0.7em;
+}
+
+#list li i{
+	font-style:normal;
+	border:1px solid rgba(0,128,192,1);
+	padding:0.2em 0.5em;
+	color:white;
+	background:rgba(0,128,192,1);
+	font-size:0.8em;
+	letter-spacing:1px;
+}
+#list li i:hover{
+	cursor:pointer;
+}
+
+.wrapper{
+	display:flex;
+	/justify-content:center;
+	position:absolute;
+	background:rgba(255,255,255,0.9);
+	/background:rgba(0,0,0,0.8);
+	padding:1em 1em;
+	z-index:100;
+	flex-direction:column;
+	top:0px;
+	bottom:0px;
+	left:0px;
+	right:0px;
+	display:none;
+}
+.error{
+	display:flex;
+	justify-content:flex-start;
+}
+.wrapper p:first-child{
+	margin-bottom:1em;
+	position:relative;
+}
+.wrapper p:first-child:before{
+	content:"";
+	display:block;
+	margin:auto;
+	margin-bottom:0.2em;
+	border-radius:50px;
+	height:35px;
+	width:35px;
+	background:rgba(0,128,192,0.7);/*******/
+	background:url("../logo/attention.png") center no-repeat;
+}
+.error p:first-child:before{
+	content:"0";
+	display:block;
+	width:30px;
+	height:30px;
+	margin-left:50%;
+	position:relative;
+	border-radius:50px;
+	background:rgba(240,48,26,1);
+	color:rgba(255,255,255,0.9);
+	line-height:30px;
+	font-size:1.2em;
+}
+
+#wrapperNotification p:first-child:before,wrapperTrueNotification p:first-child:before{
+	content:"";
+	display:block;
+	background:url("../logo/error.png") center no-repeat;
+}
+
+#wrapperNotification,#wrapperTrueNotification{
+	z-index:10000000000000000000000000;
+	position:absolute;
+}
+#wrapperTrueNotification p:first-child:before{
+	background:rgba(0,128,64,1);
+	background:url("../logo/success.png") center no-repeat;
+}
+#wrapperNotification,#wrapperTrueNotification{
+	display:flex;
+}
+#wrapperNotification:before,#wrapperTrueNotification:before{
+	content:"";
+	display:block;
+	text-align:center;
+	/position:relative;
+	/top:-0.5em;
+	font-size:2em;
+	font-weight:bold;
+	color:red;
+	/background:url("../logo/error.png") center no-repeat;
+}
+#wrapperTrueNotification:before{
+	/content:"!";
+	/color:rgba(0,128,64,1);
+}
+
+.wrapper p{
+	margin:0px;
+	text-align:center;
+	font-size:0.8em;
+}
+
+.wrapper p span,#wrapper p a{
+	margin:0px 0.5em;
+	padding:0.2em 1.5em;
+}
+.wrapper p span{
+	background:rgba(128,128,128,1);
+	color:white;
+}
+
+.wrapper p a{
+	background:rgba(0,128,192,1);
+	color:white;
+}

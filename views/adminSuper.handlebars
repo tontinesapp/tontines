@@ -1,0 +1,103 @@
+{{#section "head"}}
+	<link rel="stylesheet" type="text/css" href="/public/css/admin/adminSuper.css"/>
+{{/section}}
+
+<h1 style="text-align:center;padding-top:0.5em">Welcome Super Admin !!!!</h1>
+	<div>
+		<section>
+			<p>
+				<span>{{allUsers}}</span>
+				<span>Nombre d'utilisateur</span>
+				
+			</p>
+			<p>
+				<span>{{actifUsers}}</span>
+				<span>Nombre de tontine Active</span>
+				
+			</p>
+			<p>
+				<span>{{usersOnQueue}}</span>
+				<span>Utilisateur sur les files</span>
+				
+			</p>
+			<p>
+				<span>{{usersSolde}}$</span><span>Solde Utilisateurs</span>
+				
+			</p>
+			<p>
+				<span>{{adminSolde}}$</span><span>Solde Administrateur</span>
+				
+			</p>
+			<p>
+				<span>{{profit}}$</span><span>Benefice Adminisatreur</span>
+				
+			</p>
+		</section>
+		
+		<section id="activity">
+			<p><span id="checker">Les Activités du validateur</span></p>		
+			<p><span id="sender">Les Activités de l'expediteur</span></p>		
+		</section>
+		
+		
+		<section id="notification_container">
+			<h1>Les Activités de l'administrateur</h1>
+			<p class="no_notification" style="display:none"> Pas d'activités pour l'admin</p>
+			<ul class="notification">
+			
+			</ul>
+		</section>
+	</div>
+	
+{{#section "jquery"}}
+<script type="text/javascript">
+	$(document).ready(function(){
+		
+		$("#sender").on("click",function(){	
+			$(".notification").html("");
+			$("#notification_container h1").html("");			
+			AjaxCall("sender");						
+		});
+		$("#checker").on("click",function(){	
+			$(".notification").html("");
+			$("#notification_container h1").html("");			
+			AjaxCall("checker");						
+		});
+		
+		function AjaxCall(phoneNumber){
+			console.log("number");
+				if(phoneNumber.length>0){
+					$.ajax({
+						url:"/admin/find_activity",
+						type:"POST",
+						data:"phone="+phoneNumber,
+						success:function(data){	
+							console.log(data);														
+							if(data.activity){
+								$("#notification_container h1").html("Les Activités de "+data.role);
+								$(".no_notification").css({
+									display:"none"
+								});							
+								var activity=data.activity;
+								for(let i=0; i<activity.length;i++){
+									var type=activity[i].type;
+									var message=activity[i].message;
+									var date=activity[i].date;
+									var time=activity[i].time;										
+									$(".notification").append("<li><strong>"+type+"</strong><span>"+message+"</span><em>"+date +" "+time+"</span></li>");
+								}								
+							}else{
+								$(".no_notification").css({
+								display:"block"
+								})
+							}							
+						},
+						error:function(res){
+							console.log(res)
+						}
+					});		
+				}
+			}			
+		})
+	</script>
+{{/section}}

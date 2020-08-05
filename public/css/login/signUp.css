@@ -1,0 +1,186 @@
+body{
+	background:rgba(250,250,250,1);
+}
+		
+#banner_container .login_message{
+	margin:0px;
+	padding:0px;
+	background:-webkit-linear-gradient(left,rgba(244,244,244,1),rgba(244,244,244,0.8));
+}
+#banner_container .login_message div{
+	padding:1em 0px;
+	padding-top:3em;
+	color:rgba(50,50,50,1);
+	width:80%;
+	margin:auto;
+}
+
+#banner_container .login_message h1{
+	border-bottom:0.5px solid rgba(0,128,192,0.5);
+	padding-bottom:3px;
+	font-weight:normal;
+	font-size:25px;
+	color:rgba(0,128,192,1);
+	display:flex;
+	justify-content:space-between;
+}
+
+#banner_container .login_message p{
+	font-size:15px;
+	color:rgba(0,0,0,0.7);
+}
+
+
+
+#login_container{
+	margin:0px;
+	background:url("../../image/login/b.jpg") center;
+	background-size:cover;
+	padding:0.1em 0px;
+	position:relative;
+	display:flex;
+}
+
+
+#login_container h1{
+	font-size:1.5em;
+	font-weight:normal;
+	color:rgb(66,66,68);
+	margin-bottom:0px;
+	margin-bottom:1em;
+	margin-top:0em;
+	text-align:center;
+}
+
+#login_container ul li:last-child{
+	background:rgba(255,0,0,0.8);
+}
+
+#login_container label{
+	display:block;
+	font-size:13px;
+	color:rgb(66,66,68);
+	
+}
+
+#login_container .login_wrapper{
+	width:90%;
+	margin:auto;
+	position:relative;
+	display:flex;
+	align-items:center;
+	justify-content:space-between;
+}
+#login_container  .login_form{
+	width:50%;
+	padding:0px;
+	/border:1px solid red;
+}
+#login_container  .login_form label input{
+	display:block;
+	width:100%;
+	margin:auto;
+	border:none;
+	border-bottom:1px solid rgba(192,192,192,0.5);
+	border-bottom:1px solid rgba(0,0,0,0.2);
+	font-size:14px;
+	font-weight:bold;
+	padding-bottom:0.4em;
+	padding-left:0.2em;
+	padding-top:0.2em;
+	outline:none;	
+	color:rgba(0,0,0,0.6);
+	color:rgba(0,0,0,0.8);
+	background:transparent;
+	margin-bottom:0.5em;
+}
+#login_container  .login_form label input:focus{
+	/background:rgba(0,0,0,0.2);
+}
+
+#login_container label span{
+	display:block;
+	width:100%;
+	margin:0px auto;
+	font-size:10px;
+	color:rgba(66,66,68,1);
+	margin-top:0.1em;
+	margin-bottom:0.5em;
+	font-weight:normal;
+}
+#login_container label span.required{
+	color:red;
+}
+
+#login_container .login_form ::-webkit-input-placeholder{
+	font-size:14px;
+	color:rgba(192,192,192,0.2);
+}
+
+#login_container label.checkbox input{
+	display:inline-block;
+	width:auto;
+}
+
+#login_container .login_form p{
+	font-size:14px;
+	color:rgba(66,66,69,1);
+}
+
+#login_container .login_form .term_of_use{
+	color:rgba(68,138,255,1);
+}
+#login_container .login_form p.login_register{
+	display:flex;
+	justify-content:center;
+}
+#login_container .login_form p.login_register input{
+	background:none;
+	border:none;
+}
+#login_container .login_form  p.login_register  input.register{
+	border:none;
+	padding:15px 15px;
+	letter-spacing:0.2px;
+	font-size:13.5px;
+	color:rgba(255,255,255,1);
+	border:0.5px solid rgba(68,138,255,1);
+	background:rgba(68,138,255,1);
+	/border-radius:5px;
+	font-weight:bold;
+	width:100%;
+}
+
+@media screen and (max-width:700px){
+	#login_container  .login_form{
+		width:75%;
+		padding:0px;
+	}
+	#banner_container .login_message h1{
+		font-size:18px;
+	}
+	#login_container .login_form p{
+		font-size:0.8em;
+	}
+	
+}
+
+@media screen and (max-width:500px){
+	#login_container  .login_form{
+		width:100%;
+		padding:0px;
+	}
+	#banner_container .login_message h1{
+		font-size:13px;
+		margin-bottom:0px;
+	}
+	
+	#banner_container .login_message p{
+		font-size:0.8em;
+		margin-bottom:0px;
+	}
+	
+	#login_container h1{
+		font-size:1.2em;
+	}
+}

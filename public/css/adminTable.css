@@ -1,0 +1,110 @@
+#table{
+	display:flex;
+	margin-top:3em;
+	align-items:flex-start;
+	flex-wrap:wrap;
+}
+#table>p{
+	width:100%;
+	text-align:center;
+}
+#table li.parentActive,#table li.childActive{
+	background:rgba(0,128,192,1);
+	color:white;
+}
+#queue{
+	display:flex;
+	justify-content:center;
+	width:40%;
+}
+#queue p{
+	text-align:center;
+}
+
+#queue .header li,#list .header li{
+	background:rgba(0,128,192,1);
+	color:white;
+	border-left:1px solid rgba(255,255,255,0.5);
+	border-right:none;
+}
+#list{
+	width:60%;
+}
+#list,#queue {
+	flex-wrap:wrap;
+}
+#list ul,#queue ul{
+	width:95%;
+	display:flex;
+	flex-wrap:wrap;
+	justify-content:flex-start;
+	margin:0px auto;
+}
+
+#list ul li,#queue ul li{
+	list-style:none;
+	border:1px solid rgba(0,0,0,0.5);
+	border-top:none;
+	border-left:none;
+	margin-top:0px;
+	padding:0.2em 0.5em;
+}
+#list ul li:first-child,#queue ul li:first-child{
+	border-left:1px solid rgba(0,0,0,0.5);
+}
+#list ul li.child{
+	width:70px;
+}
+#list ul li.child2{
+	width:100px;
+}
+#list ul.inside li{
+	text-align:left;
+}
+#list ul li.name,#queue ul li.name{
+	width:100px;
+}
+#list ul li.telephone,#queue ul li.telephone{
+	width:120px;
+}
+#list ul li.id{
+	width:30px;
+}
+
+
+
+
+.wrapper{
+	display:flex;
+	justify-content:center;
+	position:absolute;
+	background:rgba(255,255,255,0.9);
+	padding:1em 1em;
+	z-index:100;
+	flex-direction:column;
+	top:0px;
+	bottom:0px;
+	left:0px;
+	right:0px;
+	display:none;
+}
+.wrapper p{
+	text-align:center;
+	display:flex;
+	justify-content:center;
+}
+
+.wrapper p span{
+	background:rgba(128,128,128,1);
+	color:white;
+}
+
+.queue span,.queue a{
+	margin-left:1em;
+	margin-right:1em;
+	padding:0.5em;
+}
+.queue a{
+	background:rgba(0,128,192,1);
+	color:white;
+}

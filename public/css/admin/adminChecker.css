@@ -1,0 +1,186 @@
+body{
+	user-select:auto;
+}
+
+nav{
+	display:flex;
+	justify-content:center;
+	margin-top:1em;
+	margin-bottom:1.5em;
+}
+
+nav a{
+	border:1px solid rgba(0,0,0,0.1);
+	margin:0px 1em;
+	padding:0.2em 0.5em;
+	color:black;
+}
+
+#checker{
+	display:flex;
+	width:90%;
+	margin:auto;
+	justify-content:space-between;
+}
+
+#checker section{
+	width:45%;
+	height:550px;
+	border:1px solid rgba(0,0,0,0.2);
+	overflow-y:auto;
+	padding:0.2em 0.5em;
+	background:rgba(240,240,240,0.1);
+}
+#checker section div{
+	border-bottom:1px solid rgba(0,0,0,0.3);
+}
+#checker .form{
+	width:45%;
+	display:flex;
+	flex-direction:column;
+}
+#checker .form label{
+	display:flex;
+	margin:0.3em 0px;
+	margin-bottom:0.1em;
+}
+#checker .form input{
+	margin-left:0.5em;
+	width:250px;
+	border:none;
+	border:1px solid rgba(0,0,0,0.4);
+	padding:0.2em 0.5em;
+}
+#checker .form input:focus{
+	border:none;
+}
+
+#checker .form label span{
+	width:150px;
+	text-align:left;
+	font-weight:bold;
+	color:rgba(0,0,0,0.7);
+}
+#checker .form em{
+	justify-content:center;
+	font-size:1em;
+	font-style:normal;
+	margin-bottom:0.3em;
+	color:red;
+	display:none;
+}
+#checker .form >span{
+	width:100%;
+	margin-top:1em;
+}
+#checker .form >span i{
+	background:rgba(0,128,192,1);
+	color:white;
+	font-style:normal;
+	padding:0.5em 1em;
+	font-size:0.9em;
+}
+#checker .form >span i:hover{
+	cursor:pointer;
+}
+#checker .form .progress{
+	display:none;
+}
+
+#checker .form .notification{
+	font-size:1.5em;
+}
+
+/*body{
+	text-align:center;
+	font-family:Helvetica;
+}
+body h1{
+	border-bottom:1px solid rgba(0,0,0,0.2);
+	width:80%;
+	margin:auto;
+	margin-top:0.5em;
+	margin-bottom:0.5em;
+}
+nav{
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	width:100%;
+}
+nav span{
+	padding:0.2em 0.5em;
+	margin:0px 2em;
+	font-size:0.9em;
+	border:1px solid rgba(0,128,192,1);
+}
+nav span.active{
+	background:rgba(0,128,192,1);
+	color:white;
+}
+
+#checker{
+	margin-top:1em;
+}
+#checker div{
+	display:flex;
+	width:80%;
+	margin:auto;
+	justify-content:space-between;
+	border-bottom:1px solid rgba(0,0,0,0.2);
+}
+#checker>p{
+	margin-top:2em;
+	border:1px solid rgba(0,0,0,0.1);
+	font-size:2em;
+}
+#checker div p{
+	width:40%;
+	border:1px solid rgba(0,0,0,0.2);
+	padding:0.2em 0.5em;
+}
+#checker div p.message{
+	text-align:left;
+	color:rgba(0,0,0,0.8);
+	font-size:0.9em;
+	line-height:1.4em;
+}
+#checker div p.form{
+	display:flex;
+	flex-direction:column;
+	justify-content:flex-start;
+	align-items:flex-start;
+}
+#checker div p label{
+	display:flex;
+	margin:0.3em 0px;
+}
+#checker div p input{
+	margin-left:0.5em;
+	width:200px;
+	border:none;
+	border:1px solid rgba(0,0,0,0.4);
+	padding:0.2em 0.5em;
+}
+#checker div p input:focus{
+	border:none;
+}
+
+#checker div p label span{
+	width:150px;
+	text-align:left;
+	font-weight:bold;
+	color:rgba(0,0,0,0.7);
+}
+#checker div p >span{
+	width:100%;
+	padding:0.3em 0px;
+	margin-top:1em;
+}
+#checker div p >span i{
+	background:rgba(0,128,192,1);
+	color:white;
+	font-style:normal;
+	padding:0.3em 0.8em;
+	font-size:0.9em;
+}

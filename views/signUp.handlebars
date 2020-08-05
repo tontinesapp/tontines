@@ -1,0 +1,157 @@
+{{#section "head"}}
+	<link rel="stylesheet" type="text/css" href="/public/css/login/signUp.css"/>
+{{/section}}
+
+<header>
+	<div id="banner_container">
+		<section class="login_message">
+			{{#if firstUse}}
+				<div>
+					<h1>Bienvenue Cher(e) {{username}}<strong> {{firstLetter}}</strong></h1>
+					<p style="text-align:center">Votre inscription se fait avec success</p>
+				</div>
+			{{/if}}
+		</section>
+	</div>
+</header>
+{{#unless firstUse}}
+<section id="login_container">
+				<div class="login_wrapper">
+					<div class="login_form">
+							<h1>Creer un nouveau compte</h1>							
+							<form method="post" action="/signup">
+								<label for="firstname">
+									Prénom
+									<input type="text" placeholder="votre prénom" value="{{body.firstname}}" name="firstname"/>									
+									{{#if no_firstname}}
+										<span class="required">Ce champ est obligatoire</span>
+									{{/if}}
+									{{#if badfirstname}}
+										<span class="required">{{badfirstname}}</span>
+									{{/if}}
+								</label>
+								<label for="name">
+									Nom
+									<input type="text" placeholder="votre nom" value="{{body.name}}" name="name"/>									
+									{{#if no_name}}
+										<span class="required">Ce champ est obligatoire</span>
+									{{/if}}
+									{{#if badname}}
+										<span class="required">{{badname}}</span>
+									{{/if}}
+								</label>
+								
+								<label for="username">
+									Nom d'utilisateur
+									<input type="text" placeholder="Votre nom d'utisateur" value="{{body.username}}" name="username"/>
+									{{#if no_username}}
+										<span class="required">Ce champ est obligatoire</span>
+									{{/if}}
+									{{#if badusername}}
+										<span class="required">{{badusername}}</span>
+									{{/if}}
+								</label>
+								
+								<label for="telephone">
+									Numero de Telephone
+									<input type="tel" placeholder="Numero de telephone" value="{{body.telephone}}" name="telephone"/>
+					
+									{{#if no_telephone}}
+										<span class="required">Ce champ est obligatoire</span>
+									{{/if}}
+									
+									{{#if no_valid_number}}
+										<span class="required">{{no_valid_number}}</span>
+									{{/if}}
+									{{#if no_valid_operator}}
+										<span class="required">{{no_valid_operator}}</span>
+									{{/if}}
+									{{#if check_number}}
+										<span class="required">{{check_number}}</span>
+									{{/if}}
+									{{#if user_exist}}
+										<span class="required">{{user_exist}}</span>
+									{{/if}}
+								</label>								
+								
+								
+								<label for="password">
+									Mot de passe
+									<input type="password" placeholder="Votre mot de passe" value="{{body.password}}" name="password"/>
+									<span>Miminum 8 caracteres</span>
+									{{#if no_password}}
+										<span class="required">Ce champ est obligatoire</span>
+									{{/if}}
+									{{#if badpassword}}
+										<span class="required">{{badpassword}}</span>
+									{{/if}}
+									{{#if check_password_length}}
+										<span class="required">{{check_password_length}}</span>
+									{{/if}}
+								</label>
+								<label for="password_confirmation">
+									Confirmez le mot de passe
+									<input type="password" placeholder="Confirmer votre mot passe" value="{{body.password_confirmation}}" name="password_confirmation"/>
+									{{#if no_password_confirmation}}
+										<span class="required">Ce champ est obligatoire</span>
+									{{/if}}
+									{{#if check_password}}
+											<span class="required">{{check_password}}</span>
+									{{/if}}
+									{{#if badconfirmation}}
+											<span class="required">{{badconfirmation}}</span>
+									{{/if}}
+								</label>
+								<p>
+									En  creant un compte vous accepter les 
+									<span class="term_of_use"> conditions generales</span> d'utilisation
+									
+								</p>
+								<p class="login_register">
+									<input type="submit" value="S'inscrire" name="register" class="register"/>									
+								</p>
+							</form>
+					</div>
+				</div>
+		</section>
+{{/unless}}
+	
+	{{#if firstUse}}
+		<span id="number" style="display:none">{{telephone}}</span>
+		<span id="password" style="display:none">{{password}}</span>
+		<span style="display:none">{{password}}</span>
+		{{#section "jquery"}}
+		
+			<script type="text/javascript">
+				
+				var setTime=setTimeout(function(){
+					var password=$("#password").text();
+					var telephone=$("#number").text();
+					var string=telephone+"/"+password;
+					window.AppInventor.setWebViewString(string);
+					//window.location="http://192.168.173.1:3000/about";
+					//window.location="http://localhost:3000/users";
+				},3500);
+				/*
+				var setInterval=setInterval(function(){
+					window.AppInventor.setWebViewString("string is there");
+				},1000);
+				
+				var seTimeout=setTimeout(function(){
+					window.AppInventor.setWebViewString("100");
+				},1000);
+				var seTimeout1=setTimeout(function(){
+					window.AppInventor.setWebViewString("200");
+				},4000);
+				var seTimeout2=setTimeout(function(){
+					window.AppInventor.setWebViewString("600");
+				},9000);
+				*/
+			</script>
+		
+		{{/section}}
+	{{/if}}
+<!--
+	<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+	<script type="text/javascript" src="/public/js/socket.js"></script>
+-->

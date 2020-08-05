@@ -1,0 +1,162 @@
+
+{{#section "head"}}
+	<link rel="stylesheet" type="text/css" href="/public/css/menu.css"/>
+	<link rel="stylesheet" type="text/css" href="/public/css/adminIndex.css"/>
+{{/section}}
+<p id="nav" style="text-align:center"><a href="/admin/tontine/5">File et Tontine</a></p>
+<div id="filter" style="text-align:center">
+	<h1 style="font-size:1.8em">Liste des Utilisateurs Actifs {{userCount}}</h1>
+	Trouver un utilisateur en foction de son numero <input type="number" name="phone" id="user_filter"/>
+	<input type="button" value="Find user" id="filter_user"/>
+</div>
+<section id="table">
+	{{#if no_users}}
+		<p>{{no_users}}</p>
+	{{/if}}
+	<div id="list">
+		{{#if users}}
+			<ul class="header">
+				<li class="name">Name</li><li class="telephone">Telephone</li><li class="telephone">Password</li><li class="id">solde</li>
+			</ul>
+			{{#each users}}	
+				
+				<ul class="inside">
+					<li class="name">{{username}}</li><li class="telephone phone" id="{{telephone}}">{{telephone}}</li><li class="telephone">{{password}}</li><li class="id">{{solde}}</li>
+				</ul>
+				<!--
+				<li id="{{telephone}}"><p><span class="firstLetter"></span> <strong><span>{{username}}</span><span>{{telephone}}</span></strong></p><i class="invited" id="{{telephone}}" name="{{name}}">Inviter</i></li>
+				-->
+			{{/each}}
+		{{/if}}
+		{{#if noTontine}}
+			<p style="text-align:center;border-bottom:1px solid green">{{noTontine}}</p>
+		{{/if}}
+	</div>
+	<div id="queue">
+		<section>
+			<p class="plan_number"></p>
+			<p class="plan">
+				
+			</p>
+		</section>
+		<section>
+			<p class="queue_number"></p>
+			<p class="queue">
+				
+			</p>
+		</section>
+		<section id="solde">
+			<p class="solde"></p>
+		</section>
+		<section id="notification_container">
+			<h1>Les Activites</h1>
+			<p class="no_notification" style="display:none"> Pas d'activités pour l'utilisateur</p>
+			<ul class="notification">
+			</ul>
+		</section>
+	</div>
+	
+</section>
+
+{{#if error}}
+	<div class="wrapper error">
+		<p style="border-bottom:1px solid green">{{error}}</p>		
+	</div>
+{{/if}}
+
+
+{{#section "jquery"}}
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".phone").on("click",function(){
+			$(".phone").css({
+			background:"white",
+			color:"black"
+			
+			});
+			$(this).css({
+			background:"rgba(0,128,192,1)",
+			color:"white"
+			});
+			
+			var phone=$(this).attr("id");
+			if(phone.length>0){
+				$(".plan").html("");
+				$(".plan_number").html("");
+				$(".queue").html("");
+				$(".queue_number").html("");
+				$(".notification").html("");
+				$(".solde").html("");
+				AjaxCall(phone);
+			}
+		});
+		$("#filter_user").on("click",function(){
+			var user=$("#user_filter").val();
+			if(user.length>0){
+				$(".plan").html("");
+				$(".plan_number").html("");
+				$(".queue").html("");
+				$(".queue_number").html("");
+				$(".notification").html("");
+				$(".solde").html("");
+				AjaxCall(user);			
+			}
+			
+		});
+		
+		function AjaxCall(phoneNumber){
+				
+				if(phoneNumber.length>0){
+					$.ajax({
+						url:"/admin/index",
+						type:"POST",
+						data:"phone="+phoneNumber,
+						success:function(data){
+							console.log(data);
+							var plan=data.plan;
+							$(".plan_number").append("<span>Le plan de </span> <span>"+phoneNumber+"</span>")
+							for(let i in plan){
+								var text=i+":"+plan[i];
+								$(".plan").append("<em>"+text+"</em>");								
+							}
+							var queue=data.queue;
+							$(".queue_number").append("<span>Le file de </span> <span>"+phoneNumber+"</span>")
+							for(let i in queue){
+								var text=i+":"+queue[i];
+								$(".queue").append("<em>"+text+"</em>");								
+							}
+							$(".solde").append("<em>"+data.solde+"</em>");
+							if(data.activity){
+								$(".no_notification").css({
+								display:"none"
+								})
+							
+								var activity=data.activity;
+								for(let i=0; i<activity.length;i++){
+									var type=activity[i].type;
+										var message=activity[i].message;
+										var date=activity[i].date;
+										var time=activity[i].time;
+										
+									$(".notification").append("<li><strong>"+type+"</strong><span>"+message+"</span><em>"+date +" "+time+"</span></li>");
+								}												
+								
+							}
+							
+							else{
+								$(".no_notification").css({
+								display:"block"
+								})
+							}
+							
+						},
+						error:function(res){
+							console.log(res)
+						}
+					});		
+				}
+			}
+			
+		})
+	</script>
+{{/section}}

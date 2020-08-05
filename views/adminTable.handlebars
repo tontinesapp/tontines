@@ -1,0 +1,101 @@
+
+{{#section "head"}}
+	<link rel="stylesheet" type="text/css" href="/public/css/menu.css"/>
+	<link rel="stylesheet" type="text/css" href="/public/css/adminTable.css"/>
+{{/section}}
+<div id="addChidl">
+</div>
+<div id="wrapper" class="wrapper noqueue">
+	<p>Aucune file d'attente pas d'action requise</p>
+	<p><span id="cancel">OK</span></p>	
+</div>
+
+<div id="wrapper" class="wrapper queue">
+	<p>Vous etes sur le point d'inserer  <strong class="children" style="padding:0px 0.5em"></strong> dans la tontine de <strong class="parent" style="padding:0px 0.5em"></strong></p>
+	<p><span id="cancelQueue">Anuler</span><a href="" id="validated">Valider</a></p>	
+</div>
+
+
+
+{{#if falseNotification}}
+	<div id="wrapperNotification" class="wrapper" style="display:block">
+		<p>{{falseNotification}}</p>
+		<p><span id="falseNotification" style="background:red;">OK</span></p>	
+	</div>
+{{/if}}
+
+{{#if trueNotification}}
+	<div id="wrapperTrueNotification" class="wrapper" style="display:block">
+		<p>{{trueNotification}}</p>
+		<p><span id="trueNotification" style="background:rgba(0,128,64,1);">OK</span></p>	
+	</div>
+{{/if}}
+
+
+<div id="nav_container">
+	<div>
+		<nav>
+			<ul class="menu_box" id="menu_box">
+				<li><a href="/admin/tontine/5">5 $</a></li>
+				<li><a href="/admin/tontine/10" class="active">10 $</a></li>
+				<li><a href="/admin/tontine/20">20 $</a></li>
+				<li><a href="/admin/tontine/50">50 $</a></li>
+				<li><a href="/admin/tontine/100">100 $</a></li>
+				<li><a href="/admin/all_users">All Users</a></li>
+				
+			</ul>
+		</nav>			
+	</div>
+</div>
+<section id="table">
+	<p>Selectionnez le numero d'un parent dans le tableau de gauche puis d'un enfant dans le tableau de droite</p>
+	<div id="list">
+		{{#if users}}
+			<ul class="header">
+				<li class="name">Name</li><li class="telephone">Telephone</li><li class="telephone">Password</li><li class="id">id</li><li class="child">firstChild</li><li class="child2">secondChild</li>
+			</ul>
+			{{#each users}}	
+				
+				<ul class="inside">
+					<li class="name">{{username}}</li><li class="telephone" id="{{telephone}}">{{telephone}}</li><li class="telephone">{{password}}</li><li class="id">{{id}}</li><li class="child">{{firstChild}} {{secondChild}}</li><li class="child2">{{thirdChild}} {{fourthChild}} {{fifthChild}} {{sixthChild}}</li>
+				</ul>
+				<!--
+				<li id="{{telephone}}"><p><span class="firstLetter"></span> <strong><span>{{username}}</span><span>{{telephone}}</span></strong></p><i class="invited" id="{{telephone}}" name="{{name}}">Inviter</i></li>
+				-->
+			{{/each}}
+		{{/if}}
+		{{#if noTontine}}
+			<p style="text-align:center;border-bottom:1px solid green">{{noTontine}}</p>
+		{{/if}}
+	</div>
+	<div id="queue">
+	{{#if queue}}
+		<ul class="header">
+			<li class="name">Name</li><li class="telephone">Telephone</li>
+		</ul>
+		{{#each queue}}
+			
+			<ul class="inside">
+				<li class="name">{{name}}</li><li class="telephone" id="{{telephone}}">{{telephone}}</li>
+			</ul>
+			<!--
+			<li id="{{telephone}}"><p><span class="firstLetter"></span> <strong><span>{{username}}</span><span>{{telephone}}</span></strong></p><i class="invited" id="{{telephone}}" name="{{name}}">Inviter</i></li>
+			-->
+		{{/each}}
+	{{/if}}
+	{{#if noQueue}}
+		<p>{{noQueue}}</p>
+	{{/if}}
+	</div>
+</section>
+
+{{#if error}}
+	<div class="wrapper error">
+		<p style="border-bottom:1px solid green">{{error}}</p>		
+	</div>
+{{/if}}
+
+
+{{#section "jquery"}}
+	<script type="text/javascript" src="/public/js/adminTable.js"></script>	
+{{/section}}

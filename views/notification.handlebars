@@ -1,0 +1,120 @@
+{{#section "head"}}
+	<link rel="stylesheet" type="text/css" href="/public/css/notification.css"/>
+{{/section}}
+
+<section id="notificationContainer">
+	<p class="no_notification" >...Chargement</p>
+	<ul id="notification">
+		
+		<!--
+		<li>
+			<strong>Dépot</strong>
+			<span>
+			Suite à votre de "+user.solde+" inferieur a la valeur de "+tontine+" $; vous venez d'etre retirer de cette file
+			</span>
+			<em>Le 22 Aout 2020 | 10:05</em>
+		</li>
+		<li>
+			<strong>Rétrait de la file</strong>
+			<span>
+			Suite à votre de "+user.solde+" inferieur a la valeur de "+tontine+" $; vous venez d'etre retirer de cette file
+			</span>
+			<em>Le 22 Aout 2020 | 10:05</em>
+		</li>
+		<li>
+			<strong>Invitation</strong>
+			<span>
+			Suite à votre de "+user.solde+" inferieur a la valeur de "+tontine+" $; vous venez d'etre retirer de cette file
+			</span>
+			<em>Le 22 Aout 2020 | 10:05</em>
+		</li>
+		-->
+	</ul>
+</section>
+
+{{#section "jquery"}}
+		
+		<script type="text/javascript">
+			$(document).ready(function(){			
+				
+				var input=window.AppInventor.getWebViewString();		
+				//var input="true,0817512384,123456";				
+				function deleteSpace(string=""){
+					var regex=/\s+/g;
+					var newString=string.replace(regex,"");
+					return newString;
+				}
+				
+				function AjaxCall(){
+				$("#notification").html("");
+				if(input.length>0){
+					var header=input.split(",")
+					var logIn=header[0];
+					var phone=deleteSpace(header[1]);
+					var pass=deleteSpace(header[2]);
+					$.ajax({
+						url:"/users/allnotification",
+						type:"POST",
+						data:"logIn="+logIn+"&phone="+phone+"&pass="+pass,
+						success:function(data){	
+							console.log(data);
+							if(data.no_activity){
+								var no_activity=data.no_activity;
+								$(".no_notification").html(no_activity);								
+								$(".no_notification").css({
+									display:"flex"
+								});
+							
+							}
+							if(data.error){
+								var error=data.error;
+								$(".no_notification").text(error);								
+								$(".no_notification").css({
+									display:"flex"
+								});
+								console.log("error");
+							}														
+							if(data.notification){
+								
+								$(".no_notification").css({
+									display:"none"
+								});
+								var notification=data.notification;
+								if(notification.length>0){
+									var list=$("#notification");
+									/*
+									for(var i=0; i<notification.length;i++){
+										var type=notification[i].type;
+										var message=notification[i].message;
+										var date=notification[i].date;
+										var time=notification[i].time;
+										
+										$("#notification").append("<li><strong>"+type+"</strong><span>"+message+"</span><em>"+date +" "+time+"</span></li>");
+									}
+										*/
+									notification.forEach(function(allNote){
+										var type=allNote.type;
+										var message=allNote.message;
+										var date=allNote.date;
+										var time=allNote.time;
+										$("#notification").append("<li><strong>"+type+"</strong><span>"+message+"</span><em>"+date +" "+time+"</span></li>");
+									});
+									$("#notificationContainer").html(list);
+								}
+							}							
+						},
+						error:function(res){
+							console.log(res)
+						}
+					});		
+				}
+			}
+			AjaxCall();
+		});
+		
+		
+				
+				
+		</script>
+		
+		{{/section}}

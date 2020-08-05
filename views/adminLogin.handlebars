@@ -1,0 +1,34 @@
+{{#section "head"}}
+	<style>
+	body{
+	display:flex;
+	flex-direction:column;
+	justify-content:center;
+	}
+		form{
+			width:500px;
+			margin:auto;
+			display:flex;
+			flex-direction:column;
+			padding:3em;
+			border:1px solid black;
+		}
+		form label{
+		font-size:1em;
+		font-weight:bold;
+		}
+		form label,form input{
+		margin:1em 0px;
+		padding:0.5em;}
+	</style>
+{{/section}}
+<div>
+	<form method="post" action="/admin/token">
+		<label for="token">Votre Code d'access</label>
+		<input type="password" placeholder="*******" name="token"/>
+		<input type="submit" value="OK"/>
+	</form>
+	{{#if false_token}}
+		<p style="text-align:center">Code d'acces erroné</p>
+	{{/if}}
+</div>

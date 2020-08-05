@@ -1,0 +1,51 @@
+
+{{#section "head"}}
+	<link rel="stylesheet" type="text/css" href="/public/css/menu.css"/>
+	<link rel="stylesheet" type="text/css" href="/public/css/queue.css"/>
+{{/section}}
+<div id="wrapper" class="wrapper">
+	<p>Vous etes sur le point d'inviter <strong class="username"></strong>  <strong class="telephone"></strong>dans votre tontine de <strong class="tontine"> $</strong></p>
+	<p><span id="cancel">Anuler</span><a href="" id="validated">Valider</a></p>	
+</div>
+{{#if falseNotification}}
+	<div id="wrapperNotification" class="wrapper">
+		<p>{{falseNotification}}</p>
+		<p><span id="falseNotification" style="background:red;">OK</span></p>	
+	</div>
+{{/if}}
+
+{{#if trueNotification}}
+	<div id="wrapperTrueNotification" class="wrapper" >
+		<p>{{trueNotification}}</p>
+		<p><span id="trueNotification" style="background:rgba(0,128,64,1);">OK</span></p>	
+	</div>
+{{/if}}
+
+<div id="nav_container">
+	<div>
+		<nav>
+			<ul class="menu_box" id="menu_box">
+				<li><a href="/users/queue/5">5 $</a></li>
+				<li><a href="/users/queue/10" class="active">10 $</a></li>
+				<li><a href="/users/queue/20">20 $</a></li>
+				<li><a href="/users/queue/50">50 $</a></li>
+				<li><a href="/users/queue/100">100 $</a></li>
+			</ul>
+		</nav>			
+	</div>
+</div>
+<div id="list">
+		{{#each queue}}			
+			<li id="{{telephone}}"><p><span class="firstLetter"></span> <strong><span>{{name}}</span><span>{{telephone}}</span></strong></p><i class="invited" id="{{telephone}}" name="{{name}}">Inviter</i></li>
+		{{/each}}
+</div>
+{{#if error}}
+	<div class="wrapper error">
+		<p>{{error}}</p>		
+	</div>
+{{/if}}
+
+
+{{#section "jquery"}}
+		
+{{/section}}
