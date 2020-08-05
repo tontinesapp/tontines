@@ -1,7 +1,9 @@
 {
   "scripts": {
-    "start": "node server.js",
-    "test": "mocha -r F:/9_IMSHARE/tests/testhelper.js -R spec F:/9_IMSHARE/tests/**/routes.test.js"
+    "start": "node server.js"    
+  },
+  "engines": {
+    "node": "10.15.1"
   },
   "requires": true,
   "lockfileVersion": 1,
