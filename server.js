@@ -9,7 +9,7 @@ app=config(app);
 
 mongoose.Promise=global.Promise;
 
-mongoose.connect("mongodb+srv://tontinesDB:5qUAx4J3XSl8bMeL@cluster0.kmpt1.gcp.mongodb.net/Tontines?retryWrites=true&w=majority",{ useNewUrlParser: true,useFindAndModify: true,useCreateIndex: true,keepAlive: 1},function(err){console.log(err});
+mongoose.connect("mongodb+srv://tontinesDB:5qUAx4J3XSl8bMeL@cluster0.kmpt1.gcp.mongodb.net/Tontines?retryWrites=true&w=majority",{ useNewUrlParser: true,useFindAndModify: true,useCreateIndex: true,keepAlive: 1},function(err){console.log(err)});
 
 mongoose.connection.on("open",function(){
 	console.log("app is connected to mongoose");
