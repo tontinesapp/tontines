@@ -28,7 +28,7 @@
 	 "morgan":"1.0.1",
 	 "method-override":"2.3.10",
 	 "moment":"2.20.1",
-	 "multer":"1.3.0",
+	 "multer":"1.3.0"
 	 
   }
 }
