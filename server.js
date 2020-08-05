@@ -3,7 +3,6 @@ mongoose=require("mongoose"),
 
 config=require("./server/configure"),
 app=express(),
-//http=require("http");
 app.set("port",process.env.PORT||3000);
 app.set("views",__dirname+"/views");
 app=config(app);
