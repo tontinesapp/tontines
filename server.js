@@ -7,7 +7,7 @@ app.set("port",process.env.PORT||3000);
 app.set("views",__dirname+"/views");
 app=config(app);
 
-//mongoose.connect("mongodb://localhost/tontine");
+mongoose.Promise=global.Promise;
 
 mongoose.connect("mongodb+srv://tontinesDB:5qUAx4J3XSl8bMeL@cluster0.kmpt1.gcp.mongodb.net/Tontines?retryWrites=true&w=majority",{ useNewUrlParser: true });
 
