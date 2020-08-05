@@ -9,7 +9,7 @@ app=config(app);
 
 //mongoose.connect("mongodb://localhost/tontine");
 
-mongoose.connect("mongodb+srv://tontinesDB:5qUAx4J3XSl8bMeL@cluster0.kmpt1.gcp.mongodb.net/Tontines?retryWrites=true&w=majority");
+mongoose.connect("mongodb+srv://tontinesDB:5qUAx4J3XSl8bMeL@cluster0.kmpt1.gcp.mongodb.net/Tontines?retryWrites=true&w=majority",{ useNewUrlParser: true });
 
 mongoose.connection.on("open",function(){
 	console.log("app is connected to mongoose");
