@@ -1826,7 +1826,7 @@ console.log(o);
 														tree.admin=name;
 														userInfo.tree=tree;
 														userInfo.treeOfNumber=treeOfNumber;
-														res.send(userInfo);
+														//res.send(userInfo);
 													
 														for(let i=0;i<6;i++){
 																console.log("first")
