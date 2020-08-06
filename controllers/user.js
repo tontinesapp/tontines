@@ -1799,12 +1799,12 @@ console.log(o);
 														var name=user.name;												
 														var firstGeneration=tontine.child1;
 														console.log("firstGeneration");
-														console.log(tontine);
+														console.log(firstGeneration);
+														console.log(firstGeneration.length);
 														var child1Tab=[],child2Tab=[],child3Tab=[];
 														if(firstGeneration.length===0){
 															child1Tab=new Array(0,0);
-															child2Tab=new Array(0,0,0,0);
-															
+															child2Tab=new Array(0,0,0,0);															
 														}
 														else if(firstGeneration.length===1){
 															child1Tab=[...tontine.child1,0];
