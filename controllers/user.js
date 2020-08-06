@@ -1826,7 +1826,8 @@ console.log(o);
 														tree.admin=name;
 														userInfo.tree=tree;
 														userInfo.treeOfNumber=treeOfNumber;
-																															
+														res.send(userInfo);
+/*														
 														for(let i=0;i<6;i++){
 																console.log("first")
 															UserTontine.findOne({id:parseInt(childs[i]),active:true,taken:false,tontine:firstTontine},"",function(err,childTontine){
@@ -1850,7 +1851,7 @@ console.log(o);
 																}
 															});
 														}
-														
+														*/
 													}
 												}
 											});
