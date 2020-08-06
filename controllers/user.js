@@ -75,6 +75,8 @@ function generateSolde(solde){
 		var index=lastSolde.indexOf(".");
 		var endIndex=index+2;
 		var newSolde=lastSolde.substring(0,endIndex);
+		console.log("newSolde");
+		console.log(newSolde);
 		return newSolde;
 	}else{
 		return solde+".00";
