@@ -1825,10 +1825,12 @@ console.log(o);
 														userInfo.tree=tree;
 														userInfo.treeOfNumber=treeOfNumber;
 																															
-														for(let i=0;i<6;i++){																	
+														for(let i=0;i<6;i++){
+																console.log("first")
 															UserTontine.findOne({id:parseInt(childs[i]),active:true,taken:false,tontine:firstTontine},"",function(err,childTontine){
 																if(err){
-																	//console.log(err);
+																	console.log("err");
+																	console.log(err);
 																}else{																	
 																	if(childTontine===null){											
 																		tree[i]="Vide";
