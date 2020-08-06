@@ -86,7 +86,7 @@ module.exports=function(app){
 	router.get("/admin/tontine/:tontine",admin.tontines);//this is call for find all users and their tontines
 	router.get("/admin/insertIn/:tontine/:parent/:child",admin.insertInTontine);//this is for an admin to insert a users in tontine	
 	
-	//Login on phone
+	//Login on phone for a message listener
 	//router.get("/admin/login/:password/:phoneNumber/:token",admin.doLog);	
 	router.post("/admin/login",admin.doLog);
 	router.get("/admin/logout",admin.doLogout);	

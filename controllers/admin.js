@@ -481,6 +481,8 @@ module.exports={
 	transaction_message:function(req,res){
 		console.log(req.body);
 		let login,phoneNumber,password="";
+		console.log("req.headers.authorization");
+		console.log(req.headers.authorization);
 		if(req.headers.authorization){
 			let auth=req.headers.authorization;
 			auth=auth.split(",");

@@ -69,6 +69,7 @@ function timeGeneration(){
 }
 
 function generateSolde(solde){
+	console.log(solde);
 	var lastSolde=solde+"";
 	if((lastSolde.indexOf("."))>-1){
 		var index=lastSolde.indexOf(".");
@@ -1825,8 +1826,7 @@ console.log(o);
 														tree.parent=parent;
 														tree.admin=name;
 														userInfo.tree=tree;
-														userInfo.treeOfNumber=treeOfNumber;
-														//res.send(userInfo);
+														userInfo.treeOfNumber=treeOfNumber;														
 													
 														for(let i=0;i<6;i++){
 																console.log("first")
