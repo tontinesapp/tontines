@@ -1817,8 +1817,8 @@ console.log(o);
 															
 														}
 														var childs=[...child1Tab,...child2Tab];
-														console.log("childs")
-														console.log(childs)
+														console.log("childs");
+														console.log(childs);
 														var tree={};
 														var treeOfNumber={};
 														treeOfNumber.admin=firstGeneration.length;
