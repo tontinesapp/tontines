@@ -1816,7 +1816,9 @@ console.log(o);
 															child2Tab=[...tontine.child2];
 															
 														}
-														var childs=[...child1Tab,...child2Tab];														
+														var childs=[...child1Tab,...child2Tab];
+														console.log("childs")
+														console.log(childs)
 														var tree={};
 														var treeOfNumber={};
 														treeOfNumber.admin=firstGeneration.length;
