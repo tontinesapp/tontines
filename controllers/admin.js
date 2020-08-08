@@ -739,10 +739,13 @@ module.exports={
 																myArray.push(tab[0]);
 															}
 															if(myArray.length>0){											
+																console.log("myArray");
 																console.log(myArray);
 																var sumString=sum+"";
 																var soldeString=solde+"";
 																var costString=cost+"";
+																console.log(sum);
+																console.log(sumString)
 																console.log(myArray.indexOf(sumString));
 																console.log(myArray.indexOf(soldeString));
 																console.log(myArray.indexOf(costString));
