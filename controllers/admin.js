@@ -40,6 +40,15 @@ function generateSolde(solde){
 		var index=lastSolde.indexOf(".");
 		var endIndex=index+3;
 		var newSolde=lastSolde.substring(0,endIndex);
+		var floatPoint=newSolde.substring(index+1);
+		console.log("floatPoint")
+		console.log(floatPoint)
+		console.log(newSolde)
+		if(floatPoint.length===1){
+			newSolde=newSolde+"0";
+			
+		}
+		console.log(newSolde);
 		return newSolde;
 	}else{
 		return solde+".00";
