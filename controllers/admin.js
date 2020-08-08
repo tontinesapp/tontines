@@ -739,7 +739,7 @@ module.exports={
 																myArray.push(tab[0]);
 															}
 															if(myArray.length>0){											
-															
+																console.log(myArray);
 															if(adminMessage.indexOf(code)>-1 && (adminMessage.indexOf(firstPhone)>-1 || adminMessage.indexOf(secondPhone)>-1 || adminMessage.indexOf(thirdPhone)>-1) && myArray.indexOf(sum)>-1 && myArray.indexOf(solde)>-1){
 																
 																User.findOne({telephone:firstPhone},function(err,user){
