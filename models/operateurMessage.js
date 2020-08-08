@@ -8,7 +8,8 @@ var OperatorSchema=new Schema({
 	time:{type:String},
 	check:{type:Boolean,default:false},
 	accept:{type:Boolean,default:false},
-	admissible:{type:Boolean,default:false}
+	admissible:{type:Boolean,default:false},
+	role:{type:String}
 });
 
 module.exports=mongoose.model("SMSOperateur",OperatorSchema,"SMSOperateur");

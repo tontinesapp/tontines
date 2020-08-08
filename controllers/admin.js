@@ -517,6 +517,18 @@ module.exports={
 							console.log("bad messs");
 						}else{
 							console.log("is dan");
+							var prefix=phoneNumber.substring(0,2);
+							var role="";
+							if(prefix==="081"||prefix==="082"){
+								role="vodacom"
+							}
+							if(prefix==="084"||prefix==="085"||prefix==="089"){
+								role="orange"
+							}
+							if(prefix==="099"||prefix==="097"){
+								role="airtel"
+							}
+							console.log(prefix);
 							if(validMessage.test(operateurMessage)){
 								console.log("is there");
 								if(receiveMessage.test(operateurMessage)){

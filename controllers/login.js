@@ -147,7 +147,7 @@ module.exports={
 		
 		function saveUser(validePhone){		
 			User.findOne({telephone:validePhone},function(err,user){
-				if(user){
+				if(user!==null){
 					req.session.user_exist="Vous ne pouvez pas vous inscrire avec ce numero";
 					req.session.sub_body=req.body;
 					res.redirect("/signup");								

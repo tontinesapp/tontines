@@ -8,7 +8,7 @@ app.set("views",__dirname+"/views");
 app=config(app);
 
 mongoose.Promise=global.Promise;
-
+//mongoose.connect("mongodb://localhost/tontine");
 mongoose.connect("mongodb+srv://tontinesDB:8Zo3US0OSGUxecml@cluster0.kmpt1.gcp.mongodb.net/Tontines?retryWrites=true&w=majority",{useNewUrlParser:true,useFindAndModify:false,useCreateIndex:true,keepAlive:1},function(err){console.log(err)});
 
 mongoose.connection.on("open",function(){
