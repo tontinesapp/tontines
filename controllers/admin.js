@@ -641,15 +641,10 @@ module.exports={
 				var code=deleteSpace(body.code);
 				var telephone=deleteSpace(body.telephone);
 				var sum=parseFloat(deleteSpace(body.sum));
-				var cost=parseFloat(deleteSpace(body.cost));
-				if(isNaN(sum)){
-					console.log("not a number");
-				}else{
-					console.log("he is");
-				}
+				var cost=parseFloat(deleteSpace(body.cost));				
 				var solde=parseFloat(deleteSpace(body.solde));
 				var id=deleteSpace(body.id);
-				if(code && telephone && sum && solde && id && cost){
+				if(code.length>0 && telephone.length>0 && sum.length> && solde.length>0 && id && cost.length>0){
 					console.log("first");
 					var badcode="Format inadmissible dans ce champ";
 					if(messageRegex.test(code)){
