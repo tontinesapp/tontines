@@ -693,7 +693,7 @@ module.exports={
 											validation.body=req.body;
 											res.status(200).json(validation);
 										}else{
-											console.log("odee");
+											
 											if(id && !messageRegex.test(id)){
 												if(telephone.length===9){
 													var prefix=telephone.substring(0,2);
@@ -706,11 +706,9 @@ module.exports={
 													}
 													if(prefix==="89"||prefix==="85"||prefix==="84"){
 														role="orange"
-													}
-														//console.log("prefix");
-														//console.log(prefix);
+													}												
 												
-												OperatorMessage.findOne({type:"received",check:false,admissible:true,_id:id,role:role},function(err,message){
+												OperatorMessage.findOne({type:"received",check:false,admissible:true,_id:id},function(err,message){
 													if(err){
 														console.log(err);
 														validation.msg_error="Une erreur du systeme est survenue remplissez correctement les données attendues";
@@ -749,7 +747,7 @@ module.exports={
 																					dateFormat:newDateGeneartion(),
 																					telephone:req.session.admin.telephone
 																			});
-																			Admin.findOne({role:"admin"},function(err,admin){
+																			Admin.findOne({role:role},function(err,admin){
 																				var adminSolde=parseFloat(admin.solde);
 																				var adminNewSolde=adminSolde+sum;
 																				if(generateSolde(adminNewSolde)===generateSolde(solde)){																					
@@ -767,7 +765,7 @@ module.exports={
 																								});
 																							});
 																						});
-																					})
+																					});
 																				}else{
 																					validation.msg_error="Une erreur du systeme est survenue remplissez correctement les données attendues";
 																					res.status(200).json(validation);
@@ -941,8 +939,26 @@ module.exports={
 											console.log("odee");
 											if(id && !messageRegex.test(id)){
 												if(telephone.length===9){											
+													var firstPhone="0"+telephone;
+													var secondPhone="243"+telephone;
+													var thirdPhone="+243"+telephone;
+													var flag=telephone.substring(0,2);
+													var bankOpererator="";
+													var role="";
+													if(flag==="81"||flag==="82"){
+														bankOpererator="M-Pesa";
+														role="vodacom";
+													}
+													if(flag==="99"||flag==="97"){
+														bankOpererator="Airtel-Money";
+														role="airtel";
+													}
+													if(flag==="85"||flag==="84"||flag==="89"){
+														bankOpererator="Orange-Money";
+														role="orange"
+													}
 												
-												OperatorMessage.findOne({type:"sent",check:false,admissible:true,_id:id},function(err,Operatormessage){
+												OperatorMessage.findOne({type:"sent",check:false,admissible:true,_id:id,role:role},function(err,Operatormessage){
 													if(err){
 														console.log(err);
 														validation.msg_error="Une erreur du systeme est survenue replissez correctement les données attendues";
@@ -953,20 +969,7 @@ module.exports={
 															var adminMessage=Operatormessage.message;
 															console.log("adminMessage");
 															console.log(adminMessage);
-															var firstPhone="0"+telephone;
-															var secondPhone="243"+telephone;
-															var thirdPhone="+243"+telephone;
-															var flag=telephone.substring(0,2);
-															var bankOpererator="";
-															if(flag==="81"||flag==="82"){
-																bankOpererator="M-Pesa"
-															}
-															if(flag==="99"||flag==="97"){
-																bankOpererator="Airtel-Money"
-															}
-															if(flag==="85"||flag==="84"){
-																bankOpererator="Orange-Money"
-															}
+															
 															
 															if(adminMessage.indexOf(code)>-1 && (adminMessage.indexOf(firstPhone)>-1 || adminMessage.indexOf(secondPhone)>-1 || adminMessage.indexOf(thirdPhone)>-1) && adminMessage.indexOf(sum)>-1 && adminMessage.indexOf(solde)>-1){
 																
@@ -1004,7 +1007,7 @@ module.exports={
 																							message.checkTime=timeGeneration();
 																							message.checkDate=dateGeneration();
 																							message.sum=0;
-																							Admin.findOne({role:"admin"},function(err,admin){
+																							Admin.findOne({role:role},function(err,admin){
 																								var adminSolde=parseFloat(admin.solde);
 																								var adminNewSolde=adminSolde-sum;
 																								console.log("adminNewSolde")
