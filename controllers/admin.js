@@ -845,6 +845,9 @@ module.exports={
 						validation.no_id=error;
 						console.log("ide");
 					}
+					if(!cost){
+						validation.no_cost="Ce champ doit etre un chiffre";
+					}
 					validation.body=req.body;
 					res.status(200).json(validation)
 				}
