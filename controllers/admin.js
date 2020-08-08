@@ -644,6 +644,15 @@ module.exports={
 				var cost=parseFloat(deleteSpace(body.cost));				
 				var solde=parseFloat(deleteSpace(body.solde));
 				var id=deleteSpace(body.id);
+				
+				console.log("code.length");
+				console.log(code.length);
+				console.log(telephone.length);
+				console.log(sum.length);
+				console.log(cost.length);
+				console.log(solde.length);
+				console.log(id.length);
+
 				if(code.length>0 && telephone.length>0 && sum.length>0 && solde.length>0 && id.length>0 && cost.length>0){
 					console.log("first");
 					var badcode="Format inadmissible dans ce champ";
