@@ -517,7 +517,7 @@ module.exports={
 							console.log("bad messs");
 						}else{
 							console.log("is dan");
-							var prefix=phoneNumber.substring(0,2);
+							var prefix=phoneNumber.substring(0,3);
 							var role="";
 							if(prefix==="081"||prefix==="082"){
 								role="vodacom"
@@ -691,7 +691,20 @@ module.exports={
 										}else{
 											console.log("odee");
 											if(id && !messageRegex.test(id)){
-												if(telephone.length===9){											
+												if(telephone.length===9){
+													var prefix=telephone.substring(0,2);
+													var role="";
+													if(prefix==="81"||prefix==="82"){
+														role="vodacom"
+													}
+													if(prefix==="99"||prefix==="97"){
+														role="airtel"
+													}
+													if(prefix==="89"||prefix==="85"||prefix==="84"){
+														role="orange"
+													}
+													console.log("prefix");
+													console.log(prefix);
 												
 												OperatorMessage.findOne({type:"received",check:false,admissible:true,_id:id},function(err,message){
 													if(err){
