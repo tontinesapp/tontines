@@ -640,9 +640,9 @@ module.exports={
 				console.log(body);
 				var code=deleteSpace(body.code);
 				var telephone=deleteSpace(body.telephone);
-				var sum=parseFloat(deleteSpace(body.sum));
-				var cost=parseFloat(deleteSpace(body.cost));				
-				var solde=parseFloat(deleteSpace(body.solde));
+				var sum=deleteSpace(body.sum);
+				var cost=deleteSpace(body.cost);				
+				var solde=deleteSpace(body.solde);
 				var id=deleteSpace(body.id);
 				
 				console.log("code.length");
@@ -758,10 +758,10 @@ module.exports={
 																	}else{
 																		if(user!==null){
 																			var lastUserSolde=user.solde;
-																			var newUserSolde=lastUserSolde+sum;
+																			var newUserSolde=parseFloat(lastUserSolde)+parseFloat(sum);
 																			var newUserActivity=new Activity({
 																				type:"Depot",
-																				message:"Votre depot de "+sum+"$ s'est fait success;votre solde actuelle est de "+newUserSolde+" $",
+																				message:"Votre depot de "+generateSolde(sum)+"$ s'est fait success;votre solde actuelle est de "+generateSolde(newUserSolde)+" $",
 																				date:dateGeneration(),
 																				time:timeGeneration(),
 																				telephone:firstPhone,
@@ -777,7 +777,7 @@ module.exports={
 																			});
 																			Admin.findOne({role:role},function(err,admin){
 																				var adminSolde=parseFloat(admin.solde);
-																				var adminNewSolde=adminSolde+sum;
+																				var adminNewSolde=adminSolde+parseFloat(sum);
 																				if(generateSolde(adminNewSolde)===generateSolde(solde)){																					
 																					admin.solde=adminNewSolde;
 																					admin.save(function(){																						
