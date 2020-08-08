@@ -641,6 +641,7 @@ module.exports={
 				var code=deleteSpace(body.code);
 				var telephone=deleteSpace(body.telephone);
 				var sum=parseFloat(deleteSpace(body.sum));
+				var cost=parseFloat(deleteSpace(body.cost));
 				if(isNaN(sum)){
 					console.log("not a number");
 				}else{
@@ -693,7 +694,12 @@ module.exports={
 											validation.body=req.body;
 											res.status(200).json(validation);
 										}else{
-											
+											if(isNaN(cost)){
+												validation.no_cost="Ce champ doit un chiffre";
+												validation.body=req.body;
+												res.status(200).json(validation);
+											}
+											else{
 											if(id && !messageRegex.test(id)){
 												if(telephone.length===9){
 													var prefix=telephone.substring(0,2);
@@ -723,7 +729,14 @@ module.exports={
 															var firstPhone="0"+telephone;
 															var secondPhone="243"+telephone;
 															var thirdPhone="+243"+telephone;
-															if(adminMessage.indexOf(code)>-1 && (adminMessage.indexOf(firstPhone)>-1 || adminMessage.indexOf(secondPhone)>-1 || adminMessage.indexOf(thirdPhone)>-1) && adminMessage.indexOf(sum)>-1 && adminMessage.indexOf(solde)>-1){
+															var regex=/\d+\.{1}\d+/g;
+															var myArray=[];
+															while((tab=regex.exec(adminMessage))!==null){
+																myArray.push(tab[0]);
+															}
+															if(myArray.length>0){											
+															
+															if(adminMessage.indexOf(code)>-1 && (adminMessage.indexOf(firstPhone)>-1 || adminMessage.indexOf(secondPhone)>-1 || adminMessage.indexOf(thirdPhone)>-1) && myArray.indexOf(sum)>-1 && myArray.indexOf(solde)>-1){
 																
 																User.findOne({telephone:firstPhone},function(err,user){
 																	if(err){
@@ -779,11 +792,16 @@ module.exports={
 																		}
 																	}
 																});															
-															}else{
+															}
+															else{
 																console.log("valid data");
 																validation.checkdata="Les données envoyées doivent correspondre aux contenues du message à valider";
 																res.status(200).json(validation);
-															}															
+															}
+														}else{
+															validation.no_message="Veuillez introduire les bonnes données";
+															res.status(200).json(validation);
+														}
 														}else{
 															validation.no_message="Veuillez introduire les bonnes données";
 															res.status(200).json(validation);
@@ -802,6 +820,7 @@ module.exports={
 												res.status(200).json(validation);
 											}											
 										}
+									}
 									}							
 								}
 							}
