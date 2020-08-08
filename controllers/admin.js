@@ -518,17 +518,18 @@ module.exports={
 						}else{
 							console.log("is dan");
 							var prefix=phoneNumber.substring(0,3);
-							var role="";
+							//var role=" ";
 							if(prefix==="081"||prefix==="082"){
-								role="vodacom"
+								var role="vodacom";
 							}
 							if(prefix==="084"||prefix==="085"||prefix==="089"){
-								role="orange"
+								var role="orange";
 							}
 							if(prefix==="099"||prefix==="097"){
-								role="airtel"
+								var role="airtel";
 							}
 							console.log(prefix);
+							console.log(role);
 							if(validMessage.test(operateurMessage)){
 								console.log("is there");
 								if(receiveMessage.test(operateurMessage)){
