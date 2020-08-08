@@ -653,7 +653,7 @@ module.exports={
 				console.log(solde.length);
 				console.log(id.length);
 
-				if(code.length>0 && telephone.length>0 && sum.length>0 && solde.length>0 && id.length>0 && cost.length>0){
+				if(code.length>0 && telephone.length>0 && !isNaN(sum) && !isNaN(solde) && id.length>0 && !isNaN(cost)){
 					console.log("first");
 					var badcode="Format inadmissible dans ce champ";
 					if(messageRegex.test(code)){
@@ -839,17 +839,17 @@ module.exports={
 					if(!telephone){
 						validation.no_phone="Ce champ doit être un numero de telephone valide";
 					}
-					if(!sum){
+					if(isNaN(sum)){
 						validation.no_sum="Ce Champ doit être un chiffre";
 					}
-					if(!solde){
+					if(isNaN(solde)){
 						validation.no_solde="Ce champ doit être un chiffre";
 					}
 					if(!id){
 						validation.no_id=error;
 						console.log("ide");
 					}
-					if(!cost && isNaN(cost)){
+					if(isNaN(cost)){
 						validation.no_cost="Ce champ doit etre un chiffre";
 					}
 					validation.body=req.body;
