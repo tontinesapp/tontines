@@ -101,11 +101,12 @@
 			var telephone=$("input[name=telephone]").val();
 			var sum=$("input[name=sum]").val();
 			var solde=$("input[name=solde]").val();
+			var cost=$("input[name=cost]").val();
 			var id=$("input[name=id]").val();
 			$.ajax({
 				url:"/admin/depositValidation",
 				type:"POST",
-				data:"code="+code+"&telephone="+telephone+"&sum="+sum+"&solde="+solde+"&id="+id,
+				data:"code="+code+"&telephone="+telephone+"&sum="+sum+"&solde="+solde+"&id="+id+"&cost="+cost,
 				success:function(data){
 					$(".progress").css({display:"none"});
 					if(data.body){
