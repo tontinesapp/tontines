@@ -845,7 +845,7 @@ module.exports={
 						validation.no_id=error;
 						console.log("ide");
 					}
-					if(!cost){
+					if(!cost && isNaN(cost)){
 						validation.no_cost="Ce champ doit etre un chiffre";
 					}
 					validation.body=req.body;
