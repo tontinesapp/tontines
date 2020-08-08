@@ -727,6 +727,7 @@ module.exports={
 																
 																User.findOne({telephone:firstPhone},function(err,user){
 																	if(err){
+																		console.log(err);
 																		validation.msg_error="Une erreur du systeme est survenue remplissez correctement les données attendues";
 																	}else{
 																		if(user!==null){
