@@ -34,8 +34,8 @@
 			<em class="sum">Relir le chapm</em>
 			<label for="solde"><span>Solde du compte</span>:<input type="number" name="solde"/></label>
 			<em class="solde">Relir le chapm</em>
-			<label for="id"><span>Cout</span>:<input type="text" name="cost"/></label>
-			<em class="id">Relir le chapm</em>
+			<label for="cost"><span>Cout</span>:<input type="text" name="cost"/></label>
+			<em class="cost">Relir le chapm</em>
 			<label for="id"><span>Identifiant</span>:<input type="text" name="id"/></label>
 			<em class="id">Relir le chapm</em>
 			<span id="valid"><i>Valider</i></span>
@@ -166,6 +166,10 @@
 					if(data.no_solde){
 						$(".sum").css({display:"flex"})
 						$(".sum").text(data.no_solde);
+					}
+					if(data.no_cost){
+						$(".sum").css({display:"flex"})
+						$(".sum").text(data.no_cost);
 					}
 					if(data.no_id){
 						$(".id").css({display:"flex"})

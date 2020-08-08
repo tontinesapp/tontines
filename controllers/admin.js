@@ -649,7 +649,7 @@ module.exports={
 				}
 				var solde=parseFloat(deleteSpace(body.solde));
 				var id=deleteSpace(body.id);
-				if(code && telephone && sum && solde && id){
+				if(code && telephone && sum && solde && id && cost){
 					console.log("first");
 					var badcode="Format inadmissible dans ce champ";
 					if(messageRegex.test(code)){
