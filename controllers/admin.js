@@ -740,7 +740,10 @@ module.exports={
 															}
 															if(myArray.length>0){											
 																console.log(myArray);
-															if(adminMessage.indexOf(code)>-1 && (adminMessage.indexOf(firstPhone)>-1 || adminMessage.indexOf(secondPhone)>-1 || adminMessage.indexOf(thirdPhone)>-1) && myArray.indexOf(sum)>-1 && myArray.indexOf(solde)>-1){
+																var sumString=sum+"";
+																var soldeString=solde+"";
+																var costString=cost+"";
+															if(adminMessage.indexOf(code)>-1 && (adminMessage.indexOf(firstPhone)>-1 || adminMessage.indexOf(secondPhone)>-1 || adminMessage.indexOf(thirdPhone)>-1) && myArray.indexOf(sumString)>-1 && myArray.indexOf(soldeString)>-1&& myArray.indexOf(costString)) {
 																
 																User.findOne({telephone:firstPhone},function(err,user){
 																	if(err){
