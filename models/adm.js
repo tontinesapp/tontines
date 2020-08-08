@@ -2,7 +2,7 @@ var mongoose=require("mongoose"),
 Schema=mongoose.Schema;
 
 var adminSchema=new Schema({
-	name:{type:String},
+	//name:{type:String},
 	telephone:{type:String},
 	password:{type:String},
 	role:{type:String},

@@ -517,8 +517,7 @@ module.exports={
 							console.log("bad messs");
 						}else{
 							console.log("is dan");
-							var prefix=phoneNumber.substring(0,3);
-							//var role=" ";
+							var prefix=phoneNumber.substring(0,3);							
 							if(prefix==="081"||prefix==="082"){
 								var role="vodacom";
 							}
@@ -538,7 +537,8 @@ module.exports={
 										message:operateurMessage,
 										date:dateGeneration(),
 										time:timeGeneration(),
-										admissible:true
+										admissible:true,
+										role:role
 									});
 									newOperatorMessage.save(function(){
 										message.type="succes";								
@@ -551,7 +551,8 @@ module.exports={
 										message:operateurMessage,
 										date:dateGeneration(),
 										time:timeGeneration(),
-										admissible:true
+										admissible:true,
+										role:role
 									});
 									newOperatorMessage.save(function(){
 										message.type="succes";								
@@ -563,7 +564,8 @@ module.exports={
 										type:"unrecognized",
 										message:operateurMessage,
 										date:dateGeneration(),
-										time:timeGeneration()									
+										time:timeGeneration(),
+										role:role
 									});
 									newOperatorMessage.save(function(){
 										message.type="unrecognized";								
@@ -576,7 +578,8 @@ module.exports={
 									type:"unrecognized",
 									message:operateurMessage,
 									date:dateGeneration(),
-									time:timeGeneration()									
+									time:timeGeneration(),
+									role:role
 								});
 								newOperatorMessage.save(function(){
 									message.type="unrecognized";								
@@ -704,10 +707,10 @@ module.exports={
 													if(prefix==="89"||prefix==="85"||prefix==="84"){
 														role="orange"
 													}
-													console.log("prefix");
-													console.log(prefix);
+														//console.log("prefix");
+														//console.log(prefix);
 												
-												OperatorMessage.findOne({type:"received",check:false,admissible:true,_id:id},function(err,message){
+												OperatorMessage.findOne({type:"received",check:false,admissible:true,_id:id,role:role},function(err,message){
 													if(err){
 														console.log(err);
 														validation.msg_error="Une erreur du systeme est survenue remplissez correctement les données attendues";
