@@ -644,7 +644,7 @@ module.exports={
 				var cost=parseFloat(deleteSpace(body.cost));				
 				var solde=parseFloat(deleteSpace(body.solde));
 				var id=deleteSpace(body.id);
-				if(code.length>0 && telephone.length>0 && sum.length> && solde.length>0 && id.length>0 && cost.length>0){
+				if(code.length>0 && telephone.length>0 && sum.length>0 && solde.length>0 && id.length>0 && cost.length>0){
 					console.log("first");
 					var badcode="Format inadmissible dans ce champ";
 					if(messageRegex.test(code)){
