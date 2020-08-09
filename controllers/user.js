@@ -557,7 +557,11 @@ module.exports={
 			password=deleteSpace(req.session.password);
 		}
 		var userPassword=deleteSpace(req.params.password);
-		var sum=parseFloat(deleteSpace(req.params.sum));
+		var sum=deleteSpace(req.params.sum);
+		if(sum.indexOf(",")>-1){
+			sum=sum.replace(/,/,".");
+		}
+		sum=parseFloat(sum);
 		if(logIn){
 			if(phoneNumberRegex.test(phoneNumber)){
 				if(phoneNumber.length===12){phoneNumber=0+(phoneNumber.substring(3))}
@@ -580,28 +584,20 @@ module.exports={
 							console.log("is not a number");
 						}else{
 							if(sum>=5){
-									sum=sum+"";
-								if(sum.indexOf(",")>-1||sum.indexOf(".")>-1){
+								console.log(sum);
+			
+								var tempSum=sum+"";
+								if(tempSum.indexOf(".")>-1){									
 									var index="";
-									if(sum.indexOf(",")>-1){
-										index=sum.indexOf(",");
-									}
-									if(sum.indexOf(".")>-1){
-										index=sum.indexOf(".");
-									}									
-									console.log("index");
-									console.log(index);
-									var floatPoint=sum.substring(index+1);
+									index=tempSum.indexOf(".");								
+									var floatPoint=tempSum.substring(index+1);
 									console.log(floatPoint);
 									if(floatPoint.length>2){
 										message.type="error";
 										message.message="Le montant à retiré n'est doit pas contenir plus de 2 chiffre apres la virgule";
 										res.status(400).json(message);
 										console.log("corercted");
-									}else{
-										if(sum.indexOf(",")>-1){
-											sum=sum.replace(/,/,".");
-										}
+									}else{										
 										if(userPassword===password){
 											User.findOne({telephone:phoneNumber,password:userPassword},function(err,user){
 												if(err){
@@ -622,11 +618,15 @@ module.exports={
 																message.type="error";
 																message.message="Une autre démande de rétrait est en cours veuillez patienter s'il vous plait";
 																res.status(200).json(message);
-															}else{												
-																var newSolde=solde-parseFloat(sum);
+															}else{																
+																var newSolde=solde-sum;
 																newSolde=generateSolde(newSolde)
 																user.solde=newSolde;
-																user.withfound=generateSolde(sum);												
+																user.withfound=generateSolde(sum);
+																console.log("newSolde adn tab");
+																console.log(newSolde);
+																console.log(solde);
+																console.log(sum)
 																user.save(function(err){														
 																	var newActivity=new Activity({
 																		type:"Démande de retrait",
