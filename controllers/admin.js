@@ -780,7 +780,7 @@ module.exports={
 																console.log(myArray.indexOf(soldeString));
 																console.log(myArray.indexOf(costString));
 																
-															if(adminMessage.indexOf(code)>-1 && (adminMessage.indexOf(firstPhone)>-1 || adminMessage.indexOf(secondPhone)>-1 || adminMessage.indexOf(thirdPhone)>-1) && myArray.indexOf(sumString)>-1 && myArray.indexOf(soldeString)>-1&& myArray.indexOf(costString)) {
+															if(adminMessage.indexOf(code)>-1 && (adminMessage.indexOf(firstPhone)>-1 || adminMessage.indexOf(secondPhone)>-1 || adminMessage.indexOf(thirdPhone)>-1) && myArray.indexOf(sumString)>-1 && myArray.indexOf(soldeString)>-1&& myArray.indexOf(costString)>-1) {
 																
 																User.findOne({telephone:firstPhone},function(err,user){
 																	if(err){

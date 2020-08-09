@@ -10,13 +10,13 @@ var OperatorSchema=new Schema({
 	accept:{type:Boolean,default:false},
 	admissible:{type:Boolean,default:false},
 	role:{type:String},
-	year:{type:String},
-	dat:{type:String},
-	month:{type:String},
-	hour:{type:String},
-	minute:{type:String},
-	second:{type:String},
-	millisecond:{type:String}
+	year:{type:Number},
+	dat:{type:Number},
+	month:{type:Number},
+	hour:{type:Number},
+	minute:{type:Number},
+	second:{type:Number},
+	millisecond:{type:Number}
 });
 
 module.exports=mongoose.model("SMSOperateur",OperatorSchema,"SMSOperateur");

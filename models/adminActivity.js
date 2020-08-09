@@ -9,13 +9,13 @@ var adminActivity=new Schema({
 	dateFormat:{type:String},
 	time:{type:String},
 	read:{type:Boolean,default:false},
-	year:{type:String},
-	dat:{type:String},
-	month:{type:String},
-	hour:{type:String},
-	minute:{type:String},
-	second:{type:String},
-	millisecond:{type:String}
+	year:{type:Number},
+	dat:{type:Number},
+	month:{type:Number},
+	hour:{type:Number},
+	minute:{type:Number},
+	second:{type:Number},
+	millisecond:{type:Number}
 });
 
 module.exports=mongoose.model("adminActivity",adminActivity,"adminActivity");

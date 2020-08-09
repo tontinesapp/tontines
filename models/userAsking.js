@@ -15,13 +15,13 @@ var userAsking=new Schema({
 	traitedTime:{type:String},
 	traitedDate:{type:String},
 	sum:{type:String,default:0},
-	year:{type:String},
-	dat:{type:String},
-	month:{type:String},
-	hour:{type:String},
-	minute:{type:String},
-	second:{type:String},
-	millisecond:{type:String}
+	year:{type:Number},
+	dat:{type:Number},
+	month:{type:Number},
+	hour:{type:Number},
+	minute:{type:Number},
+	second:{type:Number},
+	millisecond:{type:Number}
 });
 
 module.exports=mongoose.model("userAsking",userAsking,"userAsking");
