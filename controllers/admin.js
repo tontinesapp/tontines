@@ -1108,7 +1108,7 @@ module.exports={
 																					telephone:firstPhone,
 																					year:DateObject.getFullYear(),
 																					month:DateObject.getUTCMonth(),
-																					dat:DateObject.getUTCDate();
+																					dat:DateObject.getUTCDate(),
 																					hour:(DateObject.getUTCHours())+1,
 																					minute:DateObject.getUTCMinutes(),
 																					second:DateObject.getUTCMinutes(),
