@@ -1097,8 +1097,7 @@ module.exports={
 																													});
 																												});
 																											});
-																										});
-																										
+																										});																										
 																									})
 																								}else{
 																									validation.msg_error="Une erreur du systeme est survenue remplissez correctement les données attendues";

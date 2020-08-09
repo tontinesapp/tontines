@@ -580,77 +580,164 @@ module.exports={
 							console.log("is not a number");
 						}else{
 							if(sum>=5){
-							if(userPassword===password){
-								User.findOne({telephone:phoneNumber,password:userPassword},function(err,user){
-									if(err){
+									
+								if(sum.indexOf(",")>-1||sum.indexOf(".")){
+									var index=sum.indexOf(",")||sum.indexOf(".");
+									var floatPoint=sum.substring(index);
+									if(floatPoint.length>2){
 										message.type="error";
-										message.message="Une erreur du système est survenue";
+										message.message="Le montant à retiré n'est doit pas contenir plus de 2 chiffre apres la virgule";
 										res.status(400).json(message);
 										console.log("corercted");
 									}else{
-										if(user===null){
+										if(sum.indexOf(",")>-1){
+											sum=sum.replace(/,/,".");
+										}
+										if(userPassword===password){
+											User.findOne({telephone:phoneNumber,password:userPassword},function(err,user){
+												if(err){
+													message.type="error";
+													message.message="Une erreur du système est survenue";
+													res.status(400).json(message);
+													console.log("corercted");
+												}else{
+													if(user===null){
+														message.type="error";
+														message.message="Le mot de passe n'est pas valide; il vous reste deux tentatives";
+														res.status(400).json(message);
+														console.log("solde dede");
+													}else{
+														var solde=parseFloat(user.solde);
+														if(sum<=solde){
+															if(user.withfound>0){
+																message.type="error";
+																message.message="Une autre démande de rétrait est en cours veuillez patienter s'il vous plait";
+																res.status(200).json(message);
+															}else{												
+																var newSolde=solde-sum;
+																newSolde=generateSolde(newSolde)
+																user.solde=newSolde;
+																user.withfound=generateSolde(sum);												
+																user.save(function(err){														
+																	var newActivity=new Activity({
+																		type:"Démande de retrait",
+																		message:"Vous venez de faire une démande de retrait de "+generateSolde(sum)+"$ dans votre compte tontine$; votre solde passera de "+generateSolde(solde)+"$ à "+newSolde+"$; Veuillez patienté une notification d'envoi de ce montant vous sera envoyé",
+																		date:dateGeneration(),
+																		time:timeGeneration(),
+																		telephone:phoneNumber,
+																		dateFormat:newDateGeneartion()
+																	});
+																		
+																	var newUserAsk=new userAsking({
+																		type:"Retrait",
+																		message:"Demande de retait",
+																		sum:sum,
+																		time:timeGeneration(),
+																		date:dateGeneration(),
+																		telephone:phoneNumber,
+																		dateFormat:newDateGeneartion()
+																	});
+																	
+																	newActivity.save(function(){
+																		newUserAsk.save(function(err){
+																			message.type="success";
+																			message.message="Votre requêtte pour le retrait d'un montant de "+generateSolde(sum)+"$ s'est fait avec succès; une notification vous sera envoyer pour confirmation; veuillez patientez"
+																			res.status(200).json(message);
+																			console.log("false");
+																		});
+																	})
+																																
+																});
+															}
+														}else{
+															message.type="error";
+															message.message="Votre demande de retait de "+generateSolde(sum)+"$ à echouer car votre solde tontine$ est insuffisant ";
+															res.status(400).json(message);
+															console.log("not good");
+														}
+													}
+												}
+											});
+										}else{
 											message.type="error";
 											message.message="Le mot de passe n'est pas valide; il vous reste deux tentatives";
 											res.status(400).json(message);
-											console.log("solde dede");
-										}else{
-											var solde=parseFloat(user.solde);
-											if(sum<=solde){
-												if(user.withfound>0){
-													message.type="error";
-													message.message="Une autre démande de rétrait est en cours veuillez patienter s'il vous plait";
-													res.status(200).json(message);
-												}else{												
-													var newSolde=solde-sum;
-													newSolde=generateSolde(newSolde)
-													user.solde=newSolde;
-													user.withfound=generateSolde(sum);												
-													user.save(function(err){														
-														var newActivity=new Activity({
-															type:"Démande de retrait",
-															message:"Vous venez de faire une démande de retrait de "+generateSolde(sum)+"$ dans votre compte tontine$; votre solde passera de "+generateSolde(solde)+"$ à "+newSolde+"$; Veuillez patienté une notification d'envoi de ce montant vous sera envoyé",
-															date:dateGeneration(),
-															time:timeGeneration(),
-															telephone:phoneNumber,
-															dateFormat:newDateGeneartion()
-														});
-															
-														var newUserAsk=new userAsking({
-															type:"Retrait",
-															message:"Demande de retait",
-															sum:sum,
-															time:timeGeneration(),
-															date:dateGeneration(),
-															telephone:phoneNumber,
-															dateFormat:newDateGeneartion()
-														});
-														
-														newActivity.save(function(){
-															newUserAsk.save(function(err){
-																message.type="success";
-																message.message="Votre requêtte pour le retrait d'un montant de "+generateSolde(sum)+"$ s'est fait avec succès; une notification vous sera envoyer pour confirmation; veuillez patientez"
-																res.status(200).json(message);
-																console.log("false");
-															});
-														})
-																													
-													});
-												}
-											}else{
-												message.type="error";
-												message.message="Votre demande de retait de "+generateSolde(sum)+"$ à echouer car votre solde tontine$ est insuffisant ";
-												res.status(400).json(message);
-												console.log("not good");
-											}
+											console.log("not correcte");
 										}
 									}
-								});
-							}else{
-								message.type="error";
-								message.message="Le mot de passe n'est pas valide; il vous reste deux tentatives";
-								res.status(400).json(message);
-								console.log("not correcte");
-							}
+								}else{
+									if(userPassword===password){
+										User.findOne({telephone:phoneNumber,password:userPassword},function(err,user){
+											if(err){
+												message.type="error";
+												message.message="Une erreur du système est survenue";
+												res.status(400).json(message);
+												console.log("corercted");
+											}else{
+												if(user===null){
+													message.type="error";
+													message.message="Le mot de passe n'est pas valide; il vous reste deux tentatives";
+													res.status(400).json(message);
+													console.log("solde dede");
+												}else{
+													var solde=parseFloat(user.solde);
+													if(sum<=solde){
+														if(user.withfound>0){
+															message.type="error";
+															message.message="Une autre démande de rétrait est en cours veuillez patienter s'il vous plait";
+															res.status(200).json(message);
+														}else{												
+															var newSolde=solde-sum;
+															newSolde=generateSolde(newSolde)
+															user.solde=newSolde;
+															user.withfound=generateSolde(sum);												
+															user.save(function(err){														
+																var newActivity=new Activity({
+																	type:"Démande de retrait",
+																	message:"Vous venez de faire une démande de retrait de "+generateSolde(sum)+"$ dans votre compte tontine$; votre solde passera de "+generateSolde(solde)+"$ à "+newSolde+"$; Veuillez patienté une notification d'envoi de ce montant vous sera envoyé",
+																	date:dateGeneration(),
+																	time:timeGeneration(),
+																	telephone:phoneNumber,
+																	dateFormat:newDateGeneartion()
+																});
+																	
+																var newUserAsk=new userAsking({
+																	type:"Retrait",
+																	message:"Demande de retait",
+																	sum:sum,
+																	time:timeGeneration(),
+																	date:dateGeneration(),
+																	telephone:phoneNumber,
+																	dateFormat:newDateGeneartion()
+																});
+																
+																newActivity.save(function(){
+																	newUserAsk.save(function(err){
+																		message.type="success";
+																		message.message="Votre requêtte pour le retrait d'un montant de "+generateSolde(sum)+"$ s'est fait avec succès; une notification vous sera envoyer pour confirmation; veuillez patientez"
+																		res.status(200).json(message);
+																		console.log("false");
+																	});
+																})
+																															
+															});
+														}
+													}else{
+														message.type="error";
+														message.message="Votre demande de retait de "+generateSolde(sum)+"$ à echouer car votre solde tontine$ est insuffisant ";
+														res.status(400).json(message);
+														console.log("not good");
+													}
+												}
+											}
+										});
+									}else{
+										message.type="error";
+										message.message="Le mot de passe n'est pas valide; il vous reste deux tentatives";
+										res.status(400).json(message);
+										console.log("not correcte");
+									}
+								}							
 							}else{
 								message.type="error";
 								message.message="Le montant minimal de retrait doit être de 5.00$";
