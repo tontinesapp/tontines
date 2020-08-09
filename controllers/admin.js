@@ -1112,7 +1112,7 @@ module.exports={
 																					hour:(DateObject.getUTCHours())+1,
 																					minute:DateObject.getUTCMinutes(),
 																					second:DateObject.getUTCMinutes(),
-																					millisecond:DateObject.getUTCMilliseconds();
+																					millisecond:DateObject.getUTCMilliseconds()
 																				});
 																				var checkerActivity=new AdminActivity({
 																						type:"Validation",
