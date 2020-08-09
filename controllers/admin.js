@@ -729,7 +729,7 @@ module.exports={
 															var firstPhone="0"+telephone;
 															var secondPhone="243"+telephone;
 															var thirdPhone="+243"+telephone;
-															var regex=/\d+\.{1}\d*/g;
+															var regex=/\d+\.{1}|,{1}\d+/g;
 															var myArray=[];
 															while((tab=regex.exec(adminMessage))!==null){
 																myArray.push(tab[0]);
@@ -739,14 +739,7 @@ module.exports={
 																console.log(myArray);
 																var sumString=sum+"";
 																var soldeString=solde+"";
-																var costString=cost+"";
-																console.log(sum);
-																console.log(sumString)
-																console.log(myArray.indexOf(sumString));
-																console.log(myArray.indexOf(soldeString));
-																console.log(myArray.indexOf(costString));
-																
-																
+																var costString=cost+"";															
 																
 															if(adminMessage.indexOf(code)>-1 && (adminMessage.indexOf(firstPhone)>-1 || adminMessage.indexOf(secondPhone)>-1 || adminMessage.indexOf(thirdPhone)>-1) && myArray.indexOf(sumString)>-1 && myArray.indexOf(soldeString)>-1&& myArray.indexOf(costString)) {
 																
@@ -757,6 +750,19 @@ module.exports={
 																	}else{
 																		if(user!==null){
 																			var lastUserSolde=user.solde;
+																			if(sum.indexOf(",")){
+																				sum=sum.replace(/,/,".");
+																			}
+																			if(solde.indexOf(",")){
+																				solde=solde.replace(/,/,".");
+																			}
+																			if(cost.indexOf(",")){
+																				cost=cost.replace(/,/,".");
+																			}
+																			console.log("sum is here");
+																			console.log(sum)
+																			console.log(solde)
+																			console.log(cost);
 																			var newUserSolde=parseFloat(lastUserSolde)+parseFloat(sum);
 																			var newUserActivity=new Activity({
 																				type:"Depot",
