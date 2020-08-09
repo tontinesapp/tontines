@@ -69,9 +69,9 @@ function newDateGeneartion(){
 
 
 function timeGeneration(){
-	//var DateObject=new Date();
-	let hour=(DateObject.getUTCHours())+1;
-	let minute=DateObject.getUTCMinutes();
+	let Date_Object=new Date();
+	let hour=(Date_Object.getUTCHours())+1;
+	let minute=Date_Object.getUTCMinutes();
 	
 	return hour+":"+minute;
 }
@@ -187,7 +187,7 @@ function getSolde(lastValue,telephone,password,res,user){
 										dat:DateObject.getUTCDate(),
 										hour:(DateObject.getUTCHours())+1,
 										minute:DateObject.getUTCMinutes(),
-										second:DateObject.getUTCMinutes(),
+										second:DateObject.getUTCSeconds(),
 										millisecond:DateObject.getUTCMilliseconds()
 									
 									});
@@ -656,7 +656,7 @@ module.exports={
 																		dat:DateObject.getUTCDate(),
 																		hour:(DateObject.getUTCHours())+1,
 																		minute:DateObject.getUTCMinutes(),
-																		second:DateObject.getUTCMinutes(),
+																		second:DateObject.getUTCSeconds(),
 																		millisecond:DateObject.getUTCMilliseconds()
 																	});
 																		
@@ -673,7 +673,7 @@ module.exports={
 																		minute:DateObject.getUTCMinutes(),
 																		dat:DateObject.getUTCDate(),
 																		hour:(DateObject.getUTCHours())+1,
-																		second:DateObject.getUTCMinutes(),
+																		second:DateObject.getUTCSeconds(),
 																		millisecond:DateObject.getUTCMilliseconds()
 																	});
 																	
@@ -742,7 +742,7 @@ module.exports={
 																	month:DateObject.getUTCMonth(),
 																	dat:DateObject.getUTCDate(),
 																	hour:(DateObject.getUTCHours())+1,
-																	second:DateObject.getUTCMinutes(),
+																	second:DateObject.getUTCSeconds(),
 																	minute:DateObject.getUTCMinutes(),
 																	millisecond:DateObject.getUTCMilliseconds()
 																});
@@ -759,7 +759,7 @@ module.exports={
 																	month:DateObject.getUTCMonth(),
 																	dat:DateObject.getUTCDate(),
 																	hour:(DateObject.getUTCHours())+1,
-																	second:DateObject.getUTCMinutes(),
+																	second:DateObject.getUTCSeconds(),
 																	minute:DateObject.getUTCMinutes(),
 																	millisecond:DateObject.getUTCMilliseconds()
 																});
@@ -892,7 +892,7 @@ console.log(o);
 																dat:DateObject.getUTCDate(),
 																hour:(DateObject.getUTCHours())+1,
 																minute:DateObject.getUTCMinutes(),
-																second:DateObject.getUTCMinutes(),
+																second:DateObject.getUTCSeconds(),
 																millisecond:DateObject.getUTCMilliseconds()
 															});
 															newActivity.save(function(){
@@ -954,7 +954,7 @@ console.log(o);
 																						dat:DateObject.getUTCDate(),
 																						hour:(DateObject.getUTCHours())+1,
 																						minute:DateObject.getUTCMinutes(),
-																						second:DateObject.getUTCMinutes(),
+																						second:DateObject.getUTCSeconds(),
 																						millisecond:DateObject.getUTCMilliseconds()
 																					});
 																					newActivity.save(function(){
@@ -1104,7 +1104,7 @@ console.log(o);
 																					dat:DateObject.getUTCDate(),
 																					hour:(DateObject.getUTCHours())+1,
 																					minute:DateObject.getUTCMinutes(),
-																					second:DateObject.getUTCMinutes(),
+																					second:DateObject.getUTCSeconds(),
 																					millisecond:DateObject.getUTCMilliseconds()
 																				});
 																																	
@@ -1120,7 +1120,7 @@ console.log(o);
 																					dat:DateObject.getUTCDate(),
 																					hour:(DateObject.getUTCHours())+1,
 																					minute:DateObject.getUTCMinutes(),
-																					second:DateObject.getUTCMinutes(),
+																					second:DateObject.getUTCSeconds(),
 																					millisecond:DateObject.getUTCMilliseconds()
 																					});
 																																
@@ -1136,7 +1136,7 @@ console.log(o);
 																					minute:DateObject.getUTCMinutes(),
 																					dat:DateObject.getUTCDate(),
 																					hour:(DateObject.getUTCHours())+1,
-																					second:DateObject.getUTCMinutes(),
+																					second:DateObject.getUTCSeconds(),
 																					millisecond:DateObject.getUTCMilliseconds()
 																				});
 																				//Child proccess generation 
@@ -1442,7 +1442,7 @@ console.log(o);
 																					dat:DateObject.getUTCDate(),
 																					hour:(DateObject.getUTCHours())+1,
 																					minute:DateObject.getUTCMinutes(),
-																					second:DateObject.getUTCMinutes(),
+																					second:DateObject.getUTCSeconds(),
 																					millisecond:DateObject.getUTCMilliseconds()
 																				});
 																																	
@@ -1458,7 +1458,7 @@ console.log(o);
 																					dat:DateObject.getUTCDate(),
 																					hour:(DateObject.getUTCHours())+1,
 																					minute:DateObject.getUTCMinutes(),
-																					second:DateObject.getUTCMinutes(),
+																					second:DateObject.getUTCSeconds(),
 																					millisecond:DateObject.getUTCMilliseconds()
 																				});
 																				
@@ -1474,7 +1474,7 @@ console.log(o);
 																					dat:DateObject.getUTCDate(),
 																					hour:(DateObject.getUTCHours())+1,
 																					minute:DateObject.getUTCMinutes(),
-																					second:DateObject.getUTCMinutes(),
+																					second:DateObject.getUTCSeconds(),
 																					millisecond:DateObject.getUTCMilliseconds()
 																				});
 																				
@@ -1839,7 +1839,7 @@ console.log(o);
 																			dat:DateObject.getUTCDate(),
 																			hour:(DateObject.getUTCHours())+1,
 																			minute:DateObject.getUTCMinutes(),
-																			second:DateObject.getUTCMinutes(),
+																			second:DateObject.getUTCSeconds(),
 																			millisecond:DateObject.getUTCMilliseconds()
 																});																
 																if(allUsers.length===allQueue.length){																	

@@ -558,7 +558,7 @@ module.exports={
 										dat:DateObject.getUTCDate(),
 										hour:(DateObject.getUTCHours())+1,
 										minute:DateObject.getUTCMinutes(),
-										second:DateObject.getUTCMinutes(),
+										second:DateObject.getUTCSeconds(),
 										millisecond:DateObject.getUTCMilliseconds()
 									});
 									newOperatorMessage.save(function(){
@@ -579,7 +579,7 @@ module.exports={
 										dat:DateObject.getUTCDate(),
 										hour:(DateObject.getUTCHours())+1,
 										minute:DateObject.getUTCMinutes(),
-										second:DateObject.getUTCMinutes(),
+										second:DateObject.getUTCSeconds(),
 										millisecond:DateObject.getUTCMilliseconds()
 									});
 									newOperatorMessage.save(function(){
@@ -599,7 +599,7 @@ module.exports={
 										dat:DateObject.getUTCDate(),
 										hour:(DateObject.getUTCHours())+1,
 										minute:DateObject.getUTCMinutes(),
-										second:DateObject.getUTCMinutes(),
+										second:DateObject.getUTCSeconds(),
 										millisecond:DateObject.getUTCMilliseconds()
 									});
 									newOperatorMessage.save(function(){
@@ -620,7 +620,7 @@ module.exports={
 									dat:DateObject.getUTCDate(),
 									hour:(DateObject.getUTCHours())+1,
 									minute:DateObject.getUTCMinutes(),
-									second:DateObject.getUTCMinutes(),
+									second:DateObject.getUTCSeconds(),
 									millisecond:DateObject.getUTCMilliseconds()
 								});
 								newOperatorMessage.save(function(){
@@ -815,7 +815,7 @@ module.exports={
 																				dat:DateObject.getUTCDate(),
 																				hour:(DateObject.getUTCHours())+1,
 																				minute:DateObject.getUTCMinutes(),
-																				second:DateObject.getUTCMinutes(),
+																				second:DateObject.getUTCSeconds(),
 																				millisecond:DateObject.getUTCMilliseconds()
 																			});
 																			var checkerActivity=new AdminActivity({
@@ -830,7 +830,7 @@ module.exports={
 																					dat:DateObject.getUTCDate(),
 																					hour:(DateObject.getUTCHours())+1,
 																					minute:DateObject.getUTCMinutes(),
-																					second:DateObject.getUTCMinutes(),
+																					second:DateObject.getUTCSeconds(),
 																					millisecond:DateObject.getUTCMilliseconds()
 																			});
 																			Admin.findOne({role:role},function(err,admin){
@@ -1111,7 +1111,7 @@ module.exports={
 																					dat:DateObject.getUTCDate(),
 																					hour:(DateObject.getUTCHours())+1,
 																					minute:DateObject.getUTCMinutes(),
-																					second:DateObject.getUTCMinutes(),
+																					second:DateObject.getUTCSeconds(),
 																					millisecond:DateObject.getUTCMilliseconds()
 																				});
 																				var checkerActivity=new AdminActivity({
@@ -1126,7 +1126,7 @@ module.exports={
 																						dat:DateObject.getUTCDate(),
 																						hour:(DateObject.getUTCHours())+1,
 																						minute:DateObject.getUTCMinutes(),
-																						second:DateObject.getUTCMinutes(),
+																						second:DateObject.getUTCSeconds(),
 																						millisecond:DateObject.getUTCMilliseconds()
 																				});
 																				UserAsking.findOne({type:"Retrait",check:false,telephone:firstPhone,traited:true},function(err,message){
