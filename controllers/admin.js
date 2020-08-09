@@ -61,14 +61,14 @@ function nameUpper(name){
 }
 
 function dateGeneration(){
-	//var DateObject=new Date();
+	var Objectdate=new Date();
 	
-	let day=DateObject.getUTCDay();
+	let day=Objectdate.getUTCDay();
 	let dayFormat=nameUpper(dayInWeek[day]);
 	
-	let date=(DateObject.getUTCDate());
-	let month=DateObject.getUTCMonth();
-	let year=DateObject.getFullYear();
+	let date=(Objectdate.getUTCDate());
+	let month=Objectdate.getUTCMonth();
+	let year=Objectdate.getFullYear();
 		
 	let monthFormat=nameUpper(monthInYear[month]);
 	

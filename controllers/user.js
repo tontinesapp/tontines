@@ -25,14 +25,14 @@ function nameUpper(name=""){
 }
 
 function dateGeneration(){
-	//var DateObject=new Date();
+	let ObjectDate=new Date();
 	
-	let day=DateObject.getUTCDay();
+	let day=ObjectDate.getUTCDay();
 	let dayFormat=nameUpper(dayInWeek[day]);
 	
-	let date=(DateObject.getUTCDate());
-	let month=DateObject.getUTCMonth();
-	let year=DateObject.getFullYear();
+	let date=(ObjectDate.getUTCDate());
+	let month=ObjectDate.getUTCMonth();
+	let year=ObjectDate.getFullYear();
 		
 	let monthFormat=nameUpper(monthInYear[month]);
 	
@@ -47,19 +47,19 @@ second:DateObject.getUTCMinutes(),
 millisecond:DateObject.getUTCMilliseconds();
 */
 function newDateGeneartion(){
-	//var DateObject=new Date();
+	let ObjectDate=new Date();
 	
-	let day=DateObject.getUTCDay();
+	let day=ObjectDate.getUTCDay();
 	let dayFormat=nameUpper(dayInWeek[day]);
 	
-	let date=(DateObject.getUTCDate());
-	let month=DateObject.getUTCMonth();
-	let year=DateObject.getFullYear();
+	let date=(ObjectDate.getUTCDate());
+	let month=ObjectDate.getUTCMonth();
+	let year=ObjectDate.getFullYear();
 	
-	let hour=(DateObject.getUTCHours())+1;
-	let minute=DateObject.getUTCMinutes();
-	let second=DateObject.getUTCSeconds();
-	let milisecond=DateObject.getUTCMilliseconds();
+	let hour=(ObjectDate.getUTCHours())+1;
+	let minute=ObjectDate.getUTCMinutes();
+	let second=ObjectDate.getUTCSeconds();
+	let milisecond=ObjectDate.getUTCMilliseconds();
 	
 	return day+" "+date+ " "+month+" "+year+" "+hour+" "+minute+" "+second+" "+milisecond;
 	//return parseFloat(date)+parseFloat(month)+parseFloat(year)+parseFloat(hour)+parseFloat(minute)+parseFloat(second);
