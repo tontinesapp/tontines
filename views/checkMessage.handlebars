@@ -89,11 +89,18 @@
 						for(let i=0; i<allMessage.length;i++){
 							var id=allMessage[i]._id;
 							var message=allMessage[i].message;
-							var flag=data.flag;
-							var mflag="<p><i>"+flag+"</i></p>";
+							var type=allMessage[i].type
+							var flag="";
+							if(type==="received"){
+								flag="Depot"
+							}
+							if(type==="sent"){
+								flag="Retrait";
+							}
+							var flagType="<p><i>"+flag+"</i></p>";
 							var p="<p>"+message+"</p>";
 							var identifiant="<p><strong>Identifiant : </strong>"+id+"</p>";												
-							$(".message").append("<div>"+mflag+p+identifiant+"</div>");
+							$(".message").append("<div>"+flagType+p+identifiant+"</div>");
 						}							
 					}									
 					if(data.no_message){						

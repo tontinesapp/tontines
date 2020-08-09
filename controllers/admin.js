@@ -685,12 +685,7 @@ module.exports={
 						res.status(200).json(deposit);
 					}else{
 						if(message.length>0){
-							if(message.type==="received"){
-								deposit.flag="depot"
-							}
-							if(message.type==="sent"){
-								deposit.flag==="retrait";
-							}
+														
 							deposit.message=message;
 							res.status(200).json(deposit);
 						}else{
