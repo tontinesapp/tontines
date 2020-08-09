@@ -8,6 +8,7 @@ var Activity=require("../models/userActivity");
 var AdminActivity=require("../models/adminActivity");
 var OperatorMessage=require("../models/operateurMessage");
 var UserAsking=require("../models/userAsking");
+var DateObject=new Date();
 
 var dayInWeek=["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"];
 var monthInYear=["janvier","fevrier","mars","avril","mai","juin","juillet","aout","septembre","octobre","novembre","decembre"];
@@ -19,7 +20,7 @@ function deleteSpace(string=""){
 }
 
 function newDateGeneartion(){
-	var DateObject=new Date();
+	//var DateObject=new Date();
 	
 	let day=DateObject.getUTCDay();
 	let dayFormat=nameUpper(dayInWeek[day]);
@@ -31,7 +32,7 @@ function newDateGeneartion(){
 	let minute=DateObject.getUTCMinutes();
 	let milliseconds=DateObject.getMilliseconds();
 	
-	return date+ " "+month+" "+year+" "+hour+" "+minute+" "+milliseconds;
+	return day+" "+date+ " "+month+" "+year+" "+hour+" "+minute+" "+milliseconds;
 }
 
 function generateSolde(solde){
@@ -60,7 +61,7 @@ function nameUpper(name){
 }
 
 function dateGeneration(){
-	var DateObject=new Date();
+	//var DateObject=new Date();
 	
 	let day=DateObject.getUTCDay();
 	let dayFormat=nameUpper(dayInWeek[day]);
@@ -76,7 +77,7 @@ function dateGeneration(){
 
 
 function timeGeneration(){
-	var DateObject=new Date();
+	//var DateObject=new Date();
 	let hour=(DateObject.getUTCHours())+1;
 	let minute=DateObject.getUTCMinutes();
 	
@@ -450,7 +451,14 @@ module.exports={
 									telephone:req.session.admin.telephone,
 									date:dateGeneration(),
 									time:timeGeneration(),
-									dateFormat:newDateGeneartion()
+									dateFormat:newDateGeneartion(),
+									year:DateObject.getFullYear(),
+									month:DateObject.getUTCMonth(),
+									dat:DateObject.getUTCDate(),
+									hour:(DateObject.getUTCHours())+1,
+									minute:DateObject.getUTCMinutes(),
+									second:DateObject.getUTCMinutes(),
+									millisecond:DateObject.getUTCMilliseconds()
 								});
 								senderActivity.save(function(){
 									withdraw.withdraw=message;
@@ -544,7 +552,14 @@ module.exports={
 										date:dateGeneration(),
 										time:timeGeneration(),
 										admissible:true,
-										role:role
+										role:role,
+										year:DateObject.getFullYear(),
+										month:DateObject.getUTCMonth(),
+										dat:DateObject.getUTCDate(),
+										hour:(DateObject.getUTCHours())+1,
+										minute:DateObject.getUTCMinutes(),
+										second:DateObject.getUTCMinutes(),
+										millisecond:DateObject.getUTCMilliseconds()
 									});
 									newOperatorMessage.save(function(){
 										message.type="succes";								
@@ -558,7 +573,14 @@ module.exports={
 										date:dateGeneration(),
 										time:timeGeneration(),
 										admissible:true,
-										role:role
+										role:role,
+										year:DateObject.getFullYear(),
+										month:DateObject.getUTCMonth(),
+										dat:DateObject.getUTCDate(),
+										hour:(DateObject.getUTCHours())+1,
+										minute:DateObject.getUTCMinutes(),
+										second:DateObject.getUTCMinutes(),
+										millisecond:DateObject.getUTCMilliseconds()
 									});
 									newOperatorMessage.save(function(){
 										message.type="succes";								
@@ -571,7 +593,14 @@ module.exports={
 										message:operateurMessage,
 										date:dateGeneration(),
 										time:timeGeneration(),
-										role:role
+										role:role,
+										year:DateObject.getFullYear(),
+										month:DateObject.getUTCMonth(),
+										dat:DateObject.getUTCDate(),
+										hour:(DateObject.getUTCHours())+1,
+										minute:DateObject.getUTCMinutes(),
+										second:DateObject.getUTCMinutes(),
+										millisecond:DateObject.getUTCMilliseconds()
 									});
 									newOperatorMessage.save(function(){
 										message.type="unrecognized";								
@@ -585,7 +614,14 @@ module.exports={
 									message:operateurMessage,
 									date:dateGeneration(),
 									time:timeGeneration(),
-									role:role
+									role:role,
+									year:DateObject.getFullYear(),
+									month:DateObject.getUTCMonth(),
+									dat:DateObject.getUTCDate(),
+									hour:(DateObject.getUTCHours())+1,
+									minute:DateObject.getUTCMinutes(),
+									second:DateObject.getUTCMinutes(),
+									millisecond:DateObject.getUTCMilliseconds()
 								});
 								newOperatorMessage.save(function(){
 									message.type="unrecognized";								
@@ -773,7 +809,14 @@ module.exports={
 																				date:dateGeneration(),
 																				time:timeGeneration(),
 																				telephone:firstPhone,
-																				dateFormat:newDateGeneartion()
+																				dateFormat:newDateGeneartion(),
+																				year:DateObject.getFullYear(),
+																				month:DateObject.getUTCMonth(),
+																				dat:DateObject.getUTCDate(),
+																				hour:(DateObject.getUTCHours())+1,
+																				minute:DateObject.getUTCMinutes(),
+																				second:DateObject.getUTCMinutes(),
+																				millisecond:DateObject.getUTCMilliseconds()
 																			});
 																			var checkerActivity=new AdminActivity({
 																					type:"Validation",
@@ -781,7 +824,14 @@ module.exports={
 																					date:dateGeneration(),
 																					time:timeGeneration(),
 																					dateFormat:newDateGeneartion(),
-																					telephone:req.session.admin.telephone
+																					telephone:req.session.admin.telephone,
+																					year:DateObject.getFullYear(),
+																					month:DateObject.getUTCMonth(),
+																					dat:DateObject.getUTCDate(),
+																					hour:(DateObject.getUTCHours())+1,
+																					minute:DateObject.getUTCMinutes(),
+																					second:DateObject.getUTCMinutes(),
+																					millisecond:DateObject.getUTCMilliseconds()
 																			});
 																			Admin.findOne({role:role},function(err,admin){
 																				var adminSolde=parseFloat(admin.solde);
@@ -1055,7 +1105,14 @@ module.exports={
 																					date:dateGeneration(),
 																					time:timeGeneration(),
 																					dateFormat:newDateGeneartion(),
-																					telephone:firstPhone																			
+																					telephone:firstPhone,
+																					year:DateObject.getFullYear(),
+																					month:DateObject.getUTCMonth(),
+																					dat:DateObject.getUTCDate();
+																					hour:(DateObject.getUTCHours())+1,
+																					minute:DateObject.getUTCMinutes(),
+																					second:DateObject.getUTCMinutes(),
+																					millisecond:DateObject.getUTCMilliseconds();
 																				});
 																				var checkerActivity=new AdminActivity({
 																						type:"Validation",
@@ -1063,7 +1120,14 @@ module.exports={
 																						date:dateGeneration(),
 																						time:timeGeneration(),
 																						dateFormat:newDateGeneartion(),
-																						telephone:req.session.admin.telephone
+																						telephone:req.session.admin.telephone,
+																						year:DateObject.getFullYear(),
+																						month:DateObject.getUTCMonth(),
+																						dat:DateObject.getUTCDate(),
+																						hour:(DateObject.getUTCHours())+1,
+																						minute:DateObject.getUTCMinutes(),
+																						second:DateObject.getUTCMinutes(),
+																						millisecond:DateObject.getUTCMilliseconds()
 																				});
 																				UserAsking.findOne({type:"Retrait",check:false,telephone:firstPhone,traited:true},function(err,message){
 																					if(err){
