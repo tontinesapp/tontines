@@ -8,7 +8,7 @@ var adminActivity=new Schema({
 	date:{type:String},
 	dateFormat:{type:String},
 	time:{type:String},
-	read:{type:Boolean,default:false}.
+	read:{type:Boolean,default:false},
 	year:{type:String},
 	dat:{type:String},
 	month:{type:String},
