@@ -580,7 +580,7 @@ module.exports={
 							console.log("is not a number");
 						}else{
 							if(sum>=5){
-									
+									sum=sum+"";
 								if(sum.indexOf(",")>-1||sum.indexOf(".")){
 									var index=sum.indexOf(",")||sum.indexOf(".");
 									var floatPoint=sum.substring(index);
@@ -614,7 +614,7 @@ module.exports={
 																message.message="Une autre démande de rétrait est en cours veuillez patienter s'il vous plait";
 																res.status(200).json(message);
 															}else{												
-																var newSolde=solde-sum;
+																var newSolde=solde-parseFloat(sum);
 																newSolde=generateSolde(newSolde)
 																user.solde=newSolde;
 																user.withfound=generateSolde(sum);												
