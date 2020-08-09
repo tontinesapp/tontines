@@ -729,7 +729,7 @@ module.exports={
 															var firstPhone="0"+telephone;
 															var secondPhone="243"+telephone;
 															var thirdPhone="+243"+telephone;
-															var regex=/\d+(?:\.{1}|\,{1})\d+/g;
+															var regex=/\d+(?:\.{1}|,{1})\d+/g;
 															var myArray=[];
 															while((tab=regex.exec(adminMessage))!==null){
 																myArray.push(tab[0]);
