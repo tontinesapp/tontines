@@ -3,8 +3,8 @@
 	<link rel="stylesheet" type="text/css" href="/public/css/admin/adminChecker.css"/>
 {{/section}}
 	<nav>
-		<a href="/admin/checker/deposit" class="active">Validation de Depot</a>
-		<a href="/admin/checker/withdraw">Validation de Retrait</a>
+		<span id="validation_depot" class="navigation">Validation de Depot</span>
+		<span id="valication_retrait" class="navigation">Validation de Retrait</span>
 	</nav>
 	<section id="checker">
 		<section class="message">
@@ -25,7 +25,7 @@
 				</div>
 				-->
 		</section>
-		<div class="form" id="depot">			
+		<div class="form" id="depot" style="none">			
 				<label for="code"><span>Code </span>:<input type="text" name="code"/></label>
 				<em class="code">Relir le chapm</em>
 				<label for="telephone"><span>Expéditeur</span>:<input type="text" name="telephone"/></label>
@@ -64,14 +64,41 @@
 <script type="text/javascript">
 
 	$(document).ready(function(){
-		var menuLinks=$("nav a");
+		//var menuLinks=$("nav a");
 	
-	menuLinks.each(function(){
-		if(($(this).attr("href"))===window.location.pathname){
+		$("#validation_depot").on("click",function(){
+			$(".navigation").css({
+				background:"white",
+				color:"black"
+			});
 			$(this).css("background","rgba(0,128,192,1)");
-			$(this).css("color","white");			
-		}
-	});
+			$(this).css("color","white");
+			$("#depot").css({
+				display:"flex",
+				flexDirection:"colum"
+			});			
+		});
+		
+		$("#validation_retrait").on("click",function(){
+			$(".navigation").css({
+				background:"white",
+				color:"black"
+			});
+			$(this).css("background","rgba(0,128,192,1)");
+			$(this).css("color","white");
+			$("#retait").css({
+				display:"flex",
+				flexDirection:"colum"
+			});			
+		});
+				/*	
+				menuLinks.each(function(){
+					if(($(this).attr("href"))===window.location.pathname){
+						$(this).css("background","rgba(0,128,192,1)");
+						$(this).css("color","white");			
+					}
+				});
+				*/
 		AjaxDepositMessage();
 		function AjaxDepositMessage(){
 			$(".message").html("");
