@@ -77,9 +77,9 @@ function dateGeneration(){
 
 
 function timeGeneration(){
-	//var DateObject=new Date();
-	let hour=(DateObject.getUTCHours())+1;
-	let minute=DateObject.getUTCMinutes();
+	var ObjectDate=new Date();
+	let hour=(ObjectDate.getUTCHours())+1;
+	let minute=ObjectDate.getUTCMinutes();
 	
 	return hour+":"+minute;
 }

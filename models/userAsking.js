@@ -14,7 +14,14 @@ var userAsking=new Schema({
 	traited:{type:Boolean,default:false},
 	traitedTime:{type:String},
 	traitedDate:{type:String},
-	sum:{type:String,default:0}
+	sum:{type:String,default:0},
+	year:{type:String},
+	dat:{type:String},
+	month:{type:String},
+	hour:{type:String},
+	minute:{type:String},
+	second:{type:String},
+	millisecond:{type:String}
 });
 
 module.exports=mongoose.model("userAsking",userAsking,"userAsking");
