@@ -2294,7 +2294,7 @@ console.log(o);
 					activity.error="Veuillez vous connecter";
 					res.status(400).json(activity);
 				}else{									
-					Activity.find({telephone:phoneNumber},{ },{sort:{year:-1,month:-1,dat:-1,hour:-1,minute:-1,second:-1,millisecond:-1}},function(err,myActivity){
+					Activity.find({telephone:phoneNumber},{ },{sort:{year:1,month:1,dat:1,hour:1,minute:1,second:1,millisecond:1}},function(err,myActivity){
 						if(err){
 							activity.error="Une erreur est survenue";
 							res.status(400).json(activity);
