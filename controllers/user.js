@@ -582,11 +582,12 @@ module.exports={
 							if(sum>=5){
 									sum=sum+"";
 								if(sum.indexOf(",")>-1||sum.indexOf(".")>-1){
+									var index="";
 									if(sum.indexOf(",")>-1){
-										index=sum.indexOf(",")
+										index=sum.indexOf(",");
 									}
 									if(sum.indexOf(".")>-1){
-										index=sum.indexOf(".")
+										index=sum.indexOf(".");
 									}									
 									console.log("index");
 									console.log(index);
