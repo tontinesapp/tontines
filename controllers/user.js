@@ -581,8 +581,13 @@ module.exports={
 						}else{
 							if(sum>=5){
 									sum=sum+"";
-								if(sum.indexOf(",")>-1||sum.indexOf(".")){
-									var index=sum.indexOf(",")||sum.indexOf(".");
+								if(sum.indexOf(",")>-1||sum.indexOf(".")>-1){
+									if(sum.indexOf(",")>-1){
+										index=sum.indexOf(",")
+									}
+									if(sum.indexOf(".")>-1){
+										index=sum.indexOf(".")
+									}									
 									console.log("index");
 									console.log(index);
 									var floatPoint=sum.substring(index+1);
