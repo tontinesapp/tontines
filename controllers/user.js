@@ -583,6 +583,8 @@ module.exports={
 									sum=sum+"";
 								if(sum.indexOf(",")>-1||sum.indexOf(".")){
 									var index=sum.indexOf(",")||sum.indexOf(".");
+									console.log("index");
+									console.log(index);
 									var floatPoint=sum.substring(index+1);
 									console.log(floatPoint);
 									if(floatPoint.length>2){
