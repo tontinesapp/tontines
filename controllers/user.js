@@ -183,12 +183,12 @@ function getSolde(lastValue,telephone,password,res,user){
 										time:timeGeneration(),
 										dateFormat:newDateGeneartion(),
 										year:(new Date()).getFullYear(),
-										month:DateObject.getUTCMonth(),
-										dat:DateObject.getUTCDate(),
-										hour:(DateObject.getUTCHours())+1,
-										minute:DateObject.getUTCMinutes(),
-										second:DateObject.getUTCSeconds(),
-										millisecond:DateObject.getUTCMilliseconds()
+										month:(new Date()).getUTCMonth(),
+										dat:(new Date()).getUTCDate(),
+										hour:((new Date()).getUTCHours())+1,
+										minute:(new Date()).getUTCMinutes(),
+										second:(new Date()).getUTCSeconds(),
+										millisecond:(new Date()).getUTCMilliseconds()
 									
 									});
 									user.save(function(){
@@ -651,13 +651,13 @@ module.exports={
 																		time:timeGeneration(),
 																		telephone:phoneNumber,
 																		dateFormat:newDateGeneartion(),
-																		year:DateObject.getFullYear(),																		
-																		month:DateObject.getUTCMonth(),
-																		dat:DateObject.getUTCDate(),
-																		hour:(DateObject.getUTCHours())+1,
-																		minute:DateObject.getUTCMinutes(),
-																		second:DateObject.getUTCSeconds(),
-																		millisecond:DateObject.getUTCMilliseconds()
+																		year:(new Date()).getFullYear(),																		
+																		month:(new Date()).getUTCMonth(),
+																		dat:(new Date()).getUTCDate(),
+																		hour:((new Date()).getUTCHours())+1,
+																		minute:(new Date()).getUTCMinutes(),
+																		second:(new Date()).getUTCSeconds(),
+																		millisecond:(new Date()).getUTCMilliseconds()
 																	});
 																		
 																	var newUserAsk=new userAsking({
@@ -668,13 +668,13 @@ module.exports={
 																		date:dateGeneration(),
 																		telephone:phoneNumber,
 																		dateFormat:newDateGeneartion(),
-																		year:DateObject.getFullYear(),
-																		month:DateObject.getUTCMonth(),
-																		minute:DateObject.getUTCMinutes(),
-																		dat:DateObject.getUTCDate(),
-																		hour:(DateObject.getUTCHours())+1,
-																		second:DateObject.getUTCSeconds(),
-																		millisecond:DateObject.getUTCMilliseconds()
+																		year:(new Date()).getFullYear(),
+																		month:(new Date()).getUTCMonth(),
+																		minute:(new Date()).getUTCMinutes(),
+																		dat:(new Date()).getUTCDate(),
+																		hour:((new Date()).getUTCHours())+1,
+																		second:(new Date()).getUTCSeconds(),
+																		millisecond:(new Date()).getUTCMilliseconds()
 																	});
 																	
 																	newActivity.save(function(){
@@ -738,13 +738,13 @@ module.exports={
 																	time:timeGeneration(),
 																	telephone:phoneNumber,
 																	dateFormat:newDateGeneartion(),
-																	year:DateObject.getFullYear(),
-																	month:DateObject.getUTCMonth(),
-																	dat:DateObject.getUTCDate(),
-																	hour:(DateObject.getUTCHours())+1,
-																	second:DateObject.getUTCSeconds(),
-																	minute:DateObject.getUTCMinutes(),
-																	millisecond:DateObject.getUTCMilliseconds()
+																	year:(new Date()).getFullYear(),
+																	month:(new Date()).getUTCMonth(),
+																	dat:(new Date()).getUTCDate(),
+																	hour:((new Date()).getUTCHours())+1,
+																	second:(new Date()).getUTCSeconds(),
+																	minute:(new Date()).getUTCMinutes(),
+																	millisecond:(new Date()).getUTCMilliseconds()
 																});
 																	
 																var newUserAsk=new userAsking({
@@ -755,13 +755,13 @@ module.exports={
 																	date:dateGeneration(),
 																	telephone:phoneNumber,
 																	dateFormat:newDateGeneartion(),
-																	year:DateObject.getFullYear(),
-																	month:DateObject.getUTCMonth(),
-																	dat:DateObject.getUTCDate(),
-																	hour:(DateObject.getUTCHours())+1,
-																	second:DateObject.getUTCSeconds(),
-																	minute:DateObject.getUTCMinutes(),
-																	millisecond:DateObject.getUTCMilliseconds()
+																	year:(new Date()).getFullYear(),
+																	month:(new Date()).getUTCMonth(),
+																	dat:(new Date()).getUTCDate(),
+																	hour:((new Date()).getUTCHours())+1,
+																	second:(new Date()).getUTCSeconds(),
+																	minute:(new Date()).getUTCMinutes(),
+																	millisecond:(new Date()).getUTCMilliseconds()
 																});
 																
 																newActivity.save(function(){
@@ -887,13 +887,13 @@ console.log(o);
 																date:dateGeneration(),
 																time:timeGeneration(),
 																dateFormat:newDateGeneartion(),
-																year:DateObject.getFullYear(),
-																month:DateObject.getUTCMonth(),
-																dat:DateObject.getUTCDate(),
-																hour:(DateObject.getUTCHours())+1,
-																minute:DateObject.getUTCMinutes(),
-																second:DateObject.getUTCSeconds(),
-																millisecond:DateObject.getUTCMilliseconds()
+																year:(new Date()).getFullYear(),
+																month:(new Date()).getUTCMonth(),
+																dat:(new Date()).getUTCDate(),
+																hour:((new Date()).getUTCHours())+1,
+																minute:(new Date()).getUTCMinutes(),
+																second:(new Date()).getUTCSeconds(),
+																millisecond:(new Date()).getUTCMilliseconds()
 															});
 															newActivity.save(function(){
 																res.status(200).json(message);
@@ -949,13 +949,13 @@ console.log(o);
 																						date:dateGeneration(),
 																						time:timeGeneration(),
 																						dateFormat:newDateGeneartion(),
-																						year:DateObject.getFullYear(),
-																						month:DateObject.getUTCMonth(),
-																						dat:DateObject.getUTCDate(),
-																						hour:(DateObject.getUTCHours())+1,
-																						minute:DateObject.getUTCMinutes(),
-																						second:DateObject.getUTCSeconds(),
-																						millisecond:DateObject.getUTCMilliseconds()
+																						year:(new Date()).getFullYear(),
+																						month:(new Date()).getUTCMonth(),
+																						dat:(new Date()).getUTCDate(),
+																						hour:((new Date()).getUTCHours())+1,
+																						minute:(new Date()).getUTCMinutes(),
+																						second:(new Date()).getUTCSeconds(),
+																						millisecond:(new Date()).getUTCMilliseconds()
 																					});
 																					newActivity.save(function(){
 																						res.status(200).json(message);
@@ -1099,13 +1099,13 @@ console.log(o);
 																					message:"Vous avez invité "+childInvited.username+" dans votre tontine de "+tontine+"$",
 																					telephone:phoneNumber,
 																					dateFormat:newDateGeneartion(),
-																					year:DateObject.getFullYear(),
-																					month:DateObject.getUTCMonth(),
-																					dat:DateObject.getUTCDate(),
-																					hour:(DateObject.getUTCHours())+1,
-																					minute:DateObject.getUTCMinutes(),
-																					second:DateObject.getUTCSeconds(),
-																					millisecond:DateObject.getUTCMilliseconds()
+																					year:(new Date()).getFullYear(),
+																					month:(new Date()).getUTCMonth(),
+																					dat:(new Date()).getUTCDate(),
+																					hour:((new Date()).getUTCHours())+1,
+																					minute:(new Date()).getUTCMinutes(),
+																					second:(new Date()).getUTCSeconds(),
+																					millisecond:(new Date()).getUTCMilliseconds()
 																				});
 																																	
 																				var FirstchildActivity=new Activity({
@@ -1115,13 +1115,13 @@ console.log(o);
 																					message:"Vous venez de rejoindre la tontine de "+tontine+"$ de "+parentTontine.username,
 																					telephone:childInvited.telephone,
 																					dateFormat:newDateGeneartion(),
-																					year:DateObject.getFullYear(),
-																					month:DateObject.getUTCMonth(),
-																					dat:DateObject.getUTCDate(),
-																					hour:(DateObject.getUTCHours())+1,
-																					minute:DateObject.getUTCMinutes(),
-																					second:DateObject.getUTCSeconds(),
-																					millisecond:DateObject.getUTCMilliseconds()
+																					year:(new Date()).getFullYear(),
+																					month:(new Date()).getUTCMonth(),
+																					dat:(new Date()).getUTCDate(),
+																					hour:((new Date()).getUTCHours())+1,
+																					minute:(new Date()).getUTCMinutes(),
+																					second:(new Date()).getUTCSeconds(),
+																					millisecond:(new Date()).getUTCMilliseconds()
 																					});
 																																
 																				var SecondchildActivity=new Activity({
@@ -1131,13 +1131,13 @@ console.log(o);
 																					message:"Suite à l'invitation de "+parentTontine.username+" dans sa tontine de "+tontine+"$ ; vous venez d'être retiré de cette file d'attente; votre solde passe de "+generateSolde(lastSolde)+"$ à "+generateSolde(newSolde)+"$",
 																					telephone:childInvited.telephone,
 																					dateFormat:newDateGeneartion(),
-																					year:DateObject.getFullYear(),
-																					month:DateObject.getUTCMonth(),
-																					minute:DateObject.getUTCMinutes(),
-																					dat:DateObject.getUTCDate(),
-																					hour:(DateObject.getUTCHours())+1,
-																					second:DateObject.getUTCSeconds(),
-																					millisecond:DateObject.getUTCMilliseconds()
+																					year:(new Date()).getFullYear(),
+																					month:(new Date()).getUTCMonth(),
+																					minute:(new Date()).getUTCMinutes(),
+																					dat:(new Date()).getUTCDate(),
+																					hour:((new Date()).getUTCHours())+1,
+																					second:(new Date()).getUTCSeconds(),
+																					millisecond:(new Date()).getUTCMilliseconds()
 																				});
 																				//Child proccess generation 
 																										var child1=parentTontine.child1
@@ -1437,13 +1437,13 @@ console.log(o);
 																					message:user.username+" vient de rejoindre votre tontine de "+tontine+" $",
 																					telephone:parentPhone,
 																					dateFormat:newDateGeneartion(),
-																					year:DateObject.getFullYear(),
-																					month:DateObject.getUTCMonth(),
-																					dat:DateObject.getUTCDate(),
-																					hour:(DateObject.getUTCHours())+1,
-																					minute:DateObject.getUTCMinutes(),
-																					second:DateObject.getUTCSeconds(),
-																					millisecond:DateObject.getUTCMilliseconds()
+																					year:(new Date()).getFullYear(),
+																					month:(new Date()).getUTCMonth(),
+																					dat:(new Date()).getUTCDate(),
+																					hour:((new Date()).getUTCHours())+1,
+																					minute:(new Date()).getUTCMinutes(),
+																					second:(new Date()).getUTCSeconds(),
+																					millisecond:(new Date()).getUTCMilliseconds()
 																				});
 																																	
 																				var FirstchildActivity=new Activity({
@@ -1453,13 +1453,13 @@ console.log(o);
 																					message:"Vous venez de rejoindre la tontine de "+tontine+"$ de "+parentTontine.username+"; votre solde vient de passer de "+generateSolde(user.solde)+"$ à "+generateSolde(newBalance)+"$",
 																					telephone:user.telephone,
 																					dateFormat:newDateGeneartion(),
-																					year:DateObject.getFullYear(),
-																					month:DateObject.getUTCMonth(),
-																					dat:DateObject.getUTCDate(),
-																					hour:(DateObject.getUTCHours())+1,
-																					minute:DateObject.getUTCMinutes(),
-																					second:DateObject.getUTCSeconds(),
-																					millisecond:DateObject.getUTCMilliseconds()
+																					year:(new Date()).getFullYear(),
+																					month:(new Date()).getUTCMonth(),
+																					dat:(new Date()).getUTCDate(),
+																					hour:((new Date()).getUTCHours())+1,
+																					minute:(new Date()).getUTCMinutes(),
+																					second:(new Date()).getUTCSeconds(),
+																					millisecond:(new Date()).getUTCMilliseconds()
 																				});
 																				
 																				var SecondchildActivity=new Activity({
@@ -1469,13 +1469,13 @@ console.log(o);
 																					message:"Suite a votre entrée de la tontine de "+tontine+"$ de "+parentTontine.username+" ; vous venez d'être retiré de cette file d'attente; votre solde vient de passer de "+generateSolde(user.solde)+"$ à "+generateSolde(newBalance)+"$",
 																					telephone:user.telephone,
 																					dateFormat:newDateGeneartion(),
-																					year:DateObject.getFullYear(),
-																					month:DateObject.getUTCMonth(),
-																					dat:DateObject.getUTCDate(),
-																					hour:(DateObject.getUTCHours())+1,
-																					minute:DateObject.getUTCMinutes(),
-																					second:DateObject.getUTCSeconds(),
-																					millisecond:DateObject.getUTCMilliseconds()
+																					year:(new Date()).getFullYear(),
+																					month:(new Date()).getUTCMonth(),
+																					dat:(new Date()).getUTCDate(),
+																					hour:((new Date()).getUTCHours())+1,
+																					minute:(new Date()).getUTCMinutes(),
+																					second:(new Date()).getUTCSeconds(),
+																					millisecond:(new Date()).getUTCMilliseconds()
 																				});
 																				
 																					//Child proccess generation 
@@ -1834,13 +1834,13 @@ console.log(o);
 																			message:"Suite à votre solde de "+generateSolde(user.solde)+"$ inferieur à la valeur de "+tontine+"$; vous venez d'etre retirer de la file de cette tontine",
 																			telephone:user.telephone,
 																			dateFormat:newDateGeneartion(),
-																			year:DateObject.getFullYear(),
-																			month:DateObject.getUTCMonth(),
-																			dat:DateObject.getUTCDate(),
-																			hour:(DateObject.getUTCHours())+1,
-																			minute:DateObject.getUTCMinutes(),
-																			second:DateObject.getUTCSeconds(),
-																			millisecond:DateObject.getUTCMilliseconds()
+																			year:(new Date()).getFullYear(),
+																			month:(new Date()).getUTCMonth(),
+																			dat:(new Date()).getUTCDate(),
+																			hour:((new Date()).getUTCHours())+1,
+																			minute:(new Date()).getUTCMinutes(),
+																			second:(new Date()).getUTCSeconds(),
+																			millisecond:(new Date()).getUTCMilliseconds()
 																});																
 																if(allUsers.length===allQueue.length){																	
 																	Queue.remove({telephone:user.telephone,tontineQueue:tontine},function(err){
