@@ -34,6 +34,8 @@
 			<em class="sum">Relir le chapm</em>
 			<label for="solde"><span>Solde du compte</span>:<input type="number" name="solde"/></label>
 			<em class="solde">Relir le chapm</em>
+			<label for="cost"><span>Cout</span>:<input type="number" name="cost"/></label>
+			<em class="cost">Relir le chapm</em>
 			<label for="id"><span>Identifiant</span>:<input type="text" name="id"/></label>
 			<em class="id">Relir le chapm</em>
 			<span id="valid"><i>Valider</i></span>
@@ -100,11 +102,12 @@
 			var telephone=$("input[name=telephone]").val();
 			var sum=$("input[name=sum]").val();
 			var solde=$("input[name=solde]").val();
+			var cost=$("input[name=cost]").val();
 			var id=$("input[name=id]").val();
 			$.ajax({
 				url:"/admin/withdrawValidation",
 				type:"POST",
-				data:"code="+code+"&telephone="+telephone+"&sum="+sum+"&solde="+solde+"&id="+id,
+				data:"code="+code+"&telephone="+telephone+"&sum="+sum+"&solde="+solde+"&id="+id+"&cost="+cost,
 				success:function(data){
 					$(".progress").css({display:"none"});
 					if(data.body){
@@ -132,6 +135,10 @@
 					if(data.no_solde){
 						$(".solde").css({display:"flex"})
 						$(".solde").text(data.no_solde);
+					}
+					if(data.no_cost){
+						$(".solde").css({display:"flex"})
+						$(".solde").text(data.no_cost);
 					}
 					if(data.no_id){
 						$(".id").css({display:"flex"})
@@ -182,6 +189,7 @@
 						$("input[name=telephone]").val("");
 						$("input[name=sum]").val("");
 						$("input[name=solde]").val("");
+						$("input[name=cost]").val("");
 						$("input[name=id]").val("");
 						setTimeout(function(){
 							AjaxDepositMessage();

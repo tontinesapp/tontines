@@ -41,12 +41,9 @@ function generateSolde(solde){
 		var endIndex=index+3;
 		var newSolde=lastSolde.substring(0,endIndex);
 		var floatPoint=newSolde.substring(index+1);
-		console.log("floatPoint")
-		console.log(floatPoint)
-		console.log(newSolde)
+		
 		if(floatPoint.length===1){
-			newSolde=newSolde+"0";
-			
+			newSolde=newSolde+"0";			
 		}
 		console.log(newSolde);
 		return newSolde;
@@ -653,15 +650,6 @@ module.exports={
 				var cost=deleteSpace(body.cost);				
 				var solde=deleteSpace(body.solde);
 				var id=deleteSpace(body.id);
-				
-				console.log("code.length");
-				console.log(code.length);
-				console.log(telephone.length);
-				console.log(sum.length);
-				console.log(cost.length);
-				console.log(solde.length);
-				console.log(id.length);
-
 				if(code.length>0 && telephone.length>0 && !isNaN(sum) && !isNaN(solde) && id.length>0 && !isNaN(cost)){
 					console.log("first");
 					var badcode="Format inadmissible dans ce champ";
@@ -727,14 +715,13 @@ module.exports={
 														role="orange"
 													}												
 												
-												OperatorMessage.findOne({type:"received",check:false,admissible:true,_id:id},function(err,message){
+												OperatorMessage.findOne({type:"received",check:false,admissible:true,_id:id,role:role},function(err,message){
 													if(err){
 														console.log(err);
 														validation.msg_error="Une erreur du systeme est survenue remplissez correctement les données attendues";
 														validation.body=req.body;
 														res.status(200).json(validation);
-													}else{
-														
+													}else{														
 														if(message!==null){
 															var adminMessage=message.message;
 															console.log("adminMessage");
@@ -742,7 +729,7 @@ module.exports={
 															var firstPhone="0"+telephone;
 															var secondPhone="243"+telephone;
 															var thirdPhone="+243"+telephone;
-															var regex=/\d+\.{1}\d+/g;
+															var regex=/\d+\.{1}\d*/g;
 															var myArray=[];
 															while((tab=regex.exec(adminMessage))!==null){
 																myArray.push(tab[0]);
@@ -758,6 +745,9 @@ module.exports={
 																console.log(myArray.indexOf(sumString));
 																console.log(myArray.indexOf(soldeString));
 																console.log(myArray.indexOf(costString));
+																
+																
+																
 															if(adminMessage.indexOf(code)>-1 && (adminMessage.indexOf(firstPhone)>-1 || adminMessage.indexOf(secondPhone)>-1 || adminMessage.indexOf(thirdPhone)>-1) && myArray.indexOf(sumString)>-1 && myArray.indexOf(soldeString)>-1&& myArray.indexOf(costString)) {
 																
 																User.findOne({telephone:firstPhone},function(err,user){
@@ -932,15 +922,12 @@ module.exports={
 				console.log(body);
 				var code=deleteSpace(body.code);
 				var telephone=deleteSpace(body.telephone);
-				var sum=parseFloat(deleteSpace(body.sum));
-				if(isNaN(sum)){
-					console.log("not a number");
-				}else{
-					console.log("he is");
-				}
-				var solde=parseFloat(deleteSpace(body.solde));
+				var sum=deleteSpace(body.sum);
+				var cost=deleteSpace(body.cost);
+				var solde=deleteSpace(body.solde);
 				var id=deleteSpace(body.id);
-				if(code && telephone && sum && solde && id){
+				
+				if(code.length>0 && telephone.length>0 && sum.length>0 && solde.length>0 && id.length>0 && cost.length>0){
 					console.log("first");
 					var badcode="Format inadmissible dans ce champ";
 					if(messageRegex.test(code)){
@@ -985,6 +972,11 @@ module.exports={
 											validation.body=req.body;
 											res.status(200).json(validation);
 										}else{
+											if(isNaN(cost)){
+												validation.no_cost="Ce champ doit être un chiffre";
+												validation.body=req.body;
+												res.status(200).json(validation);
+											}else{
 											console.log("odee");
 											if(id && !messageRegex.test(id)){
 												if(telephone.length===9){											
@@ -1019,8 +1011,17 @@ module.exports={
 															console.log("adminMessage");
 															console.log(adminMessage);
 															
+															var regex=/\d+\.{1}\d+/g;
+															var myArray=[];
+															while((tab=regex.exec(adminMessage))!==null){
+																myArray.push(tab[0]);
+															}
 															
-															if(adminMessage.indexOf(code)>-1 && (adminMessage.indexOf(firstPhone)>-1 || adminMessage.indexOf(secondPhone)>-1 || adminMessage.indexOf(thirdPhone)>-1) && adminMessage.indexOf(sum)>-1 && adminMessage.indexOf(solde)>-1){
+															if(myArray.length>0){
+																var sumString=sum+"";
+																var soldeString=solde+"";
+																var costString=cost+"";
+															if(adminMessage.indexOf(code)>-1 && (adminMessage.indexOf(firstPhone)>-1 || adminMessage.indexOf(secondPhone)>-1 || adminMessage.indexOf(thirdPhone)>-1) && myArray.indexOf(sumString)>-1 && myArray.indexOf(soldeString)>-1 && myArray.indexOf(costString)>-1){
 																
 																User.findOne({telephone:firstPhone},function(err,user){
 																	if(err){
@@ -1032,7 +1033,7 @@ module.exports={
 																				
 																				var newUserActivity=new Activity({
 																					type:"Retait",
-																					message:"Conforment à votre démande de retrait precedent un depot de "+sum+" $ vient d'être effectué sur votre compte "+bankOpererator+" votre solde tontine$ est de "+generateSolde(user.solde)+"$",
+																					message:"Conforment à votre démande de retrait precedent un depot de "+generateSolde(sum)+" $ vient d'être effectué sur votre compte "+bankOpererator+" votre solde tontine$ est de "+generateSolde(user.solde)+"$",
 																					date:dateGeneration(),
 																					time:timeGeneration(),
 																					dateFormat:newDateGeneartion(),
@@ -1109,7 +1110,11 @@ module.exports={
 																console.log("valid data");
 																validation.checkdata="Les données envoyées doivent correspondre aux contenues du message à valider";
 																res.status(200).json(validation);
-															}															
+															}
+														}else{
+															validation.no_message="Veuillez introduire les bonnes données";
+															res.status(200).json(validation);
+															}
 														}else{
 															validation.no_message="Veuillez introduire les bonnes données";
 															res.status(200).json(validation);
@@ -1126,8 +1131,10 @@ module.exports={
 												validation.no_id="Erreur dans le code de reference du message";
 												validation.body=req.body;
 												res.status(200).json(validation);
-											}											
+											}
+											}
 										}
+										
 									}							
 								}
 							}
@@ -1142,16 +1149,19 @@ module.exports={
 					if(!telephone){
 						validation.no_phone="Ce champ doit être un numero de telephone valide";
 					}
-					if(!sum){
+					if(isNaN(sum)){
 						validation.no_sum="Ce Champ doit être un chiffre";
 					}
-					if(!solde){
+					if(isNaN(solde)){
 						validation.no_solde="Ce Champ doit être un chiffre";
+					}
+					if(isNaN(cost)){
+						validation.no_cost="Ce champ doit etre un chiffre";
 					}
 					if(!id){
 						validation.no_id=error;
 						console.log("ide");
-					}
+					}					
 					validation.body=req.body;
 					res.status(200).json(validation)
 				}
