@@ -70,6 +70,7 @@ module.exports=function(app){
 	//router.get("/admin/checker",admin.checker);
 	router.get("/admin/checker/deposit",admin.checkDepositMessage);//this route is send the deposit message for validation
 	router.get("/admin/checker/findMessage",admin.depositMessage);//this route is calling via ajax for finding all deposit messages
+	router.get("/admin/checker/findAllMessage",admin.findAllMessage);
 	router.post("/admin/depositValidation",admin.validationDeposit);//this route is calling via ajax to make a validation
 
 	//router.post("/admin/checkDeposit",admin.checkDeposit);

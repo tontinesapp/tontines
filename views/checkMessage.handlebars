@@ -1,0 +1,241 @@
+{{#section "head"}}
+	<link rel="stylesheet" type="text/css" href="/public/css/menu.css"/>
+	<link rel="stylesheet" type="text/css" href="/public/css/admin/adminChecker.css"/>
+{{/section}}
+	<nav>
+		<a href="/admin/checker/deposit" class="active">Validation de Depot</a>
+		<a href="/admin/checker/withdraw">Validation de Retrait</a>
+	</nav>
+	<section id="checker">
+		<section class="message">
+				<!--
+				<div>
+					<p>
+						Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor
+						Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor
+					</p>
+					<p><strong>Identifiant :</strong>dededededededed</p>
+				</div>
+				<div>
+					<p>
+						Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor
+						Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor
+					</p>
+					<p><strong>Identifiant :</strong>dededededededed</p>
+				</div>
+				-->
+		</section>
+		<div class="form" id="depot">			
+				<label for="code"><span>Code </span>:<input type="text" name="code"/></label>
+				<em class="code">Relir le chapm</em>
+				<label for="telephone"><span>Expéditeur</span>:<input type="text" name="telephone"/></label>
+				<em class="telephone">Relir le chapm</em>
+				<label for="sum"><span>Montant deposé</span>:<input type="text" name="sum"></label>
+				<em class="sum">Relir le chapm</em>
+				<label for="solde"><span>Solde du compte</span>:<input type="text" name="solde"/></label>
+				<em class="solde">Relir le chapm</em>
+				<label for="cost"><span>Cout</span>:<input type="text" name="cost"/></label>
+				<em class="cost">Relir le chapm</em>
+				<label for="id"><span>Identifiant</span>:<input type="text" name="id"/></label>
+				<em class="id">Relir le chapm</em>
+				<span id="valid"><i>Valider</i></span>
+				<p class="progress">. . . En cours de traitement</p>
+				<p class="notification"></p>			
+		</div>
+		<div class="form" id="retrait" style="display:none">
+			<label for="code"><span>Code </span>:<input type="text" name="code"/></label>
+			<em class="code">Relir le chapm</em>
+			<label for="telephone"><span>Beneficiare</span>:<input type="text" name="telephone"/></label>
+			<em class="telephone">Relir le chapm</em>
+			<label for="sum"><span>Montant Envoyé</span>:<input type="text" name="sum"></label>
+			<em class="sum">Relir le chapm</em>
+			<label for="solde"><span>Solde du compte</span>:<input type="text" name="solde"/></label>
+			<em class="solde">Relir le chapm</em>
+			<label for="cost"><span>Cout</span>:<input type="text" name="cost"/></label>
+			<em class="cost">Relir le chapm</em>
+			<label for="id"><span>Identifiant</span>:<input type="text" name="id"/></label>
+			<em class="id">Relir le chapm</em>
+			<span id="valid"><i>Valider</i></span>
+			<p class="progress">. . . En cours de traitement</p>
+			<p class="notification"></p>
+		</div>
+	</section>
+{{#section "jquery"}}
+<script type="text/javascript">
+
+	$(document).ready(function(){
+		var menuLinks=$("nav a");
+	
+	menuLinks.each(function(){
+		if(($(this).attr("href"))===window.location.pathname){
+			$(this).css("background","rgba(0,128,192,1)");
+			$(this).css("color","white");			
+		}
+	});
+		AjaxDepositMessage();
+		function AjaxDepositMessage(){
+			$(".message").html("");
+			$.ajax({
+				url:"/admin/checker/findAllMessage",
+				type:"GET",
+				success:function(data){
+					console.log(data);
+					if(data.error){
+						$(".message").append("<p>"+data.error+"</p>");
+					}
+				
+					if(data.message){
+						var allMessage=data.message;
+						for(let i=0; i<allMessage.length;i++){							
+							var message=allMessage[i].message;
+							var id=allMessage[i]._id;
+							var p="<p>"+message+"</p>";
+							var identifiant="<p><strong>Identifiant : </strong>"+id+"</p>";												
+							$(".message").append("<div>"+p+identifiant+"</div>");
+						}							
+					}									
+					if(data.no_message){						
+						$(".message").append("<p>"+data.no_message+"</p>");	
+					}
+					if(data.no_ability){
+						$(".message").append("<p>"+data.no_ability+"</p>");	
+					}
+					if(data.connect){
+						$("#checker").append("<p>"+data.no_message+"</p>");	
+					}
+					
+				}	
+			})			
+		}
+		$("#valid").on("click",function(){
+			validationDeposit();
+		});
+		function validationDeposit(){			
+			$(".progress").css({display:"flex"});
+			$("em").css({display:"none"});
+			$(".notification").css({display:"none"});
+			var code=$("input[name=code]").val();
+			var telephone=$("input[name=telephone]").val();
+			var sum=$("input[name=sum]").val();
+			var solde=$("input[name=solde]").val();
+			var cost=$("input[name=cost]").val();
+			var id=$("input[name=id]").val();
+			$.ajax({
+				url:"/admin/depositValidation",
+				type:"POST",
+				data:"code="+code+"&telephone="+telephone+"&sum="+sum+"&solde="+solde+"&id="+id+"&cost="+cost,
+				success:function(data){
+					$(".progress").css({display:"none"});
+					if(data.body){
+						var codeVal=data.body.code;
+						var tel=data.body.telephone;
+						var sumVal=data.body.sum;
+						var soldeVal=data.body.solde;
+						var idVal=data.body.id;
+					}					
+					if(data.error){
+						$(".message").append("<p>"+data.error+"</p>");
+					}
+					if(data.no_code){
+						$(".code").css({display:"flex"});
+						$(".code").text(data.no_code);
+					}
+					if(data.no_phone){
+						$(".telephone").css({display:"flex"});
+						$(".telephone").text(data.no_phone);
+					}
+					if(data.no_sum){
+						$(".sum").css({display:"flex"})
+						$(".sum").text(data.no_sum);
+					}
+					if(data.no_solde){
+						$(".solde").css({display:"flex"})
+						$(".solde").text(data.no_solde);
+					}
+					if(data.no_id){
+						$(".id").css({display:"flex"})
+						$(".id").text(data.no_id);
+					}
+					
+					if(data.badcode){
+						$(".code").css({display:"flex"});
+						$(".code").text(data.badcode);
+					}
+					if(data.badphone){
+						$(".telephone").css({display:"flex"});
+						$(".telephone").text(data.badphone);
+					}
+					if(data.no_valid_length){
+						$(".notification").css({display:"flex"});
+						$(".notification").text(data.no_valid_length);
+					}
+					if(data.badsum){
+						$(".sum").css({display:"flex"})
+						$(".sum").text(data.badsum);
+					}
+					if(data.badsolde){
+						$(".sum").css({display:"flex"})
+						$(".sum").text(data.badsolde);
+					}
+					if(data.no_number){
+						$(".sum").css({display:"flex"})
+						$(".sum").text(data.no_number);
+					}
+					if(data.no_solde){
+						$(".sum").css({display:"flex"})
+						$(".sum").text(data.no_solde);
+					}
+					if(data.no_cost){
+						$(".cost").css({display:"flex"})
+						$(".cost").text(data.no_cost);
+					}
+					if(data.no_id){
+						$(".id").css({display:"flex"})
+						$(".id").text(data.no_id);
+					}
+					
+					if(data.msg_error){
+						$(".notification").css({display:"flex"});
+						$(".notification").text(data.msg_error);
+					}
+					if(data.success){
+						$(".notification").css({display:"flex"});
+						$(".notification").text(data.success);
+						$("input[name=code]").val("");
+						$("input[name=telephone]").val("");
+						$("input[name=sum]").val("");
+						$("input[name=solde]").val("");
+						$("input[name=cost]").val("");
+						$("input[name=id]").val("");
+						setTimeout(function(){
+							AjaxDepositMessage();
+							$(".notification").css({display:"none"});
+						},2000);
+					}
+					if(data.checkdata){
+						$(".notification").css({display:"flex"});
+						$(".notification").text(data.checkdata);
+					}
+					if(data.no_message){
+						$(".notification").css({display:"flex"});
+						$(".notification").text(data.no_message);
+					}
+					if(data.checkdata){
+						$(".notification").css({display:"flex"});
+						$(".notification").text(data.checkdata);
+					}
+					if(data.no_user){
+						$(".notification").css({display:"flex"});
+						$(".notification").text(data.no_user);
+					}
+
+					
+				}	
+			});
+			
+			
+		}
+		
+	})
+	</script>
+{{/section}}

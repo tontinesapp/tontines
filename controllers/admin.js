@@ -484,7 +484,8 @@ module.exports={
 	checkDepositMessage:function(req,res){
 		if(req.session.admin&&req.session.logIn){
 			if(req.session.privilege==="checker"){
-				res.render("checkDeposit");
+				//res.render("checkDeposit");
+				res.render("checkMessage");
 			}else{
 				res.redirect("/login");
 			}
@@ -652,6 +653,33 @@ module.exports={
 		if(req.session.logIn && req.session.admin){
 			if(req.session.privilege==="checker"){
 				OperatorMessage.find({type:"received",check:false,admissible:true},function(err,message){
+					if(err){
+						deposit.error="Une erreur du systeme est survenue";
+						res.status(200).json(deposit);
+					}else{
+						if(message.length>0){
+							deposit.message=message;
+							res.status(200).json(deposit);
+						}else{
+							deposit.no_message="Aucun message de confirmation de depot";
+							res.status(200).json(deposit);
+						}
+					}
+				});
+			}else{
+				deposit.no_ability="Veuiller verifiez votre abilitation";
+				res.status(200).json(deposit);
+			}
+		}else{
+			deposit.connect="Veuillez vous connecter";
+			res.status(200).json(deposit);
+		}
+	},
+	findAllMesage:function(req,res){
+		var deposit={};
+		if(req.session.logIn && req.session.admin){
+			if(req.session.privilege==="checker"){
+				OperatorMessage.find({type:/received|sent/,check:false,admissible:true},function(err,message){
 					if(err){
 						deposit.error="Une erreur du systeme est survenue";
 						res.status(200).json(deposit);
