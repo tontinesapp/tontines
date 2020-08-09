@@ -650,7 +650,7 @@ module.exports={
 				var cost=deleteSpace(body.cost);				
 				var solde=deleteSpace(body.solde);
 				var id=deleteSpace(body.id);
-				if(code.length>0 && telephone.length>0 && !isNaN(sum) && !isNaN(solde) && id.length>0 && !isNaN(cost)){
+				if(code.length>0 && telephone.length>0 && !isNaN(parseFloat(sum)) && !isNaN(parseFloat(solde)) && id.length>0 && !isNaN(parseFloat(cost))){
 					console.log("first");
 					var badcode="Format inadmissible dans ce champ";
 					if(messageRegex.test(code)){
@@ -681,7 +681,7 @@ module.exports={
 									res.status(200).json(validation);
 								}else{
 									console.log("dede");
-									if(isNaN(sum)){
+									if(isNaN(parseFloat(sum))){
 										console.log(sum);
 										console.log("olde");
 										validation.no_number="Ce champ doit etre un chiffre";
@@ -689,13 +689,13 @@ module.exports={
 										res.status(200).json(validation);
 									}else{
 										console.log("unet");
-										if(isNaN(solde)){
+										if(isNaN(parseFloat(solde))){
 											console.log("side");
 											validation.no_solde="Ce champ doit un chiffre";
 											validation.body=req.body;
 											res.status(200).json(validation);
 										}else{
-											if(isNaN(cost)){
+											if(isNaN(parseFloat(cost))){
 												validation.no_cost="Ce champ doit un chiffre";
 												validation.body=req.body;
 												res.status(200).json(validation);
