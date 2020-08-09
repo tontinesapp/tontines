@@ -1082,7 +1082,7 @@ module.exports={
 																								console.log(adminNewSolde)
 																								console.log(solde)
 																								if(generateSolde(adminNewSolde)===generateSolde(solde)){																					
-																									admin.solde=adminNewSolde;
+																									admin.solde=generateSolde(adminNewSolde);
 																									admin.save(function(){																										
 																										user.withfound=0;
 																										message.save(function(){
