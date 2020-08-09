@@ -859,17 +859,17 @@ module.exports={
 					if(!telephone){
 						validation.no_phone="Ce champ doit être un numero de telephone valide";
 					}
-					if(isNaN(sum)){
+					if(isNaN(parseFloat(sum))){
 						validation.no_sum="Ce Champ doit être un chiffre";
 					}
-					if(isNaN(solde)){
+					if(isNaN(parseFloat(solde))){
 						validation.no_solde="Ce champ doit être un chiffre";
 					}
 					if(!id){
 						validation.no_id=error;
 						console.log("ide");
 					}
-					if(isNaN(cost)){
+					if(isNaN(parseFloat(cost))){
 						validation.no_cost="Ce champ doit etre un chiffre";
 					}
 					validation.body=req.body;
@@ -967,7 +967,7 @@ module.exports={
 									res.status(200).json(validation);
 								}else{
 									console.log("dede");
-									if(isNaN(sum)){
+									if(isNaN(parseFloat(sum))){
 										console.log(sum);
 										console.log("olde");
 										validation.no_number="Ce champ doit être un chiffre";
@@ -975,13 +975,13 @@ module.exports={
 										res.status(200).json(validation);
 									}else{
 										console.log("unet");
-										if(isNaN(solde)){
+										if(isNaN(parseFloat(solde))){
 											console.log("side");
 											validation.no_solde="Ce champ doit être un chiffre";
 											validation.body=req.body;
 											res.status(200).json(validation);
 										}else{
-											if(isNaN(cost)){
+											if(isNaN(parseFloat(cost))){
 												validation.no_cost="Ce champ doit être un chiffre";
 												validation.body=req.body;
 												res.status(200).json(validation);
@@ -1020,7 +1020,7 @@ module.exports={
 															console.log("adminMessage");
 															console.log(adminMessage);
 															
-															var regex=/\d+\.{1}\d+/g;
+															var regex=/\d+(?:\.{1}|,{1})\d+/g;
 															var myArray=[];
 															while((tab=regex.exec(adminMessage))!==null){
 																myArray.push(tab[0]);
@@ -1037,6 +1037,15 @@ module.exports={
 																		validation.msg_error="Une erreur du systeme est survenue remplissez correctement les données attendues";
 																	}else{
 																		if(user!==null){
+																			if(sum.indexOf(",")){
+																				sum=sum.replace(/,/,".");
+																			}
+																			if(solde.indexOf(",")){
+																				solde=solde.replace(/,/,".");
+																			}
+																			if(cost.indexOf(",")){
+																				cost=cost.replace(/,/,".");
+																			}
 																			var withfound=parseFloat(user.withfound);
 																			if(generateSolde(withfound)===generateSolde(sum)){						
 																				
