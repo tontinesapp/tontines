@@ -86,12 +86,14 @@
 				
 					if(data.message){
 						var allMessage=data.message;
-						for(let i=0; i<allMessage.length;i++){							
-							var message=allMessage[i].message;
+						for(let i=0; i<allMessage.length;i++){
 							var id=allMessage[i]._id;
+							var message=allMessage[i].message;
+							var flag=allMessage[i].flag;
+							var mflag="<p><i>"+flag+"</i></p>";
 							var p="<p>"+message+"</p>";
 							var identifiant="<p><strong>Identifiant : </strong>"+id+"</p>";												
-							$(".message").append("<div>"+p+identifiant+"</div>");
+							$(".message").append("<div>"+mflag+p+identifiant+"</div>");
 						}							
 					}									
 					if(data.no_message){						
