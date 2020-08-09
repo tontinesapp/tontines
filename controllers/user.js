@@ -583,7 +583,7 @@ module.exports={
 									sum=sum+"";
 								if(sum.indexOf(",")>-1||sum.indexOf(".")){
 									var index=sum.indexOf(",")||sum.indexOf(".");
-									var floatPoint=sum.substring(index);
+									var floatPoint=sum.substring(index+1);
 									if(floatPoint.length>2){
 										message.type="error";
 										message.message="Le montant à retiré n'est doit pas contenir plus de 2 chiffre apres la virgule";
