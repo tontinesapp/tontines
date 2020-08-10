@@ -32,6 +32,7 @@ nav span:hover{
 	margin:auto;
 	justify-content:space-between;
 	margin-top:3em;
+	align-items:center;
 }
 
 #checker section{

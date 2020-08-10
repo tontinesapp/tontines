@@ -259,12 +259,12 @@
 			$(".progress").css({display:"flex"});
 			$("em").css({display:"none"});
 			$(".notification").css({display:"none"});
-			var code=$("input[name=code]").val();
-			var telephone=$("input[name=telephone]").val();
-			var sum=$("input[name=sum]").val();
-			var solde=$("input[name=solde]").val();
-			var cost=$("input[name=cost]").val();
-			var id=$("input[name=id]").val();
+			var code=$("#retrait input[name=code]").val();
+			var telephone=$("#retrait input[name=telephone]").val();
+			var sum=$("#retrait input[name=sum]").val();
+			var solde=$("#retrait input[name=solde]").val();
+			var cost=$("#retrait input[name=cost]").val();
+			var id=$("#retrait input[name=id]").val();
 			$.ajax({
 				url:"/admin/withdrawValidation",
 				type:"POST",
