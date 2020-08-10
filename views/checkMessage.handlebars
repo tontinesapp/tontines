@@ -3,7 +3,7 @@
 	<link rel="stylesheet" type="text/css" href="/public/css/admin/adminChecker.css"/>
 {{/section}}
 		<nav>
-			<h1>Validqtion de depot et retrait</h1>
+			<h1>Validation de depot et retrait</h1>
 		</nav>
 	<section id="checker">
 		
@@ -109,7 +109,7 @@
 							}
 							var dateFlage="<p>"+date+"</p>";
 							var flagType="<p><i>"+flag+"</i></p>";
-							var p="<p>"+message+"</p>";
+							var p="<p class='sms'>"+message+"</p>";
 							var identifiant="<p><strong>Identifiant : </strong>"+id+"</p>";												
 							$(".message").append("<div>"+dateFlage+flagType+p+identifiant+"</div>");						
 					}									
