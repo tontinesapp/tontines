@@ -130,21 +130,21 @@
 			validationDeposit();
 		});
 		function validationDeposit(){			
-			$(".progress").css({display:"flex"});
-			$("em").css({display:"none"});
-			$(".notification").css({display:"none"});
-			var code=$("input[name=code]").val();
-			var telephone=$("input[name=telephone]").val();
-			var sum=$("input[name=sum]").val();
-			var solde=$("input[name=solde]").val();
-			var cost=$("input[name=cost]").val();
-			var id=$("input[name=id]").val();
+			$("#depot .progress").css({display:"flex"});
+			$("#depot em").css({display:"none"});
+			$("#depot .notification").css({display:"none"});
+			var code=$("#depot input[name=code]").val();
+			var telephone=$("#depot input[name=telephone]").val();
+			var sum=$("#depot input[name=sum]").val();
+			var solde=$("#depot input[name=solde]").val();
+			var cost=$("#depot input[name=cost]").val();
+			var id=$("#depot input[name=id]").val();
 			$.ajax({
 				url:"/admin/depositValidation",
 				type:"POST",
 				data:"code="+code+"&telephone="+telephone+"&sum="+sum+"&solde="+solde+"&id="+id+"&cost="+cost,
 				success:function(data){
-					$(".progress").css({display:"none"});
+					$("#depot .progress").css({display:"none"});
 					if(data.body){
 						var codeVal=data.body.code;
 						var tel=data.body.telephone;
@@ -153,99 +153,99 @@
 						var idVal=data.body.id;
 					}					
 					if(data.error){
-						$(".message").append("<p>"+data.error+"</p>");
+						$("#depot .message").append("<p>"+data.error+"</p>");
 					}
 					if(data.no_code){
-						$(".code").css({display:"flex"});
-						$(".code").text(data.no_code);
+						$("#depot .code").css({display:"flex"});
+						$("#depot .code").text(data.no_code);
 					}
 					if(data.no_phone){
-						$(".telephone").css({display:"flex"});
-						$(".telephone").text(data.no_phone);
+						$("#depot .telephone").css({display:"flex"});
+						$("#depot .telephone").text(data.no_phone);
 					}
 					if(data.no_sum){
-						$(".sum").css({display:"flex"})
-						$(".sum").text(data.no_sum);
+						$("#depot .sum").css({display:"flex"})
+						$("#depot .sum").text(data.no_sum);
 					}
 					if(data.no_solde){
-						$(".solde").css({display:"flex"})
-						$(".solde").text(data.no_solde);
+						$("#depot .solde").css({display:"flex"})
+						$("#depot .solde").text(data.no_solde);
 					}
 					if(data.no_id){
-						$(".id").css({display:"flex"})
-						$(".id").text(data.no_id);
+						$("#depot .id").css({display:"flex"})
+						$("#depot .id").text(data.no_id);
 					}
 					
 					if(data.badcode){
-						$(".code").css({display:"flex"});
-						$(".code").text(data.badcode);
+						$("#depot .code").css({display:"flex"});
+						$("#depot .code").text(data.badcode);
 					}
 					if(data.badphone){
-						$(".telephone").css({display:"flex"});
-						$(".telephone").text(data.badphone);
+						$("#depot .telephone").css({display:"flex"});
+						$("#depot .telephone").text(data.badphone);
 					}
 					if(data.no_valid_length){
-						$(".notification").css({display:"flex"});
-						$(".notification").text(data.no_valid_length);
+						$("#depot .notification").css({display:"flex"});
+						$("#depot .notification").text(data.no_valid_length);
 					}
 					if(data.badsum){
-						$(".sum").css({display:"flex"})
-						$(".sum").text(data.badsum);
+						$("#depot .sum").css({display:"flex"})
+						$("#depot .sum").text(data.badsum);
 					}
 					if(data.badsolde){
-						$(".sum").css({display:"flex"})
-						$(".sum").text(data.badsolde);
+						$("#depot .sum").css({display:"flex"})
+						$("#depot .sum").text(data.badsolde);
 					}
 					if(data.no_number){
-						$(".sum").css({display:"flex"})
+						$("#depot .sum").css({display:"flex"})
 						$(".sum").text(data.no_number);
 					}
 					if(data.no_solde){
-						$(".sum").css({display:"flex"})
-						$(".sum").text(data.no_solde);
+						$("#depot .sum").css({display:"flex"})
+						$("#depot .sum").text(data.no_solde);
 					}
 					if(data.no_cost){
-						$(".cost").css({display:"flex"})
-						$(".cost").text(data.no_cost);
+						$("#depot .cost").css({display:"flex"})
+						$("#depot .cost").text(data.no_cost);
 					}
 					if(data.no_id){
-						$(".id").css({display:"flex"})
-						$(".id").text(data.no_id);
+						$("#depot .id").css({display:"flex"})
+						$("#depot .id").text(data.no_id);
 					}
 					
 					if(data.msg_error){
-						$(".notification").css({display:"flex"});
-						$(".notification").text(data.msg_error);
+						$("#depot .notification").css({display:"flex"});
+						$("#depot .notification").text(data.msg_error);
 					}
 					if(data.success){
-						$(".notification").css({display:"flex"});
-						$(".notification").text(data.success);
-						$("input[name=code]").val("");
-						$("input[name=telephone]").val("");
-						$("input[name=sum]").val("");
-						$("input[name=solde]").val("");
-						$("input[name=cost]").val("");
-						$("input[name=id]").val("");
+						$("#depot .notification").css({display:"flex"});
+						$("#depot .notification").text(data.success);
+						$("#depot input[name=code]").val("");
+						$("#depot input[name=telephone]").val("");
+						$("#depot input[name=sum]").val("");
+						$("#depot input[name=solde]").val("");
+						$("#depot input[name=cost]").val("");
+						$("#depot input[name=id]").val("");
 						setTimeout(function(){
 							AjaxDepositMessage();
-							$(".notification").css({display:"none"});
+							$("#depot .notification").css({display:"none"});
 						},2000);
 					}
 					if(data.checkdata){
-						$(".notification").css({display:"flex"});
-						$(".notification").text(data.checkdata);
+						$("#depot .notification").css({display:"flex"});
+						$("#depot .notification").text(data.checkdata);
 					}
 					if(data.no_message){
-						$(".notification").css({display:"flex"});
-						$(".notification").text(data.no_message);
+						$("#depot .notification").css({display:"flex"});
+						$("#depot .notification").text(data.no_message);
 					}
 					if(data.checkdata){
-						$(".notification").css({display:"flex"});
-						$(".notification").text(data.checkdata);
+						$("#depot .notification").css({display:"flex"});
+						$("#depot .notification").text(data.checkdata);
 					}
 					if(data.no_user){
-						$(".notification").css({display:"flex"});
-						$(".notification").text(data.no_user);
+						$("#depot .notification").css({display:"flex"});
+						$("#depot .notification").text(data.no_user);
 					}
 
 					
@@ -256,9 +256,9 @@
 			validationSend();
 		});
 		function validationSend(){			
-			$(".progress").css({display:"flex"});
-			$("em").css({display:"none"});
-			$(".notification").css({display:"none"});
+			$("#retrait .progress").css({display:"flex"});
+			$("#retrait em").css({display:"none"});
+			$("#retrait .notification").css({display:"none"});
 			var code=$("#retrait input[name=code]").val();
 			var telephone=$("#retrait input[name=telephone]").val();
 			var sum=$("#retrait input[name=sum]").val();
@@ -270,7 +270,7 @@
 				type:"POST",
 				data:"code="+code+"&telephone="+telephone+"&sum="+sum+"&solde="+solde+"&id="+id+"&cost="+cost,
 				success:function(data){
-					$(".progress").css({display:"none"});
+					$("#retrait .progress").css({display:"none"});
 					if(data.body){
 						var codeVal=data.body.code;
 						var tel=data.body.telephone;
@@ -279,99 +279,99 @@
 						var idVal=data.body.id;
 					}					
 					if(data.error){
-						$(".message").append("<p>"+data.error+"</p>");
+						$("#retrait .message").append("<p>"+data.error+"</p>");
 					}
 					if(data.no_code){
-						$(".code").css({display:"flex"});
-						$(".code").text(data.no_code);
+						$("#retrait .code").css({display:"flex"});
+						$("#retrait .code").text(data.no_code);
 					}
 					if(data.no_phone){
-						$(".telephone").css({display:"flex"});
-						$(".telephone").text(data.no_phone);
+						$("#retrait .telephone").css({display:"flex"});
+						$("#retrait .telephone").text(data.no_phone);
 					}
 					if(data.no_sum){
-						$(".sum").css({display:"flex"})
-						$(".sum").text(data.no_sum);
+						$("#retrait .sum").css({display:"flex"})
+						$("#retrait .sum").text(data.no_sum);
 					}
 					if(data.no_solde){
-						$(".solde").css({display:"flex"})
-						$(".solde").text(data.no_solde);
+						$("#retrait .solde").css({display:"flex"})
+						$("#retrait .solde").text(data.no_solde);
 					}
 					if(data.no_cost){
-						$(".solde").css({display:"flex"})
-						$(".solde").text(data.no_cost);
+						$("#retrait .solde").css({display:"flex"})
+						$("#retrait .solde").text(data.no_cost);
 					}
 					if(data.no_id){
-						$(".id").css({display:"flex"})
-						$(".id").text(data.no_id);
+						$("#retrait .id").css({display:"flex"})
+						$("#retrait .id").text(data.no_id);
 					}
 					
 					if(data.badcode){
-						$(".code").css({display:"flex"});
-						$(".code").text(data.badcode);
+						$("#retrait .code").css({display:"flex"});
+						$("#retrait .code").text(data.badcode);
 					}
 					if(data.badphone){
-						$(".telephone").css({display:"flex"});
-						$(".telephone").text(data.badphone);
+						$("#retrait .telephone").css({display:"flex"});
+						$("#retrait .telephone").text(data.badphone);
 					}
 					if(data.no_valid_length){
-						$(".notification").css({display:"flex"});
-						$(".notification").text(data.no_valid_length);
+						$("#retrait .notification").css({display:"flex"});
+						$("#retrait .notification").text(data.no_valid_length);
 					}
 					if(data.badsum){
-						$(".sum").css({display:"flex"})
-						$(".sum").text(data.badsum);
+						$("#retrait .sum").css({display:"flex"})
+						$("#retrait .sum").text(data.badsum);
 					}
 					if(data.badsolde){
-						$(".sum").css({display:"flex"})
-						$(".sum").text(data.badsolde);
+						$("#retrait .sum").css({display:"flex"})
+						$("#retrait .sum").text(data.badsolde);
 					}
 					if(data.no_number){
-						$(".sum").css({display:"flex"})
-						$(".sum").text(data.no_number);
+						$("#retrait .sum").css({display:"flex"})
+						$("#retrait .sum").text(data.no_number);
 					}
 					if(data.no_solde){
-						$(".sum").css({display:"flex"})
+						$("#retrait .sum").css({display:"flex"})
 						$(".sum").text(data.no_solde);
 					}
 					if(data.no_id){
-						$(".id").css({display:"flex"})
-						$(".id").text(data.no_id);
+						$("#retrait .id").css({display:"flex"})
+						$("#retrait .id").text(data.no_id);
 					}
 					
 					if(data.msg_error){
-						$(".notification").css({display:"flex"});
-						$(".notification").text(data.msg_error);
+						$("#retrait .notification").css({display:"flex"});
+						$("#retrait .notification").text(data.msg_error);
 					}
 					if(data.success){
-						$(".notification").css({display:"flex"});
-						$(".notification").text(data.success);
-						$("input[name=code]").val("");
-						$("input[name=telephone]").val("");
-						$("input[name=sum]").val("");
-						$("input[name=solde]").val("");
-						$("input[name=cost]").val("");
-						$("input[name=id]").val("");
+						$("#retrait .notification").css({display:"flex"});
+						$("#retrait .notification").text(data.success);
+						$("#retrait input[name=code]").val("");
+						$("#retrait input[name=telephone]").val("");
+						$("#retrait input[name=sum]").val("");
+						$("#retrait input[name=solde]").val("");
+						$("#retrait input[name=cost]").val("");
+						$("#retrait input[name=id]").val("");
 						setTimeout(function(){
 							AjaxDepositMessage();
-							$(".notification").css({display:"none"});
+							$("#retrait .notification").css({display:"none"});
 						},2000);
 					}
 					if(data.checkdata){
-						$(".notification").css({display:"flex"});
+						$("#retrait .notification").css({display:"flex"});
 						$(".notification").text(data.checkdata);
 					}
 					if(data.no_message){
-						$(".notification").css({display:"flex"});
-						$(".notification").text(data.no_message);
+						$("#retrait .notification").css({display:"flex"});
+						$("#retrait .notification").text(data.no_message);
 					}
 					if(data.no_withdraw){
-						$(".notification").css({display:"flex"});
-						$(".notification").text(data.no_withdraw);
+						$("#retrait .notification").css({display:"flex"});
+						$("#retrait .notification").text(data.no_withdraw);
 					}
 					if(data.no_user){
-						$(".notification").css({display:"flex"});
-						$(".notification").text(data.no_user);
+						$("#retrait .notification").css({display:"flex"});
+						$("#retrait .notification").text(data.no_user);
 					}
 
 					
