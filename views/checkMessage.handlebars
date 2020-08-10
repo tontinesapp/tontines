@@ -73,7 +73,7 @@
 			});
 			$(this).css("background","rgba(0,128,192,1)");
 			$(this).css("color","white");
-			$("#retrait").css("displa","none");
+			$("#retrait").css("display","none");
 			$("#depot").css({
 				display:"flex",
 				flexDirection:"colum"
@@ -118,7 +118,15 @@
 						for(let i=0; i<allMessage.length;i++){
 							var id=allMessage[i]._id;
 							var message=allMessage[i].message;
-							var type=allMessage[i].type
+							var type=allMessage[i].type;
+							var year=allMessage[i].year;
+							var month=allMessage[i].month;
+							var dat=allMessage[i].dat;
+							var hour=allMessage[i].hour;
+							var minute=allMessage[i].minute;
+							var second=allMessage[i].second;
+							var millisecond=allMessage[i].millisecond;
+							var date=year+" "+month+" "+dat+" "+hour+" "+minute+" "+second+" "+millisecond;
 							var flag="";
 							if(type==="received"){
 								flag="Depot"
@@ -126,10 +134,11 @@
 							if(type==="sent"){
 								flag="Retrait";
 							}
+							var dateFlage="<p>"+date+"</p>";
 							var flagType="<p><i>"+flag+"</i></p>";
 							var p="<p>"+message+"</p>";
 							var identifiant="<p><strong>Identifiant : </strong>"+id+"</p>";												
-							$(".message").append("<div>"+flagType+p+identifiant+"</div>");
+							$(".message").append("<div>"+dateFlage+flagType+p+identifiant+"</div>");
 						}							
 					}									
 					if(data.no_message){						
