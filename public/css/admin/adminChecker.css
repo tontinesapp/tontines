@@ -31,18 +31,19 @@ nav span:hover{
 	width:90%;
 	margin:auto;
 	justify-content:space-between;
+	margin-top:3em;
 }
 
 #checker section{
 	width:45%;
-	height:550px;
+	/height:550px;
 	border:1px solid rgba(0,0,0,0.2);
 	overflow-y:auto;
 	padding:0.2em 0.5em;
 	background:rgba(240,240,240,0.1);
 }
 #checker section div{
-	border-bottom:1px solid rgba(0,0,0,0.3);
+	/border-bottom:1px solid rgba(0,0,0,0.3);
 }
 #checker .form{
 	width:45%;

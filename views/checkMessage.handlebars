@@ -2,13 +2,11 @@
 	<link rel="stylesheet" type="text/css" href="/public/css/menu.css"/>
 	<link rel="stylesheet" type="text/css" href="/public/css/admin/adminChecker.css"/>
 {{/section}}
-	<!--
-	<nav>
-		<span id="validation_depot" class="navigation">Validation de Depot</span>
-		<span id="validation_retrait" class="navigation">Validation de Retrait</span>
-	</nav>
-	-->
+		<nav>
+			<h1>Validqtion de depot et retrait</h1>
+		</nav>
 	<section id="checker">
+		
 		<section class="message">
 				<!--
 				<div>
@@ -40,7 +38,7 @@
 				<em class="cost">Relir le chapm</em>
 				<label for="id"><span>Identifiant</span>:<input type="text" name="id"/></label>
 				<em class="id">Relir le chapm</em>
-				<span id="valid"><i>Valider</i></span>
+				<span class="valid"><i>Valider</i></span>
 				<p class="progress">. . . En cours de traitement</p>
 				<p class="notification"></p>			
 		</div>
@@ -57,7 +55,7 @@
 			<em class="cost">Relir le chapm</em>
 			<label for="id"><span>Identifiant</span>:<input type="text" name="id"/></label>
 			<em class="id">Relir le chapm</em>
-			<span id="valid"><i>Valider</i></span>
+			<span class="valid"><i>Valider</i></span>
 			<p class="progress">. . . En cours de traitement</p>
 			<p class="notification"></p>
 		</div>
@@ -65,44 +63,7 @@
 {{#section "jquery"}}
 <script type="text/javascript">
 
-	$(document).ready(function(){
-		//var menuLinks=$("nav a");
-	
-		$("#validation_depot").on("click",function(){
-			$(".navigation").css({
-				background:"white",
-				color:"black"
-			});
-			$(this).css("background","rgba(0,128,192,1)");
-			$(this).css("color","white");
-			$("#retrait").css("display","none");
-			$("#depot").css({
-				display:"flex",
-				flexDirection:"colum"
-			});	
-		});
-		
-		$("#validation_retrait").on("click",function(){
-			$(".navigation").css({
-				background:"white",
-				color:"black"
-			});
-			$(this).css("background","rgba(0,128,192,1)");
-			$(this).css("color","white");
-			$("#depot").css("display","none");
-			$("#retrait").css({
-				display:"flex",
-				flexDirection:"colum"
-			});			
-		});
-				/*	
-				menuLinks.each(function(){
-					if(($(this).attr("href"))===window.location.pathname){
-						$(this).css("background","rgba(0,128,192,1)");
-						$(this).css("color","white");			
-					}
-				});
-				*/
+	$(document).ready(function(){		
 		AjaxDepositMessage();
 		function AjaxDepositMessage(){
 			$(".message").html("");
@@ -113,8 +74,7 @@
 					console.log(data);
 					if(data.error){
 						$(".message").append("<p>"+data.error+"</p>");
-					}
-				
+					}				
 					if(data.message){
 						var allMessage=data.message;
 							var id=allMessage._id;
@@ -151,36 +111,7 @@
 							var flagType="<p><i>"+flag+"</i></p>";
 							var p="<p>"+message+"</p>";
 							var identifiant="<p><strong>Identifiant : </strong>"+id+"</p>";												
-							$(".message").append("<div>"+dateFlage+flagType+p+identifiant+"</div>");
-						
-						/*
-							
-						for(let i=0; i<allMessage.length;i++){
-							var id=allMessage[i]._id;
-							var message=allMessage[i].message;
-							var type=allMessage[i].type;
-							var year=allMessage[i].year;
-							var month=allMessage[i].month;
-							var dat=allMessage[i].dat;
-							var hour=allMessage[i].hour;
-							var minute=allMessage[i].minute;
-							var second=allMessage[i].second;
-							var millisecond=allMessage[i].millisecond;
-							var date=year+" "+month+" "+dat+" "+hour+" "+minute+" "+second+" "+millisecond;
-							var flag="";
-							if(type==="received"){
-								flag="Depot"
-							}
-							if(type==="sent"){
-								flag="Retrait";
-							}
-							var dateFlage="<p>"+date+"</p>";
-							var flagType="<p><i>"+flag+"</i></p>";
-							var p="<p>"+message+"</p>";
-							var identifiant="<p><strong>Identifiant : </strong>"+id+"</p>";												
-							$(".message").append("<div>"+dateFlage+flagType+p+identifiant+"</div>");
-						}
-							*/
+							$(".message").append("<div>"+dateFlage+flagType+p+identifiant+"</div>");						
 					}									
 					if(data.no_message){						
 						$(".message").append("<p>"+data.no_message+"</p>");	
@@ -195,7 +126,7 @@
 				}	
 			})			
 		}
-		$("#valid").on("click",function(){
+		$("#depot .valid").on("click",function(){
 			validationDeposit();
 		});
 		function validationDeposit(){			
@@ -319,9 +250,133 @@
 
 					
 				}	
-			});
-			
-			
+			});		
+		}
+		$("#retrait .valid").on("click",function(){
+			validationSend();
+		});
+		function validationSend(){			
+			$(".progress").css({display:"flex"});
+			$("em").css({display:"none"});
+			$(".notification").css({display:"none"});
+			var code=$("input[name=code]").val();
+			var telephone=$("input[name=telephone]").val();
+			var sum=$("input[name=sum]").val();
+			var solde=$("input[name=solde]").val();
+			var cost=$("input[name=cost]").val();
+			var id=$("input[name=id]").val();
+			$.ajax({
+				url:"/admin/withdrawValidation",
+				type:"POST",
+				data:"code="+code+"&telephone="+telephone+"&sum="+sum+"&solde="+solde+"&id="+id+"&cost="+cost,
+				success:function(data){
+					$(".progress").css({display:"none"});
+					if(data.body){
+						var codeVal=data.body.code;
+						var tel=data.body.telephone;
+						var sumVal=data.body.sum;
+						var soldeVal=data.body.solde;
+						var idVal=data.body.id;
+					}					
+					if(data.error){
+						$(".message").append("<p>"+data.error+"</p>");
+					}
+					if(data.no_code){
+						$(".code").css({display:"flex"});
+						$(".code").text(data.no_code);
+					}
+					if(data.no_phone){
+						$(".telephone").css({display:"flex"});
+						$(".telephone").text(data.no_phone);
+					}
+					if(data.no_sum){
+						$(".sum").css({display:"flex"})
+						$(".sum").text(data.no_sum);
+					}
+					if(data.no_solde){
+						$(".solde").css({display:"flex"})
+						$(".solde").text(data.no_solde);
+					}
+					if(data.no_cost){
+						$(".solde").css({display:"flex"})
+						$(".solde").text(data.no_cost);
+					}
+					if(data.no_id){
+						$(".id").css({display:"flex"})
+						$(".id").text(data.no_id);
+					}
+					
+					if(data.badcode){
+						$(".code").css({display:"flex"});
+						$(".code").text(data.badcode);
+					}
+					if(data.badphone){
+						$(".telephone").css({display:"flex"});
+						$(".telephone").text(data.badphone);
+					}
+					if(data.no_valid_length){
+						$(".notification").css({display:"flex"});
+						$(".notification").text(data.no_valid_length);
+					}
+					if(data.badsum){
+						$(".sum").css({display:"flex"})
+						$(".sum").text(data.badsum);
+					}
+					if(data.badsolde){
+						$(".sum").css({display:"flex"})
+						$(".sum").text(data.badsolde);
+					}
+					if(data.no_number){
+						$(".sum").css({display:"flex"})
+						$(".sum").text(data.no_number);
+					}
+					if(data.no_solde){
+						$(".sum").css({display:"flex"})
+						$(".sum").text(data.no_solde);
+					}
+					if(data.no_id){
+						$(".id").css({display:"flex"})
+						$(".id").text(data.no_id);
+					}
+					
+					if(data.msg_error){
+						$(".notification").css({display:"flex"});
+						$(".notification").text(data.msg_error);
+					}
+					if(data.success){
+						$(".notification").css({display:"flex"});
+						$(".notification").text(data.success);
+						$("input[name=code]").val("");
+						$("input[name=telephone]").val("");
+						$("input[name=sum]").val("");
+						$("input[name=solde]").val("");
+						$("input[name=cost]").val("");
+						$("input[name=id]").val("");
+						setTimeout(function(){
+							AjaxDepositMessage();
+							$(".notification").css({display:"none"});
+						},2000);
+					}
+					if(data.checkdata){
+						$(".notification").css({display:"flex"});
+						$(".notification").text(data.checkdata);
+					}
+					if(data.no_message){
+						$(".notification").css({display:"flex"});
+						$(".notification").text(data.no_message);
+					}
+					if(data.no_withdraw){
+						$(".notification").css({display:"flex"});
+						$(".notification").text(data.no_withdraw);
+					}
+					if(data.no_user){
+						$(".notification").css({display:"flex"});
+						$(".notification").text(data.no_user);
+					}
+
+					
+				}	
+			});		
 		}
 		
 	})
