@@ -2,10 +2,12 @@
 	<link rel="stylesheet" type="text/css" href="/public/css/menu.css"/>
 	<link rel="stylesheet" type="text/css" href="/public/css/admin/adminChecker.css"/>
 {{/section}}
+	<!--
 	<nav>
 		<span id="validation_depot" class="navigation">Validation de Depot</span>
 		<span id="validation_retrait" class="navigation">Validation de Retrait</span>
 	</nav>
+	-->
 	<section id="checker">
 		<section class="message">
 				<!--
@@ -115,6 +117,44 @@
 				
 					if(data.message){
 						var allMessage=data.message;
+							var id=allMessage._id;
+							var message=allMessage.message;
+							var type=allMessage.type;
+							var year=allMessage.year;
+							var month=allMessage.month;
+							var dat=allMessage.dat;
+							var hour=allMessage.hour;
+							var minute=allMessage.minute;
+							var second=allMessage.second;
+							var millisecond=allMessage.millisecond;
+							var date=year+" "+month+" "+dat+" "+hour+" "+minute+" "+second+" "+millisecond;
+						
+							var flag="";
+							if(type==="received"){
+								flag="Depot";
+								$("#retrait").css("display","none");
+								$("#depot").css({
+									display:"flex",
+									flexDirection:"colum"
+								});									
+							}
+							
+							if(type==="sent"){
+								flag="Retrait";
+								$("#depot").css("display","none");
+								$("#retrait").css({
+									display:"flex",
+									flexDirection:"colum"
+								});	
+							}
+							var dateFlage="<p>"+date+"</p>";
+							var flagType="<p><i>"+flag+"</i></p>";
+							var p="<p>"+message+"</p>";
+							var identifiant="<p><strong>Identifiant : </strong>"+id+"</p>";												
+							$(".message").append("<div>"+dateFlage+flagType+p+identifiant+"</div>");
+						
+						/*
+							
 						for(let i=0; i<allMessage.length;i++){
 							var id=allMessage[i]._id;
 							var message=allMessage[i].message;
@@ -139,7 +179,8 @@
 							var p="<p>"+message+"</p>";
 							var identifiant="<p><strong>Identifiant : </strong>"+id+"</p>";												
 							$(".message").append("<div>"+dateFlage+flagType+p+identifiant+"</div>");
-						}							
+						}
+							*/
 					}									
 					if(data.no_message){						
 						$(".message").append("<p>"+data.no_message+"</p>");	

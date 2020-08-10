@@ -679,13 +679,12 @@ module.exports={
 		var deposit={};
 		if(req.session.logIn && req.session.admin){
 			if(req.session.privilege==="checker"){
-				OperatorMessage.find({type:/received|sent/,check:false,admissible:true},{ },{sort:{year:1,month:1,dat:1,hour:1,minute:1,second:1,millisecond:1}},function(err,message){
+				OperatorMessage.findOne({type:/received|sent/,check:false,admissible:true},{ },{sort:{year:1,month:1,dat:1,hour:1,minute:1,second:1,millisecond:1}},function(err,message){
 					if(err){
 						deposit.error="Une erreur du systeme est survenue";
 						res.status(200).json(deposit);
 					}else{
-						if(message.length>0){
-														
+						if(message!==null){														
 							deposit.message=message;
 							res.status(200).json(deposit);
 						}else{
