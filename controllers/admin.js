@@ -405,64 +405,17 @@ module.exports={
 		var withdraw={};
 		if(req.session.logIn && req.session.admin){
 			if(req.session.privilege==="sender"){
-				UserAsking.findOne({type:"Retrait",check:false,traited:false},{},{sort:{year:1,month:1,dat:1,hour:1,minute:1,second:1,millisecond:1}},function(err,message){
+				UserAsking.findOne({type:"Retrait",check:false,traited:false},{},{sort:{year:1,month:1,dat:1,hour:1,minute:1,second:1,millisecond:1}}function(err,message){
 					if(err){
-						UserAsking.find({type:"Retait",check:false,traited:true},{},{sort:{year:1,month:1,dat:1,hour:1,minute:1,second:1,millisecond:1}},function(err,checkedAsk){
-								if(err){
-									withdraw.checkederror="Une erreur est survenue";
-									withdraw.error="Une erreur est survenue; ressayez plus tard";
-									res.status(200).json(withdraw);
-								}else{
-									if(checkedAsk.length>0){
-										withdraw.checkedAsk=checkedAsk;
-										withdraw.error="Une erreur est survenue; ressayez plus tard";
-										res.status(200).json(withdraw);
-									}else{
-										withdraw.no_checked="Aucun message en cours de traitement";
-										withdraw.error="Une erreur est survenue; ressayez plus tard";
-										res.status(200).json(withdraw);
-									}
-								}
-							});						
-						//res.status(200).json(withdraw);
+						withdraw.error="Une erreur est survenue; ressayez plus tard";
+						res.status(200).json(withdraw);
 					}else{
 						if(message!==null){
-							UserAsking.find({type:"Retait",check:false,traited:true},{},{sort:{year:1,month:1,dat:1,hour:1,minute:1,second:1,millisecond:1}},function(err,checkedAsk){
-								if(err){
-									withdraw.checkederror="Une erreur est survenue";
-									withdraw.withdraw=message;
-									res.status(200).json(withdraw);
-								}else{
-									if(checkedAsk.length>0){
-										withdraw.checkedAsk=checkedAsk;
-										withdraw.withdraw=message;
-										res.status(200).json(withdraw);
-									}else{
-										withdraw.no_checked="Aucun message en cours de traitement";
-										withdraw.withdraw=message;
-										res.status(200).json(withdraw);
-									}
-								}
-							});
-							
-						}else{
-							UserAsking.find({type:"Retait",check:false,traited:true},{},{sort:{year:1,month:1,dat:1,hour:1,minute:1,second:1,millisecond:1}},function(err,checkedAsk){
-								if(err){
-									withdraw.checkederror="Une erreur est survenue";
-									withdraw.no_withdraw="Pas de demande de retrait en cours";
-									res.status(200).json(withdraw);
-								}else{
-									if(checkedAsk.length>0){
-										withdraw.checkedAsk=checkedAsk;
-										withdraw.no_withdraw="Pas de demande de retrait en cours";
-										res.status(200).json(withdraw);
-									}else{
-										withdraw.no_checked="Aucun message en cours de traitement";
-										withdraw.no_withdraw="Pas de demande de retrait en cours";
-										res.status(200).json(withdraw);
-									}
-								}
-							});						
+							withdraw.withdraw=message;
+							res.status(200).json(withdraw);
+						}else{							
+							withdraw.no_withdraw="Pas de demande de retrait en cours";
+							res.status(200).json(withdraw);
 						}
 					}
 				});
