@@ -1286,13 +1286,13 @@ module.exports={
 					if(!telephone){
 						validation.no_phone="Ce champ doit être un numero de telephone valide";
 					}
-					if(isNaN(sum)){
+					if(isNaN(parseFloat(sum))){
 						validation.no_sum="Ce Champ doit être un chiffre";
 					}
-					if(isNaN(solde)){
+					if(isNaN(parseFloat(solde))){
 						validation.no_solde="Ce Champ doit être un chiffre";
 					}
-					if(isNaN(cost)){
+					if(isNaN(parseFloat(cost))){
 						validation.no_cost="Ce champ doit etre un chiffre";
 					}
 					if(!id){
