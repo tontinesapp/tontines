@@ -43,16 +43,15 @@ nav p{
 
 
 
+
 #checker section p i{
-	/background:rgba(0,128,192,1);
+	background:rgba(0,128,192,1);
 	padding:0.3em 1em;
 	color:white;
 	font-style:normal;
 	font-size:0.9em;
 	border-radius:1em 0px 0px 1em;
 }
-
-
 
 #checker section.message{
 	line-height:1.6em;
