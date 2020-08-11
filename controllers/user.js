@@ -76,6 +76,7 @@ function timeGeneration(){
 	return hour+":"+minute;
 }
 
+/*
 function generateSolde(solde){
 	console.log(solde);
 	var lastSolde=solde+"";
@@ -84,14 +85,33 @@ function generateSolde(solde){
 		var endIndex=index+3;
 		var newSolde=lastSolde.substring(0,endIndex);
 		//var floatPoint=newSolde.substring(index+1);		
-		/*if(floatPoint.length===1){
-			newSolde=newSolde+"0";			
-		}*/		
+		//if(floatPoint.length===1){ newSolde=newSolde+"0";	}	
 		return newSolde;
 	}else{
 		return solde+".00";
 	}
 }
+
+*/
+
+function generateSolde(solde){
+	var lastSolde=solde+"";
+	if((lastSolde.indexOf("."))>-1){
+		var index=lastSolde.indexOf(".");
+		var endIndex=index+3;
+		var newSolde=lastSolde.substring(0,endIndex);
+		var floatPoint=newSolde.substring(index+1);
+		
+		if(floatPoint.length===1){
+			newSolde=newSolde+"0";			
+		}
+		console.log(newSolde);
+		return newSolde;
+	}else{
+		return solde+".00";
+	}
+}
+
 
 
 function getSolde(lastValue,telephone,password,res,user){
