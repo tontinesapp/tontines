@@ -89,7 +89,7 @@
 					success:function(data){
 						console.log(data);							
 						if(data.withdraw){							
-							let list=data.withdraw,
+							let list=data.withdraw;
 							for(let i=0; i<list.length;i++){
 									var id=list[i]._id;
 									var type=list[i].type;
