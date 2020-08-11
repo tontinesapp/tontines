@@ -97,7 +97,11 @@
 									time=list.time,
 									sum=list.sum,
 									telephone=list.telephone,
-									traited=list.traited;								
+									traited=list.traited;
+									let inprogress="";
+									if(traited){
+										inprogress="traited"
+									}
 									$("#traited").append("<h1>Retrait en cours de traitement</h1>");
 									$("#traited").append("<li><span class="+inprogress+"><em>En cours de verification ...</em></span><span><strong>Objet :</strong> "+message+"</span><span><strong>Numero :</strong> "+telephone+"</span><span><strong>Montant :</strong> "+sum +"$</span><span><strong>Date de la demande</strong> "+date+" à "+time+"</span><span class='check' name="+id+">Effectué</span></li>");
 													
