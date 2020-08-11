@@ -46,12 +46,8 @@
 									time=list.time,
 									sum=list.sum,
 									telephone=list.telephone,
-									traited=list.traited;									
-									if(traited){										
-										let inprogress="traited";
-									}else{										
-										let inprogress="";
-									}
+									traited=list.traited;								
+									
 									$("#sender").append("<li><span><strong>Objet :</strong> "+message+"</span><span><strong>Numero :</strong> "+telephone+"</span><span><strong>Montant :</strong> "+sum +"$</span><span><strong>Date de la demande</strong> "+date+" à "+time+"</span><span class='check' name="+id+">Effectué</span></li>");
 													
 						}
@@ -67,7 +63,7 @@
 									traited=list.traited,
 									inprogress="";
 									if(traited){										
-										let inprogress="traited"
+										inprogress="traited"
 									}
 									$("#traited").append("<li><span class="+inprogress+"><em>En cours de verification ...</em></span><span><strong>Objet :</strong> "+message+"</span><span><strong>Numero :</strong> "+telephone+"</span><span><strong>Montant :</strong> "+sum +"$</span><span><strong>Date de la demande</strong> "+date+" à "+time+"</span><span class='check' name="+id+">Effectué</span></li>");
 						
