@@ -109,6 +109,14 @@
 								});									
 							}
 							
+							
+							
+							var dateFlage="<p>"+date+"</p>";
+							var flagType="<p><i>"+flag+"</i></p>";
+							var p="<p class='sms'>"+message+"</p>";
+							var identifiant="<p><strong>Identifiant : </strong>"+id+"</p>";												
+							$(".message").append("<div>"+dateFlage+flagType+p+identifiant+"</div>");
+							
 							if(type==="sent"){
 								flag="Retrait";
 								$("#depot").css("display","none");
@@ -125,12 +133,6 @@
 									background:"red"
 								});
 							}
-							
-							var dateFlage="<p>"+date+"</p>";
-							var flagType="<p><i>"+flag+"</i></p>";
-							var p="<p class='sms'>"+message+"</p>";
-							var identifiant="<p><strong>Identifiant : </strong>"+id+"</p>";												
-							$(".message").append("<div>"+dateFlage+flagType+p+identifiant+"</div>");						
 					}									
 					if(data.no_message){						
 						$(".message").append("<p>"+data.no_message+"</p>");	
