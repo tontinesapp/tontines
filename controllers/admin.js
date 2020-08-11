@@ -688,7 +688,7 @@ module.exports={
 							deposit.message=message;
 							res.status(200).json(deposit);
 						}else{
-							deposit.no_message="Aucun message de confirmation de depot";
+							deposit.no_message="Pas de message a valider; veuillez réactualisez la page";
 							res.status(200).json(deposit);
 						}
 					}
