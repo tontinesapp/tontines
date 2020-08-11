@@ -433,8 +433,8 @@ module.exports={
 									withdraw.withdraw=message;
 									res.status(200).json(withdraw);
 								}else{
-									if(traitedAsk.length>0){
-										withdraw.checkedAsk=traitedAsk;
+									if(checkedAsk.length>0){
+										withdraw.checkedAsk=checkedAsk;
 										withdraw.withdraw=message;
 										res.status(200).json(withdraw);
 									}else{
