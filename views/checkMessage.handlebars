@@ -100,21 +100,16 @@
 							var date=allMessage.date;
 						
 							var flag="";
+							var flagType="";
 							if(type==="received"){
 								flag="Depot";
 								$("#retrait").css("display","none");
 								$("#depot").css({
 									display:"flex",
 									flexDirection:"colum"
-								});									
-							}					
-							
-							
-							var dateFlage="<p>"+date+"</p>";
-							var flagType="<p><i>"+flag+"</i></p>";
-							var p="<p class='sms'>"+message+"</p>";
-							var identifiant="<p><strong>Identifiant : </strong>"+id+"</p>";												
-							
+								});
+								flagType="<p><i>"+flag+"</i></p>";								
+							}						
 							
 							if(type==="sent"){
 								flag="Retrait";
@@ -126,12 +121,15 @@
 								
 								$("#checker .form >span i").css({
 									background:"red"
-								});
+								});					
 								
-								$("#checker section p i").css({
-									background:"red"
-								});
+								flagType="<p><i style='background:red'>"+flag+"</i></p>";
 							}
+							var dateFlage="<p>"+date+"</p>";							
+							var p="<p class='sms'>"+message+"</p>";
+							var identifiant="<p><strong>Identifiant : </strong>"+id+"</p>";			
+							
+							
 							$(".message").append("<div>"+dateFlage+flagType+p+identifiant+"</div>");
 					}									
 					if(data.no_message){						
