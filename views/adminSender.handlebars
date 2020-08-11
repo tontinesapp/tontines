@@ -88,7 +88,8 @@
 					type:"GET",
 					success:function(data){
 						console.log(data);							
-						if(data.withdraw){							
+						if(data.withdraw){
+							$("#traited").append("<h1>Retrait en cours de traitement</h1>");
 							let list=data.withdraw;
 							for(let i=0; i<list.length;i++){
 									var id=list[i]._id;
@@ -104,7 +105,7 @@
 									}else{										
 										var inprogress="";
 									}
-									$("#traited").append("<h1>Retrait en cours de traitement</h1>");
+									
 								$("#traited").append("<li><span class="+inprogress+"><em>En cours de verification ...</em></span><span><strong>Objet :</strong> "+message+"</span><span><strong>Numero :</strong> "+telephone+"</span><span><strong>Montant :</strong> "+sum +"$</span><span><strong>Date de la demande</strong> "+date+" à "+time+"</span><span class='check' name="+id+">Effectué</span></li>");
 							}
 							/*	
