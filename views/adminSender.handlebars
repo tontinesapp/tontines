@@ -18,7 +18,7 @@
 	<footer id="footer">
 		<p>En cliquant sur effectué vous certifier avoir envoyer le montant démandé au numéro du benefiare tel qu'inscrit dans la démande de rétrait</p>
 		<p>Toute transation non conforme a une démande est considere comme une <strong>faute proffessionelle</strong></p>
-		<p class="logo"><img src="logo.png"/><img src="xerox.png"/></p>
+		<p class="logo"><img src="/public/logo/logo.png"/><img src="/public/logo/xerox.png"/></p>
 		<p>Copyright 2020 IntelBin.sarl</p>
 	</footer>
 </div>
@@ -39,7 +39,7 @@
 						console.log(data);							
 						if(data.withdraw){							
 							let list=data.withdraw,
-							id=list._id,
+								id=list._id,
 									type=list.type,
 									message=list.message,
 									date=list.date,
@@ -52,7 +52,7 @@
 									}else{										
 										let inprogress="";
 									}
-									$("#sender").append("<li><span class="+inprogress+"><em>En cours de verification ...</em></span><span><strong>Objet :</strong> "+message+"</span><span><strong>Numero :</strong> "+telephone+"</span><span><strong>Montant :</strong> "+sum +"$</span><span><strong>Date de la demande</strong> "+date+" à "+time+"</span><span class='check' name="+id+">Effectué</span></li>");
+									$("#sender").append("<li><span><strong>Objet :</strong> "+message+"</span><span><strong>Numero :</strong> "+telephone+"</span><span><strong>Montant :</strong> "+sum +"$</span><span><strong>Date de la demande</strong> "+date+" à "+time+"</span><span class='check' name="+id+">Effectué</span></li>");
 													
 						}
 						if(data.checkedAsk){
@@ -64,11 +64,10 @@
 									time=list.time,
 									 sum=list.sum,
 									telephone=list.telephone,
-									traited=list.traited;									
+									traited=list.traited,
+									inprogress="";
 									if(traited){										
 										let inprogress="traited"
-									}else{										
-										let inprogress="";
 									}
 									$("#traited").append("<li><span class="+inprogress+"><em>En cours de verification ...</em></span><span><strong>Objet :</strong> "+message+"</span><span><strong>Numero :</strong> "+telephone+"</span><span><strong>Montant :</strong> "+sum +"$</span><span><strong>Date de la demande</strong> "+date+" à "+time+"</span><span class='check' name="+id+">Effectué</span></li>");
 						
