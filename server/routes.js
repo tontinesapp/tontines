@@ -64,6 +64,7 @@ module.exports=function(app){
 //these routes are for the sender admin
 	router.get("/admin/sender",admin.sender);
 	router.get("/admin/withdraw_request",admin.withdraw_request);	
+	router.get("/admin/withdraw_traited",admin.withdraw_traited);	
 	router.post("/admin/sender/getUserRequest",admin.getUserRequest);
 //these routes are for the checker admin
 	router.post("/admin/transaction",admin.transaction_message);

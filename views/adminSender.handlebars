@@ -26,12 +26,13 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$("#refresh").on("click",function(){
-				AjaxCall();
+				WithdrawRequest();
+				WithdrawTraited();
 			});
-			AjaxCall();
-			function AjaxCall(){
-				$("#sender").html("");
-				$("#traited").html("");
+			WithdrawRequest();
+			WithdrawTraited();
+			function WithdrawRequest(){
+				$("#sender").html("");				
 				$.ajax({
 					url:"/admin/withdraw_request",
 					type:"GET",
@@ -50,28 +51,7 @@
 									$("#sender").append("<h1>Demande de rétrait actuelle</h1>");
 									$("#sender").append("<li><span><strong>Objet :</strong> "+message+"</span><span><strong>Numero :</strong> "+telephone+"</span><span><strong>Montant :</strong> "+sum +"$</span><span><strong>Date de la demande</strong> "+date+" à "+time+"</span><span class='check' name="+id+">Effectué</span></li>");
 													
-						}
-						/*
-						if(data.checkedAsk){
-							let list=data.checkedAsk,
-							id=list._id,
-							type=list.type,
-									message=list.message,
-									date=list.date,
-									time=list.time,
-									 sum=list.sum,
-									telephone=list.telephone,
-									traited=list.traited,
-									inprogress="";
-									if(traited){										
-										inprogress="traited"
-									}
-									
-									$("#traited").append("<h1>Rétrait en cours de traitement</h1>");
-									$("#traited").append("<li><span class="+inprogress+"><em>En cours de verification ...</em></span><span><strong>Objet :</strong> "+message+"</span><span><strong>Numero :</strong> "+telephone+"</span><span><strong>Montant :</strong> "+sum +"$</span><span><strong>Date de la demande</strong> "+date+" à "+time+"</span><span class='check' name="+id+">Effectué</span></li>");
-						
-						}
-						*/
+						}						
 						$(".check").each(function(){
 							$(this).on("click",function(){
 								let name=$(this).attr("name");
@@ -81,7 +61,7 @@
 									data:"id="+name,
 									success:function(data){
 										if(data.withdraw){
-											AjaxCall();
+											WithdrawRequest();
 										}									
 									},
 									error:function(res){
@@ -94,13 +74,58 @@
 						if(data.no_withdraw){
 							$("#sender").append("<h1>Demande de rétrait actuelle</h1>");						
 							$("#sender").append(data.no_withdraw);	
-						}
-						/*
-						if(data.no_checked){
-							$("#traited").append("<h1>Rétrait en cours de traitement</h1>");
-							$("#traited").append(data.no_checked);	
-						}
+						}						
+					},
+					error:function(err){
+						console.log(err);
+					}
+				})
+			}
+			function WithdrawTraited(){				
+				$("#traited").html("");
+				$.ajax({
+					url:"/admin/withdraw_traited",
+					type:"GET",
+					success:function(data){
+						console.log(data);							
+						if(data.withdraw){							
+							let list=data.withdraw,
+								id=list._id,
+									type=list.type,
+									message=list.message,
+									date=list.date,
+									time=list.time,
+									sum=list.sum,
+									telephone=list.telephone,
+									traited=list.traited;								
+									$("#traited").append("<h1>Retrait en cours de traitement</h1>");
+									$("#traited").append("<li><span><strong>Objet :</strong> "+message+"</span><span><strong>Numero :</strong> "+telephone+"</span><span><strong>Montant :</strong> "+sum +"$</span><span><strong>Date de la demande</strong> "+date+" à "+time+"</span><span class='check' name="+id+">Effectué</span></li>");
+													
+						}	
+						/*						
+						$(".check").each(function(){
+							$(this).on("click",function(){
+								let name=$(this).attr("name");
+								$.ajax({
+									url:"/admin/sender/getUserRequest",
+									type:"POST",
+									data:"id="+name,
+									success:function(data){
+										if(data.withdraw){
+											WithdrawTraited();
+										}									
+									},
+									error:function(res){
+										console.log(res)
+									}
+								});							
+							});
+						});						
 						*/
+						if(data.no_withdraw){
+							$("#traited").append("<h1>Rétrait en cours de traitement</h1>");						
+							$("#traited").append(data.no_withdraw);	
+						}						
 					},
 					error:function(err){
 						console.log(err);

@@ -428,6 +428,33 @@ module.exports={
 			res.status(200).json(withdraw);			
 		}
 	},
+	withdraw_traited:function(req,res){
+		var withdraw={};
+		if(req.session.logIn && req.session.admin){
+			if(req.session.privilege==="sender"){
+				UserAsking.findOne({type:"Retrait",check:false,traited:true},{},{sort:{year:1,month:1,dat:1,hour:1,minute:1,second:1,millisecond:1}},function(err,message){
+					if(err){
+						withdraw.error="Une erreur est survenue; ressayez plus tard";
+						res.status(200).json(withdraw);
+					}else{
+						if(message!==null){
+							withdraw.withdraw=message;
+							res.status(200).json(withdraw);
+						}else{							
+							withdraw.no_withdraw="Aucune demande en cours de traitement";
+							res.status(200).json(withdraw);
+						}
+					}
+				});
+			}else{
+				withdraw.error="Désolé vous n'êtes pas abilité a acceder à ces documents";
+				res.status(200).json(withdraw);
+			}
+		}else{
+			withdraw.error="Désolé vous n'avait pas de connection";
+			res.status(200).json(withdraw);			
+		}
+	},
 	getUserRequest:function(req,res){
 		var withdraw={};
 		if(req.session.logIn && req.session.admin){
@@ -481,6 +508,7 @@ module.exports={
 			res.status(200).json(withdraw);			
 		}
 	},
+	
 	checkDepositMessage:function(req,res){
 		if(req.session.admin&&req.session.logIn){
 			if(req.session.privilege==="checker"){
