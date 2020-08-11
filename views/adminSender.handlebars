@@ -47,7 +47,7 @@
 									sum=list.sum,
 									telephone=list.telephone,
 									traited=list.traited;								
-									$("#sender").append("<h1>Rétrait en cours de traitement</h1>");
+									$("#sender").append("<h1>Demande de rétrait actuelle</h1>");
 									$("#sender").append("<li><span><strong>Objet :</strong> "+message+"</span><span><strong>Numero :</strong> "+telephone+"</span><span><strong>Montant :</strong> "+sum +"$</span><span><strong>Date de la demande</strong> "+date+" à "+time+"</span><span class='check' name="+id+">Effectué</span></li>");
 													
 						}
@@ -65,7 +65,8 @@
 									if(traited){										
 										inprogress="traited"
 									}
-									$("#traited").append("<h1>Demande de rétrait actuelle</h1>");
+									
+									$("#traited").append("<h1>Rétrait en cours de traitement</h1>");
 									$("#traited").append("<li><span class="+inprogress+"><em>En cours de verification ...</em></span><span><strong>Objet :</strong> "+message+"</span><span><strong>Numero :</strong> "+telephone+"</span><span><strong>Montant :</strong> "+sum +"$</span><span><strong>Date de la demande</strong> "+date+" à "+time+"</span><span class='check' name="+id+">Effectué</span></li>");
 						
 						}
@@ -89,11 +90,11 @@
 						});						
 						
 						if(data.no_withdraw){
-							$("#sender").append("<h1>Rétrait en cours de traitement</h1>");
+							$("#sender").append("<h1>Demande de rétrait actuelle</h1>");						
 							$("#sender").append(data.no_withdraw);	
 						}
 						if(data.no_checked){
-							$("#traited").append("<h1>Demande de rétrait actuelle</h1>");
+							$("#traited").append("<h1>Rétrait en cours de traitement</h1>");
 							$("#traited").append(data.no_checked);	
 						}
 					},
