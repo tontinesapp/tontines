@@ -88,10 +88,12 @@
 							});
 						});						
 						
-						if(data.no_withdraw){						
+						if(data.no_withdraw){
+							$("#sender").append("<h1>Rétrait en cours de traitement</h1>");
 							$("#sender").append(data.no_withdraw);	
 						}
 						if(data.no_checked){
+							$("#traited").append("<h1>Demande de rétrait actuelle</h1>");
 							$("#traited").append(data.no_checked);	
 						}
 					},
