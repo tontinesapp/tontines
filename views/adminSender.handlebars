@@ -90,6 +90,24 @@
 						console.log(data);							
 						if(data.withdraw){							
 							let list=data.withdraw,
+							for(let i=0; i<list.length;i++){
+									var id=list[i]._id;
+									var type=list[i].type;
+									var message=list[i].message;
+									var date=list[i].date;
+									var time=list[i].time;
+									var sum=list[i].sum;
+									var telephone=list[i].telephone;
+									var traited=list[i].traited;									
+									if(traited){										
+										var inprogress="traited"
+									}else{										
+										var inprogress="";
+									}
+									$("#traited").append("<h1>Retrait en cours de traitement</h1>");
+								$("#traited").append("<li><span class="+inprogress+"><em>En cours de verification ...</em></span><span><strong>Objet :</strong> "+message+"</span><span><strong>Numero :</strong> "+telephone+"</span><span><strong>Montant :</strong> "+sum +"$</span><span><strong>Date de la demande</strong> "+date+" à "+time+"</span><span class='check' name="+id+">Effectué</span></li>");
+							}
+							/*	
 								id=list._id,
 									type=list.type,
 									message=list.message,
@@ -104,7 +122,7 @@
 									}
 									$("#traited").append("<h1>Retrait en cours de traitement</h1>");
 									$("#traited").append("<li><span class="+inprogress+"><em>En cours de verification ...</em></span><span><strong>Objet :</strong> "+message+"</span><span><strong>Numero :</strong> "+telephone+"</span><span><strong>Montant :</strong> "+sum +"$</span><span><strong>Date de la demande</strong> "+date+" à "+time+"</span><span class='check' name="+id+">Effectué</span></li>");
-													
+								*/					
 						}	
 						/*						
 						$(".check").each(function(){
