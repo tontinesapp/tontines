@@ -3,7 +3,9 @@
 	<link rel="stylesheet" type="text/css" href="/public/css/admin/adminChecker.css"/>
 {{/section}}
 		<nav>
-			<h1>Validation de depot et retrait</h1>
+			<h1>Validation de transaction financiere</h1>
+			
+			<p>Veuillez remplire les formulaires de validation conforment aux données se trouvant dans le message de transaction.</p>
 		</nav>
 	<section id="checker">
 		
@@ -60,6 +62,13 @@
 			<p class="notification"></p>
 		</div>
 	</section>
+	<div id="footer">
+		<p><span>En cliquant sur valider, vous certifier avoir remplit correctement le formulaire de confirmation et que toutes
+		les données transmises sont conforment au message en cours de confirmation.</span>
+		<span>Toutes manoeuvre consistant a transmettre les données autres que celles present dans le message a confirmé est considere comme une fraude</span></p>
+		<p class="logo"><img src="logo.png"/><img src="xerox.png"/></p>
+		<p>Copyright 2020 IntelBin.sarl</p>
+	</div>
 {{#section "jquery"}}
 <script type="text/javascript">
 
@@ -87,7 +96,8 @@
 							var minute=allMessage.minute;
 							var second=allMessage.second;
 							var millisecond=allMessage.millisecond;
-							var date=year+" "+month+" "+dat+" "+hour+" "+minute+" "+second+" "+millisecond;
+							//var date=year+" "+month+" "+dat+" "+hour+" "+minute+" "+second+" "+millisecond;
+							var date=allMessage.date;
 						
 							var flag="";
 							if(type==="received"){
@@ -105,7 +115,10 @@
 								$("#retrait").css({
 									display:"flex",
 									flexDirection:"colum"
-								});	
+								});
+								$("#checker section p i #checker .form >span i").css({
+									background:"red"
+								});
 							}
 							var dateFlage="<p>"+date+"</p>";
 							var flagType="<p><i>"+flag+"</i></p>";
