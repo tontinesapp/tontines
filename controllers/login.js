@@ -145,50 +145,59 @@ module.exports={
 		password=deleteSpace(req.body.password),
 		password_confirmation=deleteSpace(req.body.password_confirmation);
 		
-		function saveUser(validePhone){		
-			User.findOne({telephone:validePhone},function(err,user){
-				if(user!==null){
+		function saveUser(validePhone){
+			Admin.findOne({telephone:validePhone},function(err,admin){
+				if(admin!==null){
 					req.session.user_exist="Vous ne pouvez pas vous inscrire avec ce numero";
-					req.session.sub_body=req.body;
-					res.redirect("/signup");								
-				}
-				else{
-					var userPhone="";								
-					let phoneFlag=validePhone.substr(1,2);
-					console.log("phoneFlag");
-					console.log(phoneFlag);
-					if(phoneFlag==="81"||phoneFlag==="82"||phoneFlag==="99"||phoneFlag==="97"||phoneFlag==="84"||phoneFlag==="85"||phoneFlag==="89"){
-						userPhone=validePhone;
-						var newUser=new User({
-							username:username,
-							name:name,
-							firstname:firstname,
-							telephone:userPhone,
-							password:password,
-							password_confirmation:password_confirmation,							
-							solde:0,
-							role:"member",
-							join:dateGeneration()
-						});						
-						newUser.save(function(err,data){
-							if(data){
-								req.session.logIn=true;
-								req.session.firstUse=true;
-								req.session.username=data.username;								
-								req.session.telephone=data.telephone;
-								req.session.password=data.password;
+							req.session.sub_body=req.body;
+							res.redirect("/signup");
+				}else{
+					User.findOne({telephone:validePhone},function(err,user){
+						if(user!==null){
+							req.session.user_exist="Vous ne pouvez pas vous inscrire avec ce numero";
+							req.session.sub_body=req.body;
+							res.redirect("/signup");								
+						}
+						else{
+							var userPhone="";								
+							let phoneFlag=validePhone.substr(1,2);
+							console.log("phoneFlag");
+							console.log(phoneFlag);
+							if(phoneFlag==="81"||phoneFlag==="82"||phoneFlag==="99"||phoneFlag==="97"||phoneFlag==="84"||phoneFlag==="85"||phoneFlag==="89"){
+								userPhone=validePhone;
+								var newUser=new User({
+									username:username,
+									name:name,
+									firstname:firstname,
+									telephone:userPhone,
+									password:password,
+									password_confirmation:password_confirmation,							
+									solde:0,
+									role:"member",
+									join:dateGeneration()
+								});						
+								newUser.save(function(err,data){
+									if(data){
+										req.session.logIn=true;
+										req.session.firstUse=true;
+										req.session.username=data.username;								
+										req.session.telephone=data.telephone;
+										req.session.password=data.password;
+										res.redirect("/signup");
+									}
+								});
+							}
+							else{
+								req.session.sub_body=req.body;
+								req.session.no_valid_operator="Operateur non valide";
 								res.redirect("/signup");
 							}
-						});
+																			
 					}
-					else{
-						req.session.sub_body=req.body;
-						req.session.no_valid_operator="Operateur non valide";
-						res.redirect("/signup");
-					}
-																	
-			}
-		});
+				});
+				}
+			});
+			
 	}
 	if(name&&firstname&&username&&password&&password_confirmation&&deleteSpace(req.body.telephone)){			
 		if(password.length>=8){
